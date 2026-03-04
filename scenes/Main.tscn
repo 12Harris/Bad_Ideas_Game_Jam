@@ -1,24 +1,11 @@
 [gd_scene format=3 uid="uid://sevmdm1850fd"]
 
 [ext_resource type="PackedScene" uid="uid://pq6ug3wnw2o0" path="res://scenes/TestingGrounds_BIGJ.tscn" id="1_elqb8"]
-[ext_resource type="PackedScene" uid="uid://cnwib4gds2mnf" path="res://scenes/InventoryUI.tscn" id="2_rvslj"]
 
 [node name="Node2D" type="Node2D" unique_id=1061775777]
 
 [node name="TestingGroundsBigj" parent="." unique_id=40856399 instance=ExtResource("1_elqb8")]
 
-[node name="Control" parent="TestingGroundsBigj/UI_Root" parent_id_path=PackedInt32Array(40856399, 1046426192) index="0" unique_id=930632544]
-offset_top = 82.0
-offset_bottom = 122.0
-
-[node name="InventoryUi" parent="." unique_id=315292029 instance=ExtResource("2_rvslj")]
-
-[node name="Panel" parent="InventoryUi" index="0" unique_id=1589345108]
-offset_left = 269.0
-offset_top = 547.0
-offset_right = 309.0
-offset_bottom = 587.0
-
 [editable path="TestingGroundsBigj"]
-[editable path="InventoryUi"]
-[editable path="InventoryUi/Panel/GridContainer/InventorySlot2"]
+[editable path="TestingGroundsBigj/UI_Root/InventoryUi"]
+[editable path="TestingGroundsBigj/UI_Root/InventoryUi/Panel/GridContainer/InventorySlot2"]
