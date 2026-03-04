@@ -1,7 +1,9 @@
 class_name Inventory
 extends Node
 
+#the unlockd inventory items
 var _items: Array[Inventory_Item] = []
+#the locked inventory items
 var _lockedItems:Array[Inventory_Item] = []
 var _player: Player
 var _totalItems: int = 0
@@ -40,7 +42,7 @@ func read_inventory_from_file() -> void:
 		var inventory_class = line[1]
 		var exp_req = int(line[2])
 		var item_name = line[3]
-		inventory_class = "res://scripts/inventory/"+inventory_class+".gd"
+		inventory_class = "res://scripts/inventory/items/"+inventory_class+".gd"
 		var inventory_script = load(inventory_class)
 		
 		var instance = inventory_script.new(id, exp_req, item_name)
