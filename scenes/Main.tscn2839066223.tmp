@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://gju4f0bu6rsk"]
+
+[ext_resource type="PackedScene" uid="uid://pq6ug3wnw2o0" path="res://scenes/TestingGrounds_BIGJ.tscn" id="1_elqb8"]
+
+[node name="Node2D" type="Node2D" unique_id=1061775777]
+
+[node name="TestingGroundsBigj" parent="." unique_id=40856399 instance=ExtResource("1_elqb8")]

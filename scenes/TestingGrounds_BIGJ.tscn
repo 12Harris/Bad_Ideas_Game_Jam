@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://pq6ug3wnw2o0"]
+
+[ext_resource type="Script" uid="uid://db581owr58s5r" path="res://scripts/BusDriver/bus_driver.gd" id="1_d3ich"]
+[ext_resource type="Script" uid="uid://cnhg0s65yy82f" path="res://scripts/UIManager/anger_progress_bar.gd" id="2_sporm"]
+[ext_resource type="Script" uid="uid://c1tjjll3equ0l" path="res://scripts/Player/player.gd" id="3_j1r41"]
+
+[node name="TestingGroundsBIGJ" type="Node2D" unique_id=40856399]
+
+[node name="BusDriver" type="Node" parent="." unique_id=1316347353]
+script = ExtResource("1_d3ich")
+
+[node name="Player" type="Node" parent="." unique_id=1835008993]
+script = ExtResource("3_j1r41")
+metadata/_custom_type_script = "uid://c1tjjll3equ0l"
+
+[node name="UI_Root" type="CanvasLayer" parent="." unique_id=1046426192]
+
+[node name="Control" type="Control" parent="UI_Root" unique_id=930632544]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 82.709595
+offset_right = 40.0
+offset_bottom = 122.709595
+
+[node name="AngerProgressBar" type="ProgressBar" parent="UI_Root/Control" unique_id=894154021]
+layout_mode = 0
+offset_top = -68.73639
+offset_right = 455.7481
+offset_bottom = -41.73639
+max_value = 50.0
+script = ExtResource("2_sporm")
+metadata/_custom_type_script = "uid://cnhg0s65yy82f"

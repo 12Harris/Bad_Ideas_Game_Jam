@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cnwib4gds2mnf"]
+
+[ext_resource type="Script" uid="uid://bornjy4wt155f" path="res://scripts/UIManager/Inventory/inventory_ui.gd" id="1_wqexf"]
+[ext_resource type="PackedScene" uid="uid://w0i422s4de7o" path="res://scenes/InventorySlot.tscn" id="2_ju2k0"]
+[ext_resource type="Script" uid="uid://bewpqdbi8pjdc" path="res://data/AdditionalItemData.gd" id="2_tbtli"]
+[ext_resource type="Resource" uid="uid://djb6px2dtrvtu" path="res://data/A.tres" id="3_hfc6r"]
+[ext_resource type="Resource" uid="uid://dkir7hnc2fx64" path="res://data/B.tres" id="4_d0rvq"]
+[ext_resource type="Resource" uid="uid://bacee18bpbu15" path="res://data/C.tres" id="5_4jdrs"]
+[ext_resource type="Resource" uid="uid://djymdvuit4idw" path="res://data/D.tres" id="6_a70b0"]
+[ext_resource type="Resource" uid="uid://vy4fergng112" path="res://data/E.tres" id="7_u03wm"]
+[ext_resource type="Resource" uid="uid://cimjxq7ddedql" path="res://data/F.tres" id="8_gxnuj"]
+
+[node name="InventoryUi" type="CanvasLayer" unique_id=315292029]
+script = ExtResource("1_wqexf")
+item_data = Array[ExtResource("2_tbtli")]([ExtResource("3_hfc6r"), ExtResource("4_d0rvq"), ExtResource("5_4jdrs"), ExtResource("6_a70b0"), ExtResource("7_u03wm"), ExtResource("8_gxnuj")])
+
+[node name="Panel" type="Panel" parent="." unique_id=1589345108]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.3599977, 1.3599977)
+
+[node name="GridContainer" type="GridContainer" parent="Panel" unique_id=2129711916]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 6
+
+[node name="InventorySlot" parent="Panel/GridContainer" unique_id=1898348738 instance=ExtResource("2_ju2k0")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="Panel/GridContainer" unique_id=1338082132 instance=ExtResource("2_ju2k0")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="Panel/GridContainer" unique_id=1171403083 instance=ExtResource("2_ju2k0")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="Panel/GridContainer" unique_id=1727412832 instance=ExtResource("2_ju2k0")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="Panel/GridContainer" unique_id=1148888977 instance=ExtResource("2_ju2k0")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="Panel/GridContainer" unique_id=1311264384 instance=ExtResource("2_ju2k0")]
+layout_mode = 2
+
+[editable path="Panel/GridContainer/InventorySlot2"]
