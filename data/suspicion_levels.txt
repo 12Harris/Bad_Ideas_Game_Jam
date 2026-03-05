@@ -1,0 +1,11 @@
+level	max_suspicion ai_state
+0	5	calm
+1	10	calm
+2 	15	calm
+3 	30	calm
+4 	40	suspicious
+5 	50	suspicious
+6 	60	angry
+7 	75	angry
+8 	90	angry
+9 	100	pull_over

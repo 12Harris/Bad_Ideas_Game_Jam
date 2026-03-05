@@ -14,6 +14,7 @@ var _ui
 var _initialized
 
 @export var interact_input_action = "interact"
+@export var interact_input_action_2 = "interact2"
 
 #Register the UI
 func register_ui(ui):
@@ -22,7 +23,7 @@ func register_ui(ui):
 #Register the player
 func register_player(p):
 	_player = p
-	_player.cause_anger.connect(on_player_cause_anger)
+	_player.cause_suspicion.connect(on_player_cause_suspicion)
 	
 #Register the bus driver
 func register_busdriver(b):
@@ -45,9 +46,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func get_interact_action() -> String:
 	return interact_input_action
 	
-func on_player_cause_anger(amount):
-	_busdriver.make_angry(amount)
-	G_Inventory.update()
+func get_interact_action_2() -> String:
+	return interact_input_action_2
+	
+func on_player_cause_suspicion(total_clout):
+	_busdriver.make_suspicious(total_clout)
 
 func get_bus_driver() -> BusDriver:
 	return _busdriver

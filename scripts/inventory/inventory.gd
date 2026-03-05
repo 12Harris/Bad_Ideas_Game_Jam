@@ -19,7 +19,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update() -> void:
-	if _items.size() < _totalItems && _player.get_exp() > _lockedItems[0].exp_req:
+	if _items.size() < _totalItems && _player.get_total_clout() > _lockedItems[0].clout_req:
 		add_item(_lockedItems[0])
 		_lockedItems.remove_at(0)
 	

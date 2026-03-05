@@ -1,10 +1,10 @@
 class_name Inventory_Item
 
 var id : int
-var exp_req : int
+var clout_req : int
 var name : String
 
-func _init(id, exp, name) -> void:
+func _init(id, clout, name) -> void:
 	id = id
-	exp_req = exp
+	clout_req = clout
 	name = name

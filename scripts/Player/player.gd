@@ -1,19 +1,59 @@
 class_name Player
 extends Node
 
-signal cause_anger(amount)
+signal cause_suspicion(total_clout)
 
-var _anger_caused : int = 20
+var _clout_gained : int = 20
 
-var _exp : int = 0
+var _total_clout : int
 
 var bus_driver : BusDriver
+
+#nested class for the player clout
+class CloutLevel:
+	var _min_clout:float
+	var _max_clout : float
+	var _current_clout : float
+	var _player : Player
+	var suspicion_level_id : int
+	static var currentLevel : int = 0
+	
+	signal clout_level_increased()
+	
+	func _init(player,max_clout,min_clout,suspicion_level_id) -> void:
+		_max_clout = max_clout
+		_min_clout = min_clout
+		_current_clout = _min_clout
+		_player = player
+		self.suspicion_level_id = suspicion_level_id
+		clout_level_increased.connect(_player._on_clout_level_increased)
+	
+	#get the max anger
+	func get_max_clout():
+		return _max_clout
 		
+	func increase_clout(clout) -> void:
+		if _current_clout < _max_clout:
+			if _current_clout + clout > _max_clout:
+				clout = _max_clout-_current_clout
+			_current_clout += clout
+			_player._total_clout += clout
+			UI_Manager.increase_clout_meter(clout)
+		elif _current_clout >= _max_clout and currentLevel < 9:
+			currentLevel += 1
+			UI_Manager.set_min_clout(_max_clout)
+			clout_level_increased.emit()	
+
+var clout_levels: Array[CloutLevel] = []
+var clout_levels_file : String
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Game_Manager.register_player(self)
 	set_process_unhandled_input(true)
 	bus_driver = Game_Manager.get_bus_driver()
+	read_clout_levels_from_file()
+	_total_clout = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -21,12 +61,51 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(Game_Manager.get_interact_action()):
-		cause_anger.emit(_anger_caused)
-		#Simplified experience calculation: simply set it to the total_anger of the bus driver
-		_exp = bus_driver.get_total_anger()
-		#Update the anger caused for the next calculation
-		_anger_caused *=  (1.2- (bus_driver.AngerLevel.currentLevel/10.0)*0.2)
-		get_viewport().set_input_as_handled()
+		handle_interaction()
+	elif event.is_action_pressed(Game_Manager.get_interact_action_2()):
+		handle_interaction()
+		cause_suspicion.emit(_total_clout)
+	get_viewport().set_input_as_handled()
+
+#called when F or G key is pressed
+func handle_interaction() -> void:
+	clout_levels[CloutLevel.currentLevel].increase_clout(_clout_gained)
+	#_total_clout += _clout_gained
+	#Update the clout caused for the next calculation
+	_clout_gained *=  (1.2- (CloutLevel.currentLevel/10.0)*0.2)
+	G_Inventory.update()
+	
+#Reads the anger levels from a text file
+func read_clout_levels_from_file() -> void:
+	var file = FileAccess.open("res://data/clout_levels.txt", FileAccess.READ)
+	var content = file.get_as_text()
+	content = content.split("\n")
+	var content_size = content.size()
+	var old_clout_level:CloutLevel
+	for i in range(1,content_size-1):
+		var line = content[i].split("\t")
+		if(clout_levels.size() > 0):
+			old_clout_level = clout_levels[clout_levels.size()-1]
+			clout_levels.append(CloutLevel.new(self,float(line[1]),old_clout_level._max_clout,int(line[2])))
+		else:
+			clout_levels.append(CloutLevel.new(self,float(line[1]),0,int(line[2])))
+			
+#Notify the ui manager that the anger level increased
+func _on_clout_level_increased() -> void:
+	UI_Manager.reset_clout_meter(clout_levels[CloutLevel.currentLevel].get_max_clout())
+	bus_driver.set_suspicion_level_id(clout_levels[CloutLevel.currentLevel].suspicion_level_id)
+	
+func get_total_clout() -> int:
+	return _total_clout
+	
+func get_last_clout_level_by_suspicion_level_id(id):
+	
+	if id < 0:
+		return null
 		
-func get_exp() -> int:
-	return _exp
+	var found:CloutLevel = null
+	for i in range(clout_levels.size()-1, -1, -1):
+		if(clout_levels[i].suspicion_level_id == id):
+			found = clout_levels[i]
+			break
+	return found

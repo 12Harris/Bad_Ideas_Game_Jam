@@ -1,5 +1,5 @@
 extends ProgressBar
-class_name AngerProgressBar
+class_name SuspProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,6 +9,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func increase_anger_meter(amount) -> void:
+func increase_meter(amount) -> void:
 	if self.value < self.max_value:
 		self.value += amount
+
+func set_meter(amount) -> void:
+	if self.value < self.max_value:
+		self.value = amount
