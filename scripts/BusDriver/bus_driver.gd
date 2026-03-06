@@ -89,16 +89,17 @@ func _process(delta: float) -> void:
 		suspicion_levels[SuspicionLevel.currentLevel].decrease_suspicion(suspicion_drain)
 	SuspicionLevel.update(self,delta,_drain_suspicion)
 	
-	_timer += delta
-	
 	# do look at mirror logic
-	_update_interval = 4.0 - 2* (SuspicionLevel.currentLevel/10)
-	
-	if _timer > _update_interval:
-		var probability = calculate_look_at_mirror_probability()
-		if probability >= randi() % 100:
-			look_at_mirror()
-		_timer = 0.0
+	if _timer >= 0:
+		_timer += delta
+		_update_interval = 4.0 - 2* (SuspicionLevel.currentLevel/10)
+		
+		if _timer > _update_interval:
+			var probability = calculate_look_at_mirror_probability()
+			#print("probability: ", probability)
+			if probability <= randi() % 100:
+				look_at_mirror()
+			
 		
 func initialize() -> void:
 	read_suspicion_levels_from_file()
@@ -120,7 +121,7 @@ func read_suspicion_levels_from_file() -> void:
 func make_suspicious(suspicion_amount) -> void:
 	suspicion_levels[SuspicionLevel.currentLevel].increase_suspicion(suspicion_amount)
 	_drain_suspicion = false
-	await G_Utils.wait(1)
+	await G_Utils.wait(2)
 	SuspicionLevel.targetLevel = SuspicionLevel.currentLevel - 2
 	if SuspicionLevel.targetLevel < 0:
 		SuspicionLevel.targetLevel = 0
@@ -145,8 +146,9 @@ func look_at_mirror():
 	var max_duration = 3.0
 	
 	_looking_at_mirror = true
-	UI_Manager.update_ai_state(ai_state,_looking_at_mirror)
+	UI_Manager.update_ai_state(ai_state,true)
 	on_look_at_mirror.emit()
+	_timer = -1
 	var duration = min_duration
 
 	if ai_state == "suspicious":
@@ -154,19 +156,20 @@ func look_at_mirror():
 		duration = min_duration + randf()
 	
 	elif ai_state == "angry":
-		#duration = 1.0 - 2.
+		#duration = 1.0 - 3.0
 		min_duration = 1.0
 		var temp = randi() % 10
 		var additional:float = 0
-		if temp > SuspicionLevel.currentLevel:
+		if temp < SuspicionLevel.currentLevel:
 			additional = SuspicionLevel.currentLevel/10.0
 		
 		duration = min_duration + additional *(max_duration-min_duration)
 
 	await G_Utils.wait(duration)
 	_looking_at_mirror = false
-	UI_Manager.update_ai_state(ai_state,_looking_at_mirror)
+	UI_Manager.update_ai_state(ai_state,false)
 	on_stop_look_at_mirror.emit()
+	_timer = 0
 
 #in fixed upate intervals the probability is calculated
 #currently just returns the total suspicion

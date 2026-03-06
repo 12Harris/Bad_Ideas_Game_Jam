@@ -4,15 +4,26 @@ extends MiniGame
 var _alphabet = ['A','B','C','D','E','F','G','H','I','J',
 				'K','L','M','N','O','P','Q','R','S','T',
 				'U','V','W','X','Y','Z']
+				
+var _busdriver: BusDriver
+var _current_letter_index : int = 0
+var _suspicion_multiplier : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
 	Game_Manager.register_minigame(self)
+	await get_tree().process_frame
+	_busdriver = Game_Manager.get_bus_driver()
+	suspicion_gain = 2
 	
 func _input(event):
-	if Input.is_action_pressed("A"):
-		print("A key pressed")
+	if event is InputEventKey and event.pressed:
+		var keycode = event.as_text_physical_keycode()
+		if _current_letter_index < _alphabet.size():
+			evaluate(keycode)
+			_current_letter_index += 1
+		#print("current letter: ", _alphabet[_current_letter_index])
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -21,3 +32,31 @@ func _process(delta: float) -> void:
 
 func start():
 	super.start()
+	
+func evaluate(letter):
+	
+	if letter != _alphabet[_current_letter_index]:
+		if _busdriver._looking_at_mirror:
+			_suspicion_multiplier= 1.3
+		else:
+			_suspicion_multiplier =1.1
+		fail()
+	else:
+		if _busdriver._looking_at_mirror:
+			_suspicion_multiplier = 1.2
+			fail()
+		else:
+			_suspicion_multiplier = 1
+			succeed()
+
+func calculate_suspicion(succeeded:bool):
+	if !succeeded:
+		if(suspicion_gain < 5):
+			suspicion_gain += 5	
+		else:
+			suspicion_gain *= _suspicion_multiplier
+	else:
+		suspicion_gain *= _suspicion_multiplier
+
+func is_noisy()->bool:
+	return true

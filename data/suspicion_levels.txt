@@ -7,5 +7,5 @@ level	max_suspicion ai_state
 5 	50	suspicious
 6 	60	angry
 7 	75	angry
-8 	90	angry
+8 	99	angry
 9 	100	pull_over

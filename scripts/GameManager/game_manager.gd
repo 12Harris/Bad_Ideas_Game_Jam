@@ -2,10 +2,10 @@ class_name GameManager
 extends Node
 
 #The main player
-var _player
+var _player : Player
 
 #The bus driver
-var _busdriver
+var _busdriver : BusDriver
 
 #The UI
 var _ui
@@ -25,7 +25,6 @@ func register_ui(ui):
 #Register the player
 func register_player(p):
 	_player = p
-	_player.cause_suspicion.connect(on_player_cause_suspicion)
 	
 #Register the bus driver
 func register_busdriver(b):
@@ -33,6 +32,8 @@ func register_busdriver(b):
 
 func register_minigame(minigame:MiniGame):
 	mini_games.append(minigame)
+	minigame.succeeded.connect(_on_minigame_succeeded)
+	minigame.failed.connect(_on_minigame_failed)
 		
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -54,11 +55,21 @@ func get_interact_action() -> String:
 func get_interact_action_2() -> String:
 	return interact_input_action_2
 	
-func on_player_cause_suspicion():
-	_busdriver.make_suspicious(10)
-
 func get_bus_driver() -> BusDriver:
 	return _busdriver
 	
 func get_player() -> Player:
 	return _player
+
+#called when the minigame or a part of the minigame suceeded
+func _on_minigame_succeeded(minigame:MiniGame):
+	
+	if minigame.is_noisy():
+		minigame.calculate_suspicion(true)
+		_busdriver.make_suspicious(minigame.suspicion_gain)
+	_player.increase_clout(minigame.clout_gain)
+
+#called when the minigame or a part of the minigame failed
+func _on_minigame_failed(minigame:MiniGame):
+	minigame.calculate_suspicion(false)
+	_busdriver.make_suspicious(minigame.suspicion_gain)

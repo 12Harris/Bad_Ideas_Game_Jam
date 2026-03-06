@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c1tjjll3equ0l" path="res://scripts/Player/player.gd" id="3_j1r41"]
 [ext_resource type="PackedScene" uid="uid://cnwib4gds2mnf" path="res://scenes/InventoryUI.tscn" id="4_pmva6"]
 [ext_resource type="Script" uid="uid://5sck2ktsxyyq" path="res://scripts/UI/susp_progress_bar.gd" id="5_8lkwd"]
+[ext_resource type="Script" uid="uid://dsql1y5eo0iqa" path="res://scripts/MiniGames/mini_game_1.gd" id="6_gxr4e"]
 
 [node name="TestingGroundsBIGJ" type="Node2D" unique_id=40856399]
 
@@ -74,6 +75,10 @@ offset_left = 924.0
 offset_top = -1.0
 offset_right = 993.0
 offset_bottom = 22.0
+
+[node name="MiniGame1" type="Node" parent="." unique_id=525531960]
+script = ExtResource("6_gxr4e")
+metadata/_custom_type_script = "uid://dsql1y5eo0iqa"
 
 [editable path="UI_Root/InventoryUi"]
 [editable path="UI_Root/InventoryUi/Panel/GridContainer/InventorySlot2"]
