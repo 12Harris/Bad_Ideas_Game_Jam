@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://pq6ug3wnw2o0"]
+
+[ext_resource type="Script" uid="uid://db581owr58s5r" path="res://scripts/BusDriver/bus_driver.gd" id="1_d3ich"]
+[ext_resource type="Script" uid="uid://cnhg0s65yy82f" path="res://scripts/UI/clout_progress_bar.gd" id="2_sporm"]
+[ext_resource type="Script" uid="uid://c1tjjll3equ0l" path="res://scripts/Player/player.gd" id="3_j1r41"]
+[ext_resource type="PackedScene" uid="uid://cnwib4gds2mnf" path="res://scenes/InventoryUI.tscn" id="4_pmva6"]
+[ext_resource type="Script" uid="uid://5sck2ktsxyyq" path="res://scripts/UI/susp_progress_bar.gd" id="5_8lkwd"]
+[ext_resource type="Script" uid="uid://dsql1y5eo0iqa" path="res://scripts/MiniGames/mini_game_1.gd" id="6_gxr4e"]
+
+[node name="TestingGroundsBIGJ" type="Node2D" unique_id=40856399]
+
+[node name="BusDriver" type="Node" parent="." unique_id=1316347353]
+script = ExtResource("1_d3ich")
+
+[node name="Player" type="Node" parent="." unique_id=1835008993]
+script = ExtResource("3_j1r41")
+metadata/_custom_type_script = "uid://c1tjjll3equ0l"
+
+[node name="UI_Root" type="CanvasLayer" parent="." unique_id=1046426192]
+
+[node name="CloutProgress" type="ProgressBar" parent="UI_Root" unique_id=894154021]
+offset_top = 13.973206
+offset_right = 455.7481
+offset_bottom = 40.973206
+theme_override_colors/font_outline_color = Color(0.8, 0, 0, 1)
+max_value = 50.0
+script = ExtResource("2_sporm")
+metadata/_custom_type_script = "uid://cnhg0s65yy82f"
+
+[node name="SuspProgressBar" type="ProgressBar" parent="UI_Root" unique_id=239608066]
+offset_top = 64.0
+offset_right = 455.0
+offset_bottom = 91.0
+script = ExtResource("5_8lkwd")
+metadata/_custom_type_script = "uid://5sck2ktsxyyq"
+
+[node name="InventoryUi" parent="UI_Root" unique_id=315292029 instance=ExtResource("4_pmva6")]
+
+[node name="Panel" parent="UI_Root/InventoryUi" index="0" unique_id=1589345108]
+offset_left = 290.0
+offset_top = 546.0
+offset_right = 330.0
+offset_bottom = 586.0
+
+[node name="Label" type="Label" parent="UI_Root" unique_id=1713131781]
+offset_left = 284.0
+offset_top = 244.0
+offset_right = 711.0
+offset_bottom = 267.0
+text = "Press F to fill the anger bar and unlock inventory items!
+Pressing G adds suspicion additionally"
+
+[node name="SuspicionLabel" type="Label" parent="UI_Root" unique_id=1748116748]
+offset_left = 486.0
+offset_top = 69.0
+offset_right = 913.0
+offset_bottom = 92.0
+text = "Suspicion"
+
+[node name="CloutLabel" type="Label" parent="UI_Root" unique_id=17553903]
+offset_left = 484.0
+offset_top = 17.0
+offset_right = 911.0
+offset_bottom = 40.0
+text = "Clout"
+
+[node name="AI State" type="Label" parent="UI_Root" unique_id=1764359367]
+offset_left = 665.0
+offset_right = 734.0
+offset_bottom = 23.0
+text = "AI State: "
+
+[node name="LookAtMirror" type="Label" parent="UI_Root" unique_id=522930878]
+offset_left = 924.0
+offset_top = -1.0
+offset_right = 993.0
+offset_bottom = 22.0
+
+[node name="MiniGame1" type="Node" parent="." unique_id=525531960]
+script = ExtResource("6_gxr4e")
+metadata/_custom_type_script = "uid://dsql1y5eo0iqa"
+
+[editable path="UI_Root/InventoryUi"]
+[editable path="UI_Root/InventoryUi/Panel/GridContainer/InventorySlot2"]

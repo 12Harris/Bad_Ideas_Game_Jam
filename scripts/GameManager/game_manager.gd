@@ -25,6 +25,7 @@ func register_ui(ui):
 #Register the player
 func register_player(p):
 	_player = p
+	_player.powerboost.connect(_on_player_powerboost)
 	
 #Register the bus driver
 func register_busdriver(b):
@@ -64,12 +65,17 @@ func get_player() -> Player:
 #called when the minigame or a part of the minigame suceeded
 func _on_minigame_succeeded(minigame:MiniGame):
 	
+	minigame.calculate_clout()
 	if minigame.is_noisy():
 		minigame.calculate_suspicion(true)
 		_busdriver.make_suspicious(minigame.suspicion_gain)
+
 	_player.increase_clout(minigame.clout_gain)
 
 #called when the minigame or a part of the minigame failed
 func _on_minigame_failed(minigame:MiniGame):
 	minigame.calculate_suspicion(false)
 	_busdriver.make_suspicious(minigame.suspicion_gain)
+	
+func _on_player_powerboost():
+	_busdriver.base_suspicion_multiplier-=0.2

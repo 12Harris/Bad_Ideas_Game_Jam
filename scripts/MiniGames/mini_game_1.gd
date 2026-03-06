@@ -8,9 +8,11 @@ var _alphabet = ['A','B','C','D','E','F','G','H','I','J',
 var _busdriver: BusDriver
 var _current_letter_index : int = 0
 var _suspicion_multiplier : float = 0
+var _clout_multiplier : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	clout_levels_file = "mini_game_1.txt"
 	super._ready()
 	Game_Manager.register_minigame(self)
 	await get_tree().process_frame
@@ -57,6 +59,13 @@ func calculate_suspicion(succeeded:bool):
 			suspicion_gain *= _suspicion_multiplier
 	else:
 		suspicion_gain *= _suspicion_multiplier
+	
+#only called if minigame succeded	
+func calculate_clout():
+	if _busdriver._looking_at_mirror:
+		clout_levels[CloutLevel.currentLevel].increase_clout(1.5)
+	else:
+		clout_levels[CloutLevel.currentLevel].increase_clout()
 
 func is_noisy()->bool:
 	return true

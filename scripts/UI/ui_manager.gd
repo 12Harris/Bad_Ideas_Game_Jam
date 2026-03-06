@@ -29,7 +29,7 @@ func register_progress_bar(progress_bar:ProgressBar):
 	
 func reset_clout_meter(max_value):
 	_clout_progress_bar.max_value = max_value
-	#_clout_progress_bar.value = 0
+	_clout_progress_bar.value = 0
 
 func increase_clout_meter(amount):
 	_clout_progress_bar.increase_meter(amount)

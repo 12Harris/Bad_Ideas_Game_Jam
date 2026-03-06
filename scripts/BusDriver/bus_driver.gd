@@ -6,7 +6,6 @@ class SuspicionLevel:
 	var _max_suspicion : float
 	var _busdriver:BusDriver
 	var _ai_state:String
-	var base_suspicion_multiplier : float = 1.0
 	static var timer : float = 0
 	static var currentLevel : int = 0
 	static var targetLevel: int = 0
@@ -62,6 +61,7 @@ class SuspicionLevel:
 var suspicion_levels: Array[SuspicionLevel] = []
 var anger_levels_file : String
 var total_suspicion: float = 0
+var base_suspicion_multiplier : float = 1.0
 var ai_state: String = "calm"
 var _player:Player
 var suspicion_drain : float = 0.01
@@ -92,7 +92,7 @@ func _process(delta: float) -> void:
 	# do look at mirror logic
 	if _timer >= 0:
 		_timer += delta
-		_update_interval = 4.0 - 2* (SuspicionLevel.currentLevel/10)
+		_update_interval = 3.0 - 2* (SuspicionLevel.currentLevel/10)
 		
 		if _timer > _update_interval:
 			var probability = calculate_look_at_mirror_probability()
@@ -117,9 +117,9 @@ func read_suspicion_levels_from_file() -> void:
 		var line = content[i].split("\t")
 		suspicion_levels.append(SuspicionLevel.new(int(line[0]),self,float(line[1]),line[2]))
 
-#Make the bus driver angry
+#Make the bus driver suspicious
 func make_suspicious(suspicion_amount) -> void:
-	suspicion_levels[SuspicionLevel.currentLevel].increase_suspicion(suspicion_amount)
+	suspicion_levels[SuspicionLevel.currentLevel].increase_suspicion(suspicion_amount*base_suspicion_multiplier)
 	_drain_suspicion = false
 	await G_Utils.wait(2)
 	SuspicionLevel.targetLevel = SuspicionLevel.currentLevel - 2

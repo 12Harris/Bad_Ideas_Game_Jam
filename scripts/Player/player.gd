@@ -5,6 +5,8 @@ var _total_clout : int
 
 var bus_driver : BusDriver
 
+signal powerboost
+
 #nested class for the player clout
 class CloutLevel:
 	var _min_clout:float
@@ -80,3 +82,5 @@ func _on_clout_level_increased() -> void:
 func get_total_clout() -> int:
 	return _total_clout
 	
+func power_boost():
+	powerboost.emit()

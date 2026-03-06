@@ -1,0 +1,3 @@
+level	max_clout	base_clout_gain
+1	50	4
+2	50	2
