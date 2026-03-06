@@ -13,6 +13,8 @@ var _ui
 #initialized flag
 var _initialized
 
+var mini_games: Array[MiniGame] = []
+
 @export var interact_input_action = "interact"
 @export var interact_input_action_2 = "interact2"
 
@@ -28,7 +30,10 @@ func register_player(p):
 #Register the bus driver
 func register_busdriver(b):
 	_busdriver = b
-	
+
+func register_minigame(minigame:MiniGame):
+	mini_games.append(minigame)
+		
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

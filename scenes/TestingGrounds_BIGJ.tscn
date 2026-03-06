@@ -69,5 +69,11 @@ offset_right = 734.0
 offset_bottom = 23.0
 text = "AI State: "
 
+[node name="LookAtMirror" type="Label" parent="UI_Root" unique_id=522930878]
+offset_left = 924.0
+offset_top = -1.0
+offset_right = 993.0
+offset_bottom = 22.0
+
 [editable path="UI_Root/InventoryUi"]
 [editable path="UI_Root/InventoryUi/Panel/GridContainer/InventorySlot2"]
