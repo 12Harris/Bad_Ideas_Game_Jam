@@ -49,8 +49,8 @@ func get_interact_action() -> String:
 func get_interact_action_2() -> String:
 	return interact_input_action_2
 	
-func on_player_cause_suspicion(total_clout):
-	_busdriver.make_suspicious(total_clout)
+func on_player_cause_suspicion():
+	_busdriver.make_suspicious(10)
 
 func get_bus_driver() -> BusDriver:
 	return _busdriver

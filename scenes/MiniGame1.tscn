@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dig4pvn8k3lem"]
+
+[ext_resource type="Script" uid="uid://dsql1y5eo0iqa" path="res://scripts/MiniGames/mini_game_1.gd" id="1_e7c44"]
+
+[node name="MiniGame1" type="Node2D" unique_id=899960747]
+script = ExtResource("1_e7c44")

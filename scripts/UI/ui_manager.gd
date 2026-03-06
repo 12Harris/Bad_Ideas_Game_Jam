@@ -3,9 +3,13 @@ class_name  UIManager
 
 var _clout_progress_bar : CloutProgressBar
 var _susp_progress_bar : SuspProgressBar
+var _ai_state : Label
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Game_Manager.register_ui(self)
+	await get_tree().process_frame
+	_ai_state = get_tree().current_scene.get_node("UI_Root/AI State")
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -34,3 +38,10 @@ func set_min_clout(min_clout):
 	
 func set_susp_meter(amount):
 	_susp_progress_bar.set_meter(amount)
+	
+func inc_susp_meter(amount):
+	_susp_progress_bar.increase_meter(amount)
+	
+func update_ai_state(state:String):
+	_ai_state.text = "AI State: " + state
+	

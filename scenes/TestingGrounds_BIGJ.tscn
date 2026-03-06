@@ -63,5 +63,11 @@ offset_right = 911.0
 offset_bottom = 40.0
 text = "Clout"
 
+[node name="AI State" type="Label" parent="UI_Root" unique_id=1764359367]
+offset_left = 665.0
+offset_right = 734.0
+offset_bottom = 23.0
+text = "AI State: "
+
 [editable path="UI_Root/InventoryUi"]
 [editable path="UI_Root/InventoryUi/Panel/GridContainer/InventorySlot2"]

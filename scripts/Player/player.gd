@@ -1,7 +1,7 @@
 class_name Player
 extends Node
 
-signal cause_suspicion(total_clout)
+signal cause_suspicion()
 
 var _clout_gained : int = 20
 
@@ -20,12 +20,11 @@ class CloutLevel:
 	
 	signal clout_level_increased()
 	
-	func _init(player,max_clout,min_clout,suspicion_level_id) -> void:
+	func _init(player,max_clout,min_clout) -> void:
 		_max_clout = max_clout
 		_min_clout = min_clout
 		_current_clout = _min_clout
 		_player = player
-		self.suspicion_level_id = suspicion_level_id
 		clout_level_increased.connect(_player._on_clout_level_increased)
 	
 	#get the max anger
@@ -64,7 +63,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		handle_interaction()
 	elif event.is_action_pressed(Game_Manager.get_interact_action_2()):
 		handle_interaction()
-		cause_suspicion.emit(_total_clout)
+		cause_suspicion.emit()
 	get_viewport().set_input_as_handled()
 
 #called when F or G key is pressed
@@ -86,26 +85,14 @@ func read_clout_levels_from_file() -> void:
 		var line = content[i].split("\t")
 		if(clout_levels.size() > 0):
 			old_clout_level = clout_levels[clout_levels.size()-1]
-			clout_levels.append(CloutLevel.new(self,float(line[1]),old_clout_level._max_clout,int(line[2])))
+			clout_levels.append(CloutLevel.new(self,float(line[1]),old_clout_level._max_clout))
 		else:
-			clout_levels.append(CloutLevel.new(self,float(line[1]),0,int(line[2])))
+			clout_levels.append(CloutLevel.new(self,float(line[1]),0))
 			
 #Notify the ui manager that the anger level increased
 func _on_clout_level_increased() -> void:
 	UI_Manager.reset_clout_meter(clout_levels[CloutLevel.currentLevel].get_max_clout())
-	bus_driver.set_suspicion_level_id(clout_levels[CloutLevel.currentLevel].suspicion_level_id)
 	
 func get_total_clout() -> int:
 	return _total_clout
 	
-func get_last_clout_level_by_suspicion_level_id(id):
-	
-	if id < 0:
-		return null
-		
-	var found:CloutLevel = null
-	for i in range(clout_levels.size()-1, -1, -1):
-		if(clout_levels[i].suspicion_level_id == id):
-			found = clout_levels[i]
-			break
-	return found

@@ -4,9 +4,12 @@ extends Node
 class SuspicionLevel:
 	var _id: int
 	var _max_suspicion : float
-	var _busdriver
+	var _busdriver:BusDriver
 	var _ai_state:String
+	var base_suspicion_multiplier : float = 1.0
+	static var timer : float = 0
 	static var currentLevel : int = 0
+	static var targetLevel: int = 0
 	
 	func _init(id,busdriver,max_suspicion, ai_state) -> void:
 		_id = id
@@ -18,17 +21,53 @@ class SuspicionLevel:
 	func get_max_suspicion():
 		return _max_suspicion
 		
+	static func update(busdriver:BusDriver,delta, drain:bool) -> void:
+		
+		if drain == false:
+			timer = 0.0
+			return
+	
+		timer += delta
+		if timer > 0.25:
+			UI_Manager.set_susp_meter(busdriver.get_total_suspicion())
+			timer = 0.0
+			
+	func decrease_suspicion(amount) -> void:
+		
+		if _busdriver.get_total_suspicion() > _busdriver.get_suspicion_level(targetLevel)._max_suspicion and currentLevel > targetLevel:
+			_busdriver.total_suspicion -=amount
+			if _busdriver.get_total_suspicion() <= _busdriver.get_suspicion_level(currentLevel-1)._max_suspicion:
+					currentLevel -= 1
+		else:
+			currentLevel = targetLevel
+			set_suspicion(_busdriver.get_suspicion_level(currentLevel)._max_suspicion)
+			_busdriver._drain_suspicion = false
+		
+		_busdriver.ai_state = _busdriver.get_suspicion_level(currentLevel)._ai_state
+		UI_Manager.update_ai_state(_busdriver.ai_state)
+
+		
+	func increase_suspicion(amount) -> void:
+		
+		_busdriver.total_suspicion += amount
+		UI_Manager.inc_susp_meter(amount)
+		if _busdriver.get_total_suspicion() >= _max_suspicion and currentLevel < 9:
+			currentLevel += 1
+		
+		_busdriver.ai_state = _busdriver.get_suspicion_level(currentLevel)._ai_state
+		UI_Manager.update_ai_state(_busdriver.ai_state)
+
 	func set_suspicion(amount) -> void:
 		UI_Manager.set_susp_meter(amount)
-		#if _busdriver.get_total_suspicion() >= _max_suspicion and currentLevel < 9:
-			#currentLevel += 1# HIERE IST DER WURM		
 
 var suspicion_levels: Array[SuspicionLevel] = []
 var anger_levels_file : String
-var total_suspicion: int = 0
+var total_suspicion: float = 0
 var ai_state: String = "calm"
 var _player:Player
-	
+var suspicion_drain : float = 0.01
+var _drain_suspicion = false
+
 signal suspicion_level_increased
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,8 +77,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if _drain_suspicion and SuspicionLevel.currentLevel > SuspicionLevel.targetLevel:
+		suspicion_levels[SuspicionLevel.currentLevel].decrease_suspicion(suspicion_drain)
 
+	SuspicionLevel.update(self,delta,_drain_suspicion)
+		
 func initialize() -> void:
 	read_suspicion_levels_from_file()
 	for i in range(suspicion_levels.size()):
@@ -57,40 +99,14 @@ func read_suspicion_levels_from_file() -> void:
 		suspicion_levels.append(SuspicionLevel.new(int(line[0]),self,float(line[1]),line[2]))
 
 #Make the bus driver angry
-func make_suspicious(total_player_clout) -> void:
-	
-	var max_clout_prev = _player.get_last_clout_level_by_suspicion_level_id(SuspicionLevel.currentLevel-1)
-	var max_clout_cur = _player.get_last_clout_level_by_suspicion_level_id(SuspicionLevel.currentLevel)
-	var clout_dif:float
-	
-	if max_clout_prev == null:
-		clout_dif = max_clout_cur._max_clout
-		#print("clout dif: " , clout_dif )
-	else:	
-		#print("max clout  prev: " , max_clout_prev._max_clout)
-		clout_dif = max_clout_cur._max_clout - max_clout_prev._max_clout
-	
-	#print("susp level: ", SuspicionLevel.currentLevel)
-	var max_susp_prev = get_suspicion_level(SuspicionLevel.currentLevel-1)
-	var max_susp_cur = get_suspicion_level(SuspicionLevel.currentLevel)
-	var susp_dif:float
-	
-	if max_susp_prev == null:
-		susp_dif = max_susp_cur._max_suspicion
-	else:
-		#print("max susp prev: " , max_susp_prev._max_suspicion)
-		susp_dif = max_susp_cur._max_suspicion - max_susp_prev._max_suspicion
-		
-	var suspicion_amount : float
-	
-	if max_susp_prev != null:
-		suspicion_amount = max_susp_prev._max_suspicion + ((total_player_clout - max_clout_prev._max_clout)/clout_dif)*susp_dif
-	else:
-		suspicion_amount = ((total_player_clout)/clout_dif)*susp_dif
-	
-	#print("susp amount ", suspicion_amount, "total player clout", total_player_clout )
-	suspicion_levels[SuspicionLevel.currentLevel].set_suspicion(suspicion_amount)
-	total_suspicion += suspicion_amount
+func make_suspicious(suspicion_amount) -> void:
+	suspicion_levels[SuspicionLevel.currentLevel].increase_suspicion(suspicion_amount)
+	_drain_suspicion = false
+	await G_Utils.wait(1)
+	SuspicionLevel.targetLevel = SuspicionLevel.currentLevel - 2
+	if SuspicionLevel.targetLevel < 0:
+		SuspicionLevel.targetLevel = 0
+	_drain_suspicion = true
 	
 	#suspicion_levels[SuspicionLevel.currentLevel].increase_suspicion(suspicion_amount)
 #Notify the ui manager that the anger level increased
@@ -103,13 +119,6 @@ func get_total_suspicion() -> int:
 	
 func get_suspicion_level(id):
 	if id < 0:
-		return null
+		return suspicion_levels[0]
 	return suspicion_levels[id]
 	
-func set_suspicion_level_id(id):
-	#print("susp id: ", id)
-	if id != SuspicionLevel.currentLevel:
-		SuspicionLevel.currentLevel = id
-		suspicion_level_increased.emit()
-		ai_state = suspicion_levels[SuspicionLevel.currentLevel]._ai_state
-		
