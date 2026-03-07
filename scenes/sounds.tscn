@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://celorvo0awlfy"]
+
+[ext_resource type="Script" uid="uid://bpgp003xcf33h" path="res://scripts/sounds.gd" id="1_aevjb"]
+
+[node name="Sounds" type="Node2D" unique_id=1645715420]
+script = ExtResource("1_aevjb")
+_burp_sound_files = Array[String](["res://assets/sounds/mini_game_1/burp 01.wav", "res://assets/sounds/mini_game_1/burp 02.wav", "res://assets/sounds/mini_game_1/burp 03.wav", "res://assets/sounds/mini_game_1/burp 04.wav", "res://assets/sounds/mini_game_1/burp 05.wav"])
+
+[node name="MiniGame1" type="Node" parent="." unique_id=46708315]
+
+[node name="Burping" type="Node" parent="MiniGame1" unique_id=107529599]

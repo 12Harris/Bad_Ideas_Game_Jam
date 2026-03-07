@@ -5,6 +5,7 @@ var _clout_progress_bar : CloutProgressBar
 var _susp_progress_bar : SuspProgressBar
 var _ai_state : Label
 var _look_at_mirror : Label
+var _mini_game_1_timer : Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,9 +13,12 @@ func _ready() -> void:
 	await get_tree().process_frame
 	_ai_state = get_tree().current_scene.get_node("UI_Root/AI State")
 	_look_at_mirror = get_tree().current_scene.get_node("UI_Root/LookAtMirror")
+	_mini_game_1_timer = get_tree().current_scene.get_node("UI_Root/MiniGame1Timer")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func updateMiniGame(minigame:MiniGame):
+	if minigame is MiniGame1:
+		_mini_game_1_timer.set_text(str(int(minigame.game_timer.get_time_left())))
 
 func register_progress_bar(progress_bar:ProgressBar):
 	
@@ -45,7 +49,8 @@ func inc_susp_meter(amount):
 	
 func update_ai_state(state:String,look_at_mirror:bool):
 	_ai_state.text = "AI State: " + state
-	
+	if state == "pull_over":
+		_ai_state.text = "Driver pulled over. The Game is Over!"
 	if look_at_mirror:
 		_look_at_mirror.text = "Bus Driver Looking At Mirror!"
 	else:

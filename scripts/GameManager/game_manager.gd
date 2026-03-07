@@ -13,7 +13,11 @@ var _ui
 #initialized flag
 var _initialized
 
+#array of minigames
 var mini_games: Array[MiniGame] = []
+
+#game sounds
+var sounds: Sounds
 
 @export var interact_input_action = "interact"
 @export var interact_input_action_2 = "interact2"
@@ -35,6 +39,9 @@ func register_minigame(minigame:MiniGame):
 	mini_games.append(minigame)
 	minigame.succeeded.connect(_on_minigame_succeeded)
 	minigame.failed.connect(_on_minigame_failed)
+
+func register_sounds(sounds:Sounds):
+	self.sounds = sounds
 		
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -62,7 +69,7 @@ func get_bus_driver() -> BusDriver:
 func get_player() -> Player:
 	return _player
 
-#called when the minigame or a part of the minigame suceeded
+#called when a minigame or a part of a minigame suceeded
 func _on_minigame_succeeded(minigame:MiniGame):
 	
 	minigame.calculate_clout()
@@ -72,7 +79,7 @@ func _on_minigame_succeeded(minigame:MiniGame):
 
 	_player.increase_clout(minigame.clout_gain)
 
-#called when the minigame or a part of the minigame failed
+#called when a minigame or a part of a minigame failed
 func _on_minigame_failed(minigame:MiniGame):
 	minigame.calculate_suspicion(false)
 	_busdriver.make_suspicious(minigame.suspicion_gain)

@@ -96,11 +96,13 @@ func _process(delta: float) -> void:
 		
 		if _timer > _update_interval:
 			var probability = calculate_look_at_mirror_probability()
-			#print("probability: ", probability)
-			if probability <= randi() % 100:
+			var test = randi()%100
+			print("timer: ", _timer)
+			if test <= probability:
 				look_at_mirror()
+			else:
+				_timer = 0
 			
-		
 func initialize() -> void:
 	read_suspicion_levels_from_file()
 	for i in range(suspicion_levels.size()):
@@ -148,7 +150,6 @@ func look_at_mirror():
 	_looking_at_mirror = true
 	UI_Manager.update_ai_state(ai_state,true)
 	on_look_at_mirror.emit()
-	_timer = -1
 	var duration = min_duration
 
 	if ai_state == "suspicious":

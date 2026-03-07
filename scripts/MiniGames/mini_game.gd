@@ -4,7 +4,7 @@ class_name MiniGame
 signal succeeded(minigame)
 signal failed(minigame)
 
-var started : bool = false
+var running : bool = false
 var suspicion_gain: float = 0
 var clout_gain: float = 0
 var clout_levels_file : String = ""
@@ -47,6 +47,7 @@ class CloutLevel:
 func _ready() -> void:
 	set_process_unhandled_input(true)
 	read_clout_levels_from_file()
+	start()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -61,7 +62,7 @@ func fail()->void:
 	failed.emit(self)
 
 func start():
-	started = true
+	running = true
 	
 func calculate_suspicion(succeded: bool):
 	pass

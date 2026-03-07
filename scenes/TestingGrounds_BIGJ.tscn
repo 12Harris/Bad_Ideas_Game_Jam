@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cnwib4gds2mnf" path="res://scenes/InventoryUI.tscn" id="4_pmva6"]
 [ext_resource type="Script" uid="uid://5sck2ktsxyyq" path="res://scripts/UI/susp_progress_bar.gd" id="5_8lkwd"]
 [ext_resource type="Script" uid="uid://dsql1y5eo0iqa" path="res://scripts/MiniGames/mini_game_1.gd" id="6_gxr4e"]
+[ext_resource type="PackedScene" uid="uid://celorvo0awlfy" path="res://scenes/sounds.tscn" id="7_rc77a"]
 
 [node name="TestingGroundsBIGJ" type="Node2D" unique_id=40856399]
 
@@ -15,6 +16,13 @@ script = ExtResource("1_d3ich")
 [node name="Player" type="Node" parent="." unique_id=1835008993]
 script = ExtResource("3_j1r41")
 metadata/_custom_type_script = "uid://c1tjjll3equ0l"
+
+[node name="MiniGame1" type="Node" parent="." unique_id=525531960]
+script = ExtResource("6_gxr4e")
+metadata/_custom_type_script = "uid://dsql1y5eo0iqa"
+
+[node name="Timer" type="Timer" parent="MiniGame1" unique_id=139929345]
+wait_time = 30.0
 
 [node name="UI_Root" type="CanvasLayer" parent="." unique_id=1046426192]
 
@@ -42,13 +50,14 @@ offset_top = 546.0
 offset_right = 330.0
 offset_bottom = 586.0
 
-[node name="Label" type="Label" parent="UI_Root" unique_id=1713131781]
+[node name="Game Description" type="Label" parent="UI_Root" unique_id=1713131781]
 offset_left = 284.0
 offset_top = 244.0
 offset_right = 711.0
 offset_bottom = 267.0
-text = "Press F to fill the anger bar and unlock inventory items!
-Pressing G adds suspicion additionally"
+text = "Burp the Aplhabet by typing the right letterson the keyboard within the given time!
+Avoid Geting Caught
+Be careful, the driver may be looking into the mirror!"
 
 [node name="SuspicionLabel" type="Label" parent="UI_Root" unique_id=1748116748]
 offset_left = 486.0
@@ -76,9 +85,13 @@ offset_top = -1.0
 offset_right = 993.0
 offset_bottom = 22.0
 
-[node name="MiniGame1" type="Node" parent="." unique_id=525531960]
-script = ExtResource("6_gxr4e")
-metadata/_custom_type_script = "uid://dsql1y5eo0iqa"
+[node name="MiniGame1Timer" type="Label" parent="UI_Root" unique_id=2063429972]
+offset_top = 125.0
+offset_right = 40.0
+offset_bottom = 148.0
+
+[node name="Sounds" parent="." unique_id=1645715420 instance=ExtResource("7_rc77a")]
 
 [editable path="UI_Root/InventoryUi"]
 [editable path="UI_Root/InventoryUi/Panel/GridContainer/InventorySlot2"]
+[editable path="Sounds"]
