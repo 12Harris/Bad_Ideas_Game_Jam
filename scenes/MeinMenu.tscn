@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://blioonruu4ho8"]
+
+[ext_resource type="Texture2D" uid="uid://bi1gd014od600" path="res://assets/main menu/Paper-Main-menu-background.png" id="1_tolhe"]
+[ext_resource type="Texture2D" uid="uid://bfoblt52iinpy" path="res://assets/main menu/Fire.png" id="2_7aojs"]
+[ext_resource type="Texture2D" uid="uid://bmqx7ijvs4y87" path="res://assets/main menu/start-button.png" id="3_g4rp4"]
+[ext_resource type="Texture2D" uid="uid://dtlw2qgwgxqq1" path="res://assets/main menu/Danger-Yellow-tape.png" id="4_p03u5"]
+[ext_resource type="Texture2D" uid="uid://xj773g11l4qs" path="res://assets/Character/Bimmy-Character.png" id="5_f1jlr"]
+[ext_resource type="Texture2D" uid="uid://beas8wn1x461f" path="res://assets/Logo/Logo-School-Bus-Mayhem.png" id="6_x2i1m"]
+[ext_resource type="Script" uid="uid://dwjqbnwo5nlkr" path="res://scripts/UI/MainMenu/start_button.gd" id="7_7aojs"]
+[ext_resource type="Script" uid="uid://p4kylui26yk0" path="res://scripts/UI/MainMenu/main_menu_camera.gd" id="8_g4rp4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4rp4"]
+radius = 61.46364
+
+[node name="MainMenu" type="CanvasLayer" unique_id=1416074231]
+follow_viewport_enabled = true
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1519471269]
+position = Vector2(960, 544)
+scale = Vector2(-0.005, 2)
+script = ExtResource("8_g4rp4")
+
+[node name="Background" type="TextureRect" parent="." unique_id=708723921]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_tolhe")
+
+[node name="Fire" type="TextureRect" parent="." unique_id=1377541910]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_7aojs")
+
+[node name="Yellow Tape" type="TextureRect" parent="." unique_id=146601359]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_p03u5")
+
+[node name="Logo" type="TextureRect" parent="." unique_id=1214686206]
+offset_left = 664.0
+offset_top = 8.0
+offset_right = 1264.0
+offset_bottom = 631.0
+texture = ExtResource("6_x2i1m")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Character" type="TextureRect" parent="." unique_id=1220963389]
+offset_left = 576.0
+offset_top = 176.0
+offset_right = 1326.0
+offset_bottom = 1256.0
+texture = ExtResource("5_f1jlr")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="StartButton" type="TextureRect" parent="." unique_id=203347638]
+offset_left = 672.0
+offset_top = 824.0
+offset_right = 1249.0
+offset_bottom = 1085.0
+texture = ExtResource("3_g4rp4")
+script = ExtResource("7_7aojs")
+
+[node name="Area2D" type="Area2D" parent="StartButton" unique_id=1035527306]
+position = Vector2(288, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartButton/Area2D" unique_id=832296817]
+position = Vector2(0, 4)
+scale = Vector2(3, 1)
+shape = SubResource("CircleShape2D_g4rp4")
+
+[connection signal="mouse_entered" from="StartButton" to="StartButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="StartButton" to="StartButton" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="StartButton/Area2D" to="StartButton" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="StartButton/Area2D" to="StartButton" method="_on_area_2d_mouse_exited"]

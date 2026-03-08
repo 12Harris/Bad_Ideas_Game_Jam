@@ -46,6 +46,7 @@ var clout_levels_file : String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print("player ready")
 	Game_Manager.register_player(self)
 	set_process_unhandled_input(true)
 	bus_driver = Game_Manager.get_bus_driver()

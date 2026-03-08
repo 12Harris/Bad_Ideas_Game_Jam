@@ -9,6 +9,7 @@ func _ready():
 	# Now, whenever an item is added or removed, update_ui() is called.
 	G_Inventory.inventory_changed.connect(update_ui)
 	
+	await get_tree().process_frame
 	# Initial UI update.
 	update_ui()
  

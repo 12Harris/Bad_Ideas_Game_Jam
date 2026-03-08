@@ -97,7 +97,7 @@ func _process(delta: float) -> void:
 		if _timer > _update_interval:
 			var probability = calculate_look_at_mirror_probability()
 			var test = randi()%100
-			print("timer: ", _timer)
+			print("probability", probability)
 			if test <= probability:
 				look_at_mirror()
 			else:
@@ -149,7 +149,7 @@ func look_at_mirror():
 	
 	_looking_at_mirror = true
 	UI_Manager.update_ai_state(ai_state,true)
-	on_look_at_mirror.emit()
+	on_look_at_mirror.emit(Game_Manager.global_timer)
 	var duration = min_duration
 
 	if ai_state == "suspicious":

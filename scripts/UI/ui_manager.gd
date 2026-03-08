@@ -7,14 +7,17 @@ var _ai_state : Label
 var _look_at_mirror : Label
 var _mini_game_1_timer : Label
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	Game_Manager.register_ui(self)
-	await get_tree().process_frame
+func initialize_game() -> void:
 	_ai_state = get_tree().current_scene.get_node("UI_Root/AI State")
+	if _ai_state == null:
+		print("AI STATE NULL!!")
 	_look_at_mirror = get_tree().current_scene.get_node("UI_Root/LookAtMirror")
 	_mini_game_1_timer = get_tree().current_scene.get_node("UI_Root/MiniGame1Timer")
 	
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	Game_Manager.register_ui(self)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func updateMiniGame(minigame:MiniGame):
 	if minigame is MiniGame1:

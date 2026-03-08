@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game_Jam_Template"
-run/main_scene="uid://pq6ug3wnw2o0"
+run/main_scene="uid://blioonruu4ho8"
 config/features=PackedStringArray("4.6")
 config/icon="res://assets/icon.svg"
 
@@ -21,6 +21,14 @@ Game_Manager="*uid://df1ox35rp72hr"
 UI_Manager="*uid://c4uwr1nywqsl1"
 G_Inventory="*uid://dt8mhip0sdnm6"
 G_Utils="*uid://crlkh6xwd8rna"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/borderless=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [input]
 

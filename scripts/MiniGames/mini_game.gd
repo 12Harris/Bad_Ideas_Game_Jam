@@ -32,7 +32,6 @@ class CloutLevel:
 		
 	func increase_clout(multiplier = 1) -> void:
 		var modified_clout_gain = _base_clout_gain * multiplier
-		print("mod: ", modified_clout_gain)
 		if _current_clout < _max_clout:
 			if _current_clout + modified_clout_gain > _max_clout:
 				modified_clout_gain = _max_clout-_current_clout
@@ -47,7 +46,6 @@ class CloutLevel:
 func _ready() -> void:
 	set_process_unhandled_input(true)
 	read_clout_levels_from_file()
-	start()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -13,10 +13,12 @@ signal inventory_changed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	pass
+	
+func initialize():
 	read_inventory_from_file()
-	await get_tree().process_frame
 	_player = Game_Manager.get_player()
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update() -> void:
 	if _items.size() < _totalItems && _player.get_total_clout() > _lockedItems[0].clout_req:
@@ -31,6 +33,7 @@ func add_item(item : Inventory_Item):
 
 #Add inventory items from file
 func read_inventory_from_file() -> void:
+	print("okosk")
 	var file = FileAccess.open("res://data/inventory.txt", FileAccess.READ)
 	var content = file.get_as_text()
 	content = content.split("\n")

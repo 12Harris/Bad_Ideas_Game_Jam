@@ -19,6 +19,9 @@ var mini_games: Array[MiniGame] = []
 #game sounds
 var sounds: Sounds
 
+#global timer
+var global_timer: float = 0
+
 @export var interact_input_action = "interact"
 @export var interact_input_action_2 = "interact2"
 
@@ -43,13 +46,19 @@ func register_minigame(minigame:MiniGame):
 func register_sounds(sounds:Sounds):
 	self.sounds = sounds
 		
+#Initialize the game scene once it is loaded
+func initialize_game() -> void:
+	print("scene name: ", get_tree().current_scene.name)
+	UI_Manager.initialize_game()
+	G_Inventory.initialize()
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass	
+	global_timer += delta
+		
 #Initialize the game manager
 func initialize() -> void:
 	_initialized = true
@@ -86,3 +95,4 @@ func _on_minigame_failed(minigame:MiniGame):
 	
 func _on_player_powerboost():
 	_busdriver.base_suspicion_multiplier-=0.2
+	
