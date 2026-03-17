@@ -18,28 +18,18 @@ item_data = Array[ExtResource("2_tbtli")]([ExtResource("3_hfc6r"), ExtResource("
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(1.3599977, 1.3599977)
-mouse_filter = 2
 
 [node name="GridContainer" type="GridContainer" parent="Panel" unique_id=2129711916]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-mouse_filter = 2
 columns = 6
 
 [node name="InventorySlot" parent="Panel/GridContainer" unique_id=1898348738 instance=ExtResource("2_ju2k0")]
 layout_mode = 2
-mouse_filter = 2
-mouse_force_pass_scroll_events = false
 
 [node name="InventorySlot2" parent="Panel/GridContainer" unique_id=1338082132 instance=ExtResource("2_ju2k0")]
 layout_mode = 2
-mouse_filter = 2
-mouse_force_pass_scroll_events = false
-mouse_default_cursor_shape = 3
-
-[node name="TextureRect" parent="Panel/GridContainer/InventorySlot2" index="1" unique_id=1928513826]
-mouse_filter = 1
 
 [node name="InventorySlot3" parent="Panel/GridContainer" unique_id=1171403083 instance=ExtResource("2_ju2k0")]
 layout_mode = 2
@@ -54,4 +44,3 @@ layout_mode = 2
 layout_mode = 2
 
 [editable path="Panel/GridContainer/InventorySlot2"]
-[editable path="Panel/GridContainer/InventorySlot3"]

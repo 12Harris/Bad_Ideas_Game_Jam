@@ -1,0 +1,400 @@
+[gd_scene format=4 uid="uid://c37atglk3gfo6"]
+
+[ext_resource type="PackedScene" uid="uid://pq6ug3wnw2o0" path="res://scenes/TestingGrounds_BIGJ.tscn" id="1_w0p03"]
+[ext_resource type="Script" uid="uid://cic25658vrsal" path="res://scripts/main_camera.gd" id="2_2le81"]
+[ext_resource type="Material" uid="uid://1caneo7f56px" path="res://assets/PaperPlane/plane_material.tres" id="3_f0ufm"]
+[ext_resource type="Shader" uid="uid://3g0g0lram41h" path="res://assets/Shaders/Main_3D.gdshader" id="6_0w5yn"]
+[ext_resource type="Material" uid="uid://dttfuhijclma1" path="res://assets/bus/seat.tres" id="8_hxc5g"]
+[ext_resource type="Script" uid="uid://dad4mm06hytbk" path="res://scripts/utils/bezier_curve.gd" id="9_d7edy"]
+[ext_resource type="Script" uid="uid://cdj2i1qeyfyb1" path="res://scripts/MiniGames/plane.gd" id="10_fo02i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2le81"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w0p03"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0w5yn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yuu2m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxc5g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0w5yn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxc5g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_08kpe"]
+resource_name = "Material"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y5kly"]
+_surfaces = [{
+"aabb": AABB(-1.0447276, -0.7331406, -0.18410385, 2.258792, 1.4305059, 0.3682077),
+"format": 34896613377,
+"index_count": 252,
+"index_data": PackedByteArray("FwAIABgAGAAIABAAFwAZAAgAGgAXABgAGgAYAAsACwAYABEAGAAQABEADwAaAAsACwARAA8AFwAaABsAHAAQAAgAHAAIABkAGQAXAB0AFwAbAB0AHgAcABkAGwAaAB8ADwAfABoAGQAdACAAHgAZACAAHQAbAAoAGwAfACEACgAbACEAHQAKACIAIAAdACIACgAhABIAIgAKABIAIAAiAAkAEwAeACAAEwAgAAkACQAiACMACQAjABMAIgASACMAFQAeABMAEwAjACQAEwAkABUAIwASABQAIwAUACQAEgAlABQAEgAhACUAJAAUAAYAFQAmAB4AJgAcAB4AFQAkACcAJAAGACcABQAmABUAFQAnAAUAFAAEAAYABAAnAAYAFAAlAAQAFgAFACcABAAWACcABQADACYAFgADAAUAJgAoABwAAwAoACYAKAAQABwAJQACAAQAAgAWAAQAJQApAAIAIQApACUAIQAfACkAKAAOABAAEQAQAA4AAgAqABYAKgADABYAAwABACgAKgABAAMAAQAOACgABwAqAAIAKQAHAAIAKwABACoABwArACoAAQAAAA4AKwAAAAEADQAOAAAADQAAACsAEQAOAA0ADwARAA0AKQAMAAcADAArAAcADAANACsADwANAAwAHwAMACkAHwAPAAwA"),
+"lods": [0.00056717684, PackedByteArray("AAABAAIABwAAAAIADAAAAAcADAAHAAIADAANAAAADQAOAAAAAQAAAA4ADwANAAwAAQAOABAAEQAOAA0ADwARAA0AEQAQAA4ACwARAA8ADwAMAAsACwAIABEACAAQABEACwAJAAgAEAAIAAkACgALAAwACQALAAoACgAMABIACQAKABMACgASABMAEwAQAAkAEgAMABQAEwASABQABQAQABMABQABABAAEwAUABUAFQAFABMAFAAMAAIAAwABAAUAAgABAAMAFAACAAQAFQAUAAYAFQAGAAUAFAAEAAYAFgADAAUAAgADABYAFgAFAAYAAgAWAAQABAAWAAYA"), 0.114227206, PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAwABAAUABAADAAUABgACAAQABAAFAAYABwAAAAIABgAHAAIAAQAAAAgABQABAAgACAAAAAcACQAGAAUABQAIAAkACgAGAAkACgAHAAYACwAJAAgACQALAAoACwAIAAcACgALAAcA")],
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 44,
+"vertex_data": PackedByteArray("quKY6P//AABRtv///v8AAFG2//8AAAAAWSz///7/AABZLP//AAAAAMgHFuL+/wAAyAcW4gAAAACq4pjoAAAAAP7/AAD+/wAAAAAAAP7/AAAAAAAAAAAAAP7/AAAAAAAAVPGDrQAAAABU8YOt/38AAFTxg63+/wAA///QXgAAAAD+/9Be/v8AAP7/0F7/fwAAAADQXgAAAAAAANBe/v8AAAAAZ68AAAAAAABnr/7/AABZLP///38AAFG2AAD/fwAA/v8AAP9/AABRtgAA/v8AAFG2AAAAAAAAWSwAAAAAAABRttBe/v8AAFksAAD/fwAAWSzQXv7/AABRttBeAAAAAFksAAD+/wAAWSzQXgAAAAAAAAAA/38AAAAA0F7/fwAAAABnr/9/AABZLGevAAAAAFksZ6/+/wAAyAcW4v9/AABRtmev/v8AAFG2Z68AAAAAUbb///9/AACq4pjo/38AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3m0ak"]
+resource_name = "seat_Cube"
+_surfaces = [{
+"aabb": AABB(-1.0447276, -0.7331406, -0.18410385, 2.258792, 1.4305059, 0.3682077),
+"format": 34896613383,
+"index_count": 252,
+"index_data": PackedByteArray("NgAJADcANgA4AAkAOQA2ADcAOQA3AAcANgA5ADoAOAA2ADsANgA6ADsAOwA6AAgAOAA7ADwAOwAIAD0APAA7AD0APAA9AAYAPgA/AEAAPgAAAD8AAwA+AEAAAwBAAEEAQgAEACIAQgABAAQAAgBCACIAAgAiAAUAIwALAEMAIwANAAsACgAjAEMACgBDAAwARABFAEYARAAYAEUAGwBEAEYAGwBGAEcASAAqAEkASAAOACoASQAqAEoAEABIAEkASQBKAEsAEABJACsAKwBJAEsAKwBLAEwATQAeAE4ATQAuAB4ATwBNAE4ATwBOAFAALwBPAFAALwBQACEAMABPAC8AMABRAE8AUQBNAE8AHwBRADAAHwAgAFEAUQBSAE0AIABSAFEAUgAuAE0AIAAcAFIAUgAxAC4AHAAxAFIAHAAdADEAMgBTABUAMgBUAFMAVQBTAFQAVAAyADMAVQBUAFYAEgBVAFYAEgBWADQAVAAzAFcAVgBUAFcAVwAzABMAVwATABYAVgBXAFgANABWAFgAWABXABYANABYADUAWAAWABcANQBYABcANQAXABQAJQBZAFoAJQAkAFkAJwAlAFoAJwBaAFsAKAAZAFwAKAAmABkAKQAoAFwAKQBcABoAXQAPAF4AXQAsAA8ALQBdAF4ALQBeABEA"),
+"lods": [0.00056717684, PackedByteArray("AAABAAIAAwAAAAIAAgABAAQAAgAEACIAAgAiAAUABgAHAAgABwAGAAkAIwALAAwAIwANAAsACgAjAAwAGAAkACUAGwAYACUAJQAkACYAGwAlACcAJQAmACgAJwAlACgAKAAmABkAJwAoACkAKQAoABkAKQAZABoADgAqACsAEAAOACsAKwAqACwAKwAsAC0ALQAsAA8ALQAPABEALgAeACEALwAuACEAHwAuAC8AMAAfAC8AHwAcAC4AIAAcAB8AHAAxAC4AHAAdADEAMgAzABUAEgAVADMAEgAzADQANAAzADUANQAzABYAMwATABYANQAWABcANQAXABQA"), 0.114227206, PackedByteArray("AAABAAIAAwAAAAIAAgABAAQAAgAEAAUABgAHAAgABwAGAAkACgALAAwACgANAAsADgAPABAAEAAPABEAEgATABQAEgAVABMAFAATABYAFAAWABcAGAAZABoAGwAYABoAHAAdAB4AHwAcAB4AIAAcAB8AHwAeACEA")],
+"material": SubResource("StandardMaterial3D_08kpe"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 95,
+"vertex_data": PackedByteArray("quKY6P//wPlRtv///v///1G2//8AAP//quKY6AAAwPlZLP///v///1ks//8AAP//AAAAAP7////+/wAAAAD//wAAAAAAAP///v8AAP7///9ZLP//AAC268gHFuL+/7bryAcW4gAAtutZLP///v+26wAAAAAAAP+/yAcW4gAAUsIAAAAA/v//v8gHFuL+/1LCAAAAAAAA//+q4pjoAAD//8gHFuIAAP///v8AAAAA//9Rtv//AAD//1ks//8AAP///v8AAP7///+q4pjo//9H/6rimOgAAEf//v8AAAAA//9Rtv///v//v6rimOj///+//v8AAP7//7/IBxbi/v//v1ks///+//+/AAAAAP7//79ZLP///3///1ks////f7br/v/QXv7/qv/+/9Be/3+q/1Txg63+/0f////QXgAAqv9U8YOt/39H/1Txg60AAEf/AADQXgAA/78AANBe/v//vwAAZ68AAFLCAABnr/7/UsL+/9Be/v//vwAA0F7+//+/AABnr/7//79U8YOt/v//v///0F4AAP//VPGDrQAA//8AANBeAAD//wAAZ68AAP//UbYAAP9////+/wAA/3///1G2AAD+////UbYAAAAA//9ZLAAAAAD//1ksAAD/f///WSwAAP7///8AAAAA/3///6rimOj/f8D5Ubb///7/wPlRtv///3/A+VG2//8AAMD5Ubb///9////IBxbi/3+26/7/AAD/f////v/QXv7////+/9Be/3//////0F4AAP//AAAAAP9//78AANBe/3//vwAAZ68AAP+/AABnr/9//78AAGev/v//v1G20F7+//+/UbYAAP7//79ZLNBe/v//v1ksAAD+//+/WSxnr/7//79Rtmev/v//v1G2AAAAAP//UbbQXgAA//9ZLAAAAAD//1ks0F4AAP//UbZnrwAA//9ZLGevAAD//1Txg63+/6r/VPGDrf9/qv9U8YOtAACq/6rimOj/f0f/AABnr/9/UsLIBxbi/39SwkY5cwz/f/+//3//v0Y5cwz/f/+//3//v/9//z//f/8//3//P/9//z9neOy9Z3jsvWd47L1neOy9/3///6h/C+f/f///qH8L5/8//7//P/+//z//v/8//7//P/+//z//v/+//3/tFH4z7RR+M/+//3//f/9//3//f/9//3//f/9//3//f/9//3//f/+/Z3jsvWcQlzZnEJc27RR+M2cQlzbtFH4z7RR+M/9/////f///qH8L56h/C+f/f/9//3//f/9//3//f/9//z//v/8//7//P/+//z//v/9//z//f/8//3//P/9//z//f/8//3//P/9//z//f/8/RjlzDEY5cwxGOXMMRjlzDP9//79neOy9/7//f/+//3//v/9//7//f/9/////f////3////9/////f////3//f/9//3//f/9//3//f/9//3//f/9//z//v/8//7//P/+//z//v/8//7//P/+/ZxCXNmcQlzZnEJc27RR+M6h/C+eofwvn")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_y5kly")
+
+[sub_resource type="BoxMesh" id="BoxMesh_jcd17"]
+material = ExtResource("3_f0ufm")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f0ufm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7vfqj"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0w5yn"]
+viewport_path = NodePath("SubViewportContainer/SubViewport2D")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yuu2m"]
+viewport_path = NodePath("ViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hxc5g"]
+resource_local_to_scene = true
+shader = ExtResource("6_0w5yn")
+shader_parameter/tex_a = SubResource("ViewportTexture_0w5yn")
+shader_parameter/tex_b = SubResource("ViewportTexture_yuu2m")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hxc5g"]
+viewport_path = NodePath("SubViewportContainer/SubViewport2D")
+
+[node name="Main3d" type="Node3D" unique_id=1690980446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10388839, -2.1447692)
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="." unique_id=209541442]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="ViewportContainer" unique_id=1007871510]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Collision" type="Node" parent="ViewportContainer/SubViewport" unique_id=1288450771]
+
+[node name="Floor" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision" unique_id=1458533013]
+transform = Transform3D(45, 0, 0, 0, -7.430936e-06, -0.1, 0, 170, -4.371139e-09, 0.20817375, -20.118896, -92.5115)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Collision/Floor" unique_id=1883974567]
+transform = Transform3D(0.9999993, 0, 0, 0, 0.9999999, 0, 0, 3.637979e-12, 0.99999994, 0, 0, 0)
+shape = SubResource("BoxShape3D_2le81")
+debug_color = Color(0, 0.6, 0.69803923, 0.7921569)
+
+[node name="FloorMesh" type="MeshInstance3D" parent="ViewportContainer/SubViewport/Collision/Floor" unique_id=1708364758]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, -1.8189894e-12, 0.99999994, 0, 0, 0)
+visible = false
+transparency = 0.7
+mesh = SubResource("BoxMesh_w0p03")
+
+[node name="LeftWall" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision" unique_id=1200591501]
+transform = Transform3D(-0.16275556, 0.5951001, 0.09999698, 23.499437, 0.039485272, 0.0006924979, -0.0049466128, 167.99895, -0.00035438052, -22.707077, -8.501743, -91.44222)
+rotation_edit_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Collision/LeftWall" unique_id=1796716174]
+transform = Transform3D(0.9999993, 0, 0, 0, 0.9999999, 0, 0, 3.637979e-12, 0.99999994, 0, 0, 0)
+shape = SubResource("BoxShape3D_2le81")
+debug_color = Color(0, 0.6, 0.69803923, 0.7921569)
+
+[node name="WallMesh" type="MeshInstance3D" parent="ViewportContainer/SubViewport/Collision/LeftWall" unique_id=478728198]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, -1.8189894e-12, 0.99999994, 0, 0, 0)
+visible = false
+transparency = 0.7
+mesh = SubResource("BoxMesh_w0p03")
+
+[node name="RightWall" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision" unique_id=1465301652]
+transform = Transform3D(-0.16621846, 0.5951001, 0.09999698, 23.999424, 0.039485272, 0.00069249794, -0.00505186, 167.99895, -0.00035438052, 22.292229, -8.462916, -91.39195)
+rotation_edit_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Collision/RightWall" unique_id=1713227741]
+transform = Transform3D(0.9999993, 0, 0, 0, 0.9999999, 0, 0, 3.637979e-12, 0.99999994, 0, 0, 0)
+shape = SubResource("BoxShape3D_2le81")
+debug_color = Color(0, 0.6, 0.69803923, 0.7921569)
+
+[node name="WallMesh" type="MeshInstance3D" parent="ViewportContainer/SubViewport/Collision/RightWall" unique_id=380050991]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, -1.8189894e-12, 0.99999994, 0, 0, 0)
+visible = false
+transparency = 0.7
+mesh = SubResource("BoxMesh_w0p03")
+
+[node name="Seats" type="Node" parent="ViewportContainer/SubViewport/Collision" unique_id=1751722530]
+
+[node name="Left" type="Node" parent="ViewportContainer/SubViewport/Collision/Seats" unique_id=1384947248]
+
+[node name="Seat2L" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision/Seats/Left" unique_id=1235152648]
+transform = Transform3D(2.3, 0, 0, 0, 1.3594617, -0.84523666, 0, 0.63392746, 1.8126155, -21.06182, -6.97408, -68.37396)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="ViewportContainer/SubViewport/Collision/Seats/Left/Seat2L" unique_id=2015156433]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, 1.9857956, 0.046073914)
+polygon = PackedVector2Array(8.359311, -9.38455, 8.359311, -7.1833687, 8.030473, -3.9662895, 7.5189495, -1.5393257, 4.44386, -0.92450523, 2.001783, -1.0841208, 0.21144485, -1.5679388, -0.3731556, -3.9263468, -0.48276806, -6.40569, -0.3731556, -9.38455)
+
+[node name="Seat3L" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision/Seats/Left" unique_id=964668491]
+transform = Transform3D(2.1, 0, 0, 0, 1.3594617, -0.84523666, 0, 0.63392746, 1.8126155, -21.06182, -6.97408, -90.87671)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="ViewportContainer/SubViewport/Collision/Seats/Left/Seat3L" unique_id=2035892475]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, 1.9857956, 0.046073914)
+polygon = PackedVector2Array(8.359311, -9.38455, 8.359311, -7.1833687, 8.030473, -3.9662895, 7.5189495, -1.5393257, 4.44386, -0.92450523, 2.001783, -1.0841208, 0.21144485, -1.5679388, -0.3731556, -3.9263468, -0.48276806, -6.40569, -0.3731556, -9.38455)
+
+[node name="Seat4L" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision/Seats/Left" unique_id=1642231593]
+transform = Transform3D(2.1, 0, 0, 0, 1.3594617, -0.84523666, 0, 0.63392746, 1.8126155, -21.06182, -6.97408, -111.46074)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="ViewportContainer/SubViewport/Collision/Seats/Left/Seat4L" unique_id=347865313]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, 1.9857956, 0.046073914)
+polygon = PackedVector2Array(8.359311, -9.38455, 8.359311, -7.1833687, 8.030473, -3.9662895, 7.5189495, -1.5393257, 4.44386, -0.92450523, 2.001783, -1.0841208, 0.21144485, -1.5679388, -0.3731556, -3.9263468, -0.48276806, -6.40569, -0.3731556, -9.38455)
+
+[node name="Right" type="Node" parent="ViewportContainer/SubViewport/Collision/Seats" unique_id=1053599299]
+
+[node name="Seat" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision/Seats/Right" unique_id=1201715981]
+transform = Transform3D(2.1, 0, 0, 0, 1.3594617, -0.8452366, 0, 0.63392746, 1.8126155, 4.5868015, -6.97408, -46.888348)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="ViewportContainer/SubViewport/Collision/Seats/Right/Seat" unique_id=1290303711]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, 1.9857956, 0.046073914)
+polygon = PackedVector2Array(8.359311, -9.38455, 8.615858, -6.913535, 8.542779, -3.7528524, 7.5189495, -1.5393257, 4.44386, -0.92450523, 2.001783, -1.0841208, 0.21144485, -1.5679388, -0.3731556, -3.9263468, -0.48276806, -6.40569, -0.3731556, -9.38455)
+
+[node name="Seat2" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision/Seats/Right" unique_id=1329248806]
+transform = Transform3D(2.1, 0, 0, 0, 1.3594617, -0.8452366, 0, 0.63392746, 1.8126155, 4.5868015, -6.97408, -74.74092)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="ViewportContainer/SubViewport/Collision/Seats/Right/Seat2" unique_id=262118853]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, 1.9857956, 0.046073914)
+polygon = PackedVector2Array(8.359311, -9.38455, 8.615858, -6.913535, 8.542779, -3.7528524, 7.5189495, -1.5393257, 4.44386, -0.92450523, 2.001783, -1.0841208, 0.21144485, -1.5679388, -0.3731556, -3.9263468, -0.48276806, -6.40569, -0.3731556, -9.38455)
+
+[node name="Seat3" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision/Seats/Right" unique_id=1158716528]
+transform = Transform3D(2.1, 0, 0, 0, 1.3594617, -0.8452366, 0, 0.63392746, 1.8126155, 4.5868015, -6.97408, -95.764626)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="ViewportContainer/SubViewport/Collision/Seats/Right/Seat3" unique_id=2106798780]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, 1.9857956, 0.046073914)
+polygon = PackedVector2Array(8.359311, -9.38455, 8.615858, -6.913535, 8.542779, -3.7528524, 7.5189495, -1.5393257, 4.44386, -0.92450523, 2.001783, -1.0841208, 0.21144485, -1.5679388, -0.3731556, -3.9263468, -0.48276806, -6.40569, -0.3731556, -9.38455)
+
+[node name="Seat4" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision/Seats/Right" unique_id=213833266]
+transform = Transform3D(2.1, 0, 0, 0, 1.3594617, -0.8452366, 0, 0.63392746, 1.8126155, 4.5868015, -6.97408, -116.1398)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="ViewportContainer/SubViewport/Collision/Seats/Right/Seat4" unique_id=1980049801]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, 1.9857956, 0.046073914)
+polygon = PackedVector2Array(8.359311, -9.38455, 8.615858, -6.913535, 8.542779, -3.7528524, 7.5189495, -1.5393257, 4.44386, -0.92450523, 2.001783, -1.0841208, 0.21144485, -1.5679388, -0.3731556, -3.9263468, -0.48276806, -6.40569, -0.3731556, -9.38455)
+
+[node name="LeftTopWall" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision" unique_id=1584099914]
+transform = Transform3D(0.7933533, 3.6525686, 0, -0.6087614, 4.76012, 0, 0, 0, 170, -21.196299, 6.05608, -91.50164)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ViewportContainer/SubViewport/Collision/LeftTopWall" unique_id=358928688]
+visible = false
+mesh = SubResource("BoxMesh_0w5yn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Collision/LeftTopWall" unique_id=1187478872]
+shape = SubResource("BoxShape3D_yuu2m")
+
+[node name="RightTopWall" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision" unique_id=2009648943]
+transform = Transform3D(0.7933533, -3.6525686, 0, 0.6087614, 4.76012, 0, 0, 0, 170, 21.139395, 6.05608, -91.50164)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ViewportContainer/SubViewport/Collision/RightTopWall" unique_id=933204674]
+visible = false
+mesh = SubResource("BoxMesh_0w5yn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Collision/RightTopWall" unique_id=1753785630]
+shape = SubResource("BoxShape3D_yuu2m")
+
+[node name="Ceiling" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision" unique_id=1401745113]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 155, -19.196175, 8.593382, -84.40608)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Collision/Ceiling" unique_id=11873182]
+transform = Transform3D(8.511221, -0.53885865, 0, 5.4444056, 0.84239596, 0, 0, 0, 1.1, 3.7174597, 2.5073957, -0.04665033)
+shape = SubResource("BoxShape3D_hxc5g")
+debug_color = Color(0, 0.2784314, 0.32941177, 0.6862745)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Collision/Ceiling" unique_id=49565881]
+transform = Transform3D(11.027048, -0.21303008, 0, 2.4042823, 0.9770455, 0, 0, 0, 1.1, 13.508287, 6.540169, -0.04665033)
+shape = SubResource("BoxShape3D_hxc5g")
+debug_color = Color(0, 0.2784314, 0.32941177, 0.6862745)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Collision/Ceiling" unique_id=193896033]
+transform = Transform3D(-7.693605, -0.5313985, 0, 4.826192, -0.8471213, 0, 0, 0, 1.1, 34.65641, 2.3541508, -0.04665033)
+shape = SubResource("BoxShape3D_hxc5g")
+debug_color = Color(0, 0.2784314, 0.32941177, 0.6862745)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Collision/Ceiling" unique_id=2024258085]
+transform = Transform3D(-12.014511, -0.2588193, 0, 3.2192829, -0.9659256, 0, 0, 0, 1.1, 25.052818, 6.1762934, -0.04665033)
+shape = SubResource("BoxShape3D_hxc5g")
+debug_color = Color(0, 0.2784314, 0.32941177, 0.6862745)
+
+[node name="Front Wall" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision" unique_id=1101226025]
+transform = Transform3D(45.145, 0, 0, 0, 23.1, 0, 0, 0, 1, 0, -8.765486, -176.06308)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Collision/Front Wall" unique_id=1393081869]
+shape = SubResource("BoxShape3D_0w5yn")
+
+[node name="Front Wall2" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision" unique_id=1562954077]
+transform = Transform3D(45.145, 0, 0, 0, 23.1, 0, 0, 0, 1, 0, 14.326807, -176.06308)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Collision/Front Wall2" unique_id=1049900747]
+shape = SubResource("BoxShape3D_0w5yn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ViewportContainer/SubViewport/Collision" unique_id=1551004888]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.89348894, -0.4490851, 0, 0.44908506, 0.893489, -17.683985, -14.27425, -46.339043)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="ViewportContainer/SubViewport/Collision/StaticBody3D" unique_id=1177334820]
+transform = Transform3D(8.665999, 0, 0, 0, 9.456797, 0.07449949, 0, -0.31371617, 2.2457643, 2.2270422, 12.261799, -3.7054558)
+polygon = PackedVector2Array(-0.78611076, -1.8919854, 1.4438392, -1.9083419, 1.4473774, -1.2544153, 1.2195661, -0.6180172, 0.8077529, -0.48985767, -0.38066542, -0.50137234, -0.7131306, -0.64043427, -0.78254664, -0.9318001, -0.78254664, -1.214643)
+margin = 0.001
+
+[node name="Cube2" type="MeshInstance3D" parent="ViewportContainer/SubViewport/Collision/StaticBody3D" unique_id=1041239058]
+transform = Transform3D(8.665998, 0, 0, 0, 9.456799, 0.0745005, 0, -0.31371593, 2.2457654, 4.335991, 0.42697144, -4.022743)
+visible = false
+material_override = ExtResource("8_hxc5g")
+material_overlay = SubResource("StandardMaterial3D_hxc5g")
+transparency = 1.0
+mesh = SubResource("ArrayMesh_3m0ak")
+
+[node name="PaperPlane" type="Node3D" parent="ViewportContainer/SubViewport" unique_id=470002119 node_paths=PackedStringArray("_trajectory", "_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10388839, -2.1447692)
+script = ExtResource("10_fo02i")
+_trajectory = NodePath("../../../SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/PlaneTrajectory")
+_speed = 120.0
+_mesh = NodePath("../PlaneBody")
+metadata/_custom_type_script = "uid://cdj2i1qeyfyb1"
+
+[node name="Line2D" type="MeshInstance3D" parent="ViewportContainer/SubViewport/PaperPlane" unique_id=713166327]
+
+[node name="Camera3D" type="Camera3D" parent="ViewportContainer/SubViewport" unique_id=212161571]
+transform = Transform3D(0.99939084, 0.005459484, -0.034469828, 0, 0.98768836, 0.15643448, 0.034899496, -0.15633918, 0.9870867, 0, 5.698, 0)
+fov = 40.0
+script = ExtResource("2_2le81")
+
+[node name="PlaneBody" type="RigidBody3D" parent="ViewportContainer/SubViewport" unique_id=335779594]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12.6511345, -1.8187237, -14.853619)
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+freeze_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ViewportContainer/SubViewport/PlaneBody" unique_id=1097284765]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.095237255, 0)
+mesh = SubResource("BoxMesh_jcd17")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportContainer/SubViewport/PlaneBody" unique_id=337617964]
+shape = SubResource("BoxShape3D_f0ufm")
+
+[node name="Invisibility Areas" type="Node3D" parent="ViewportContainer/SubViewport" unique_id=1012225870]
+visible = false
+
+[node name="Area3D" type="Area3D" parent="ViewportContainer/SubViewport/Invisibility Areas" unique_id=1743539162]
+transform = Transform3D(18.353935, 0, 0, 0, 2.4277325, 0, 0, 0, 16.599798, -12.874844, -11.743076, -59.78114)
+
+[node name="Collision" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Invisibility Areas/Area3D" unique_id=2081459435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013661385, 0.0025367737)
+shape = SubResource("BoxShape3D_7vfqj")
+disabled = true
+debug_color = Color(1, 1, 1, 1)
+
+[node name="Area3D4" type="Area3D" parent="ViewportContainer/SubViewport/Invisibility Areas" unique_id=1623533584]
+transform = Transform3D(18.353935, 0, 0, 0, 2.4277325, 0, 0, 0, 16.599798, 13.288349, -11.743076, -65.733475)
+
+[node name="Collision" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Invisibility Areas/Area3D4" unique_id=1227351582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013661385, 0.0025367737)
+shape = SubResource("BoxShape3D_7vfqj")
+disabled = true
+debug_color = Color(1, 1, 1, 1)
+
+[node name="Area3D2" type="Area3D" parent="ViewportContainer/SubViewport/Invisibility Areas" unique_id=163770602]
+transform = Transform3D(18.353935, 0, 0, 0, 2.4277325, 0, 0, 0, 16.599798, -12.874844, -9.201571, -80.72174)
+
+[node name="Collision" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Invisibility Areas/Area3D2" unique_id=104643197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013661385, 0.0025367737)
+shape = SubResource("BoxShape3D_7vfqj")
+disabled = true
+debug_color = Color(1, 1, 1, 1)
+
+[node name="Area3D3" type="Area3D" parent="ViewportContainer/SubViewport/Invisibility Areas" unique_id=1795520781]
+transform = Transform3D(18.353935, 0, 0, 0, 2.4277325, 0, 0, 0, 16.599798, -12.874844, -8.510035, -105.96288)
+
+[node name="Collision" type="CollisionShape3D" parent="ViewportContainer/SubViewport/Invisibility Areas/Area3D3" unique_id=1343202268]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013661385, 0.0025367737)
+shape = SubResource("BoxShape3D_7vfqj")
+disabled = true
+debug_color = Color(1, 1, 1, 1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ViewportContainer" unique_id=1104688919]
+transform = Transform3D(0.94608533, -0.10652563, 0.30589995, 0, 0.94437635, 0.32886663, -0.32391742, -0.3111359, 0.89346063, 9.764955, 1.9536133, -42.767273)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1770688312]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport2D" type="SubViewport" parent="SubViewportContainer" unique_id=675229591]
+handle_input_locally = false
+audio_listener_enable_3d = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="TestingGroundsBIGJ" parent="SubViewportContainer/SubViewport2D" unique_id=750049049 instance=ExtResource("1_w0p03")]
+
+[node name="Timer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/MiniGame1" parent_id_path=PackedInt32Array(750049049, 321490363) index="0" unique_id=139929345]
+wait_time = 30.0
+
+[node name="MiniGame2" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" index="3" unique_id=2097584126 node_paths=PackedStringArray("_plane")]
+_plane = NodePath("../../../../ViewportContainer/SubViewport/PaperPlane")
+
+[node name="Background" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" parent_id_path=PackedInt32Array(750049049, 1046426192) index="0" unique_id=771576177]
+self_modulate = Color(1, 1, 1, 0.39607844)
+visibility_layer = 2
+offset_right = 1927.0
+mouse_filter = 2
+
+[node name="Panel" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi" parent_id_path=PackedInt32Array(750049049, 315292029) index="0" unique_id=1589345108]
+mouse_filter = 1
+
+[node name="GridContainer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/Panel" index="0" unique_id=2129711916]
+mouse_filter = 1
+
+[node name="InventorySlot" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/Panel/GridContainer" index="0" unique_id=1898348738]
+mouse_filter = 1
+
+[node name="InventorySlot2" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/Panel/GridContainer" index="1" unique_id=1338082132]
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+
+[node name="PlaneTrajectory" type="Line2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" parent_id_path=PackedInt32Array(750049049, 1046426192) index="10" unique_id=1133139275]
+script = ExtResource("9_d7edy")
+
+[node name="Final Output" type="TextureRect" parent="." unique_id=1869331791]
+material = SubResource("ShaderMaterial_hxc5g")
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = SubResource("ViewportTexture_hxc5g")
+
+[connection signal="body_entered" from="ViewportContainer/SubViewport/Invisibility Areas/Area3D" to="ViewportContainer/SubViewport/PaperPlane" method="_on_invisibility_area_entered"]
+[connection signal="body_entered" from="ViewportContainer/SubViewport/Invisibility Areas/Area3D4" to="ViewportContainer/SubViewport/PaperPlane" method="_on_invisibility_area_entered"]
+[connection signal="body_entered" from="ViewportContainer/SubViewport/Invisibility Areas/Area3D2" to="ViewportContainer/SubViewport/PaperPlane" method="_on_invisibility_area_entered"]
+[connection signal="body_entered" from="ViewportContainer/SubViewport/Invisibility Areas/Area3D3" to="ViewportContainer/SubViewport/PaperPlane" method="_on_invisibility_area_entered"]
+
+[editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ"]
+[editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds"]
+[editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi"]
+[editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/Panel/GridContainer/InventorySlot"]
+[editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/Panel/GridContainer/InventorySlot2"]
+[editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/Panel/GridContainer/InventorySlot3"]

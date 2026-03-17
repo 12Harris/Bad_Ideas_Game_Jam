@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beas8wn1x461f"
-path="res://.godot/imported/Logo-School-Bus-Mayhem.png-3d0e40709eba6d7aada5ac969aea51e1.ctex"
+uid="uid://oellyqneml3a"
+path="res://.godot/imported/triangle.png-bbfc00e68c995c8747a898b1603a36b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Logo/Logo-School-Bus-Mayhem.png"
-dest_files=["res://.godot/imported/Logo-School-Bus-Mayhem.png-3d0e40709eba6d7aada5ac969aea51e1.ctex"]
+source_file="res://assets/Inventory/triangle.png"
+dest_files=["res://.godot/imported/triangle.png-bbfc00e68c995c8747a898b1603a36b6.ctex"]
 
 [params]
 

@@ -6,13 +6,14 @@ var _susp_progress_bar : SuspProgressBar
 var _ai_state : Label
 var _look_at_mirror : Label
 var _mini_game_1_timer : Label
+var _inventory_ui:InventoryUI
 
 func initialize_game() -> void:
-	_ai_state = get_tree().current_scene.get_node("UI_Root/AI State")
+	_ai_state = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/AI State")
 	if _ai_state == null:
 		print("AI STATE NULL!!")
-	_look_at_mirror = get_tree().current_scene.get_node("UI_Root/LookAtMirror")
-	_mini_game_1_timer = get_tree().current_scene.get_node("UI_Root/MiniGame1Timer")
+	_look_at_mirror = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/LookAtMirror")
+	_mini_game_1_timer = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame1Timer")
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,7 +23,7 @@ func _ready() -> void:
 func updateMiniGame(minigame:MiniGame):
 	if minigame is MiniGame1:
 		_mini_game_1_timer.set_text(str(int(minigame.game_timer.get_time_left())))
-
+		
 func register_progress_bar(progress_bar:ProgressBar):
 	
 	if progress_bar is CloutProgressBar:
@@ -34,6 +35,9 @@ func register_progress_bar(progress_bar:ProgressBar):
 		_susp_progress_bar.max_value = 100  # set max when registered
 		_susp_progress_bar.value = 0
 	
+func register_inventory_ui(ui: InventoryUI):
+	_inventory_ui = ui
+
 func reset_clout_meter(max_value):
 	_clout_progress_bar.max_value = max_value
 	_clout_progress_bar.value = 0

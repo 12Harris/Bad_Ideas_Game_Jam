@@ -97,7 +97,7 @@ func _process(delta: float) -> void:
 		if _timer > _update_interval:
 			var probability = calculate_look_at_mirror_probability()
 			var test = randi()%100
-			print("probability", probability)
+			#print("probability", probability)
 			if test <= probability:
 				look_at_mirror()
 			else:

@@ -1,8 +1,9 @@
-extends Node
+extends Node2D
 class_name MiniGame
 
 signal succeeded(minigame)
 signal failed(minigame)
+signal ended
 
 var running : bool = false
 var suspicion_gain: float = 0
@@ -38,6 +39,7 @@ class CloutLevel:
 			_current_clout += modified_clout_gain
 			#_minigame._total_clout += modified_clout_gain
 			UI_Manager.increase_clout_meter(modified_clout_gain)
+			Game_Manager.get_player().increase_clout(modified_clout_gain)
 		elif _current_clout >= _max_clout and currentLevel < _minigame.clout_levels.size()-1:
 			currentLevel += 1
 			clout_level_increased.emit()	
@@ -61,7 +63,7 @@ func fail()->void:
 
 func start():
 	running = true
-	
+
 func calculate_suspicion(succeded: bool):
 	pass
 

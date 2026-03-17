@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c37atglk3gfo6"]
+
+[ext_resource type="PackedScene" uid="uid://pq6ug3wnw2o0" path="res://scenes/TestingGrounds_BIGJ.tscn" id="1_w0p03"]
+[ext_resource type="Script" uid="uid://cic25658vrsal" path="res://scripts/main_camera.gd" id="2_2le81"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w0p03"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2le81"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w0p03"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Main3d" type="Node3D" unique_id=1690980446]
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=675229591]
+audio_listener_enable_3d = true
+size = Vector2i(1024, 768)
+
+[node name="TestingGroundsBIGJ" parent="SubViewport" unique_id=750049049 instance=ExtResource("1_w0p03")]
+
+[node name="Line2D" type="Line2D" parent="SubViewport/TestingGroundsBIGJ/UI_Root/Plane" parent_id_path=PackedInt32Array(750049049, 694957437) index="1" unique_id=918323293]
+
+[node name="MiniGame2" parent="SubViewport/TestingGroundsBIGJ" index="5" unique_id=2097584126 node_paths=PackedStringArray("_plane")]
+_plane = NodePath("../UI_Root/Plane")
+
+[node name="Collision" type="Node" parent="." unique_id=1288450771]
+
+[node name="Floor" type="MeshInstance3D" parent="Collision" unique_id=1708364758]
+transform = Transform3D(6.116973, 0, 0, 0, -1.8034048e-06, -0.1, 0, 41.257088, -4.371139e-09, -0.126, -3.7019992, -19.230574)
+transparency = 0.7
+mesh = SubResource("BoxMesh_w0p03")
+
+[node name="Area3D" type="Area3D" parent="Collision/Floor" unique_id=6989634]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/Floor/Area3D" unique_id=1883974567]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 1.8189894e-12, 0.99999994, 0, 0, 0)
+shape = SubResource("BoxShape3D_2le81")
+debug_color = Color(0, 0.6, 0.69803923, 0.7921569)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=38459359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021150827, 2.3841858e-07, 0.3706344)
+modulate = Color(1, 1, 1, 0.5294118)
+texture = SubResource("ViewportTexture_w0p03")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=206695136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23799992, 0.18172598, 5.5234537)
+current = true
+script = ExtResource("2_2le81")
+
+[editable path="SubViewport/TestingGroundsBIGJ"]
+[editable path="SubViewport/TestingGroundsBIGJ/UI_Root/InventoryUi"]
+[editable path="SubViewport/TestingGroundsBIGJ/UI_Root/InventoryUi/Panel/GridContainer/InventorySlot2"]
+[editable path="SubViewport/TestingGroundsBIGJ/UI_Root/InventoryUi/Panel/GridContainer/InventorySlot3"]
+[editable path="SubViewport/TestingGroundsBIGJ/Sounds"]

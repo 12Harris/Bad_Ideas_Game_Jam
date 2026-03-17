@@ -6,9 +6,11 @@
 [ext_resource type="Script" uid="uid://lp1li2aa7ucq" path="res://scripts/MiniGames/mini_game_2.gd" id="4_oa3b6"]
 [ext_resource type="PackedScene" uid="uid://cnwib4gds2mnf" path="res://scenes/InventoryUI.tscn" id="4_pmva6"]
 [ext_resource type="Script" uid="uid://5sck2ktsxyyq" path="res://scripts/UI/susp_progress_bar.gd" id="5_8lkwd"]
-[ext_resource type="Texture2D" uid="uid://d1dxs48c2imp7" path="res://assets/bus/bus_inside.png" id="5_df0dt"]
+[ext_resource type="Texture2D" uid="uid://om8g7d54xtgk" path="res://assets/bus/inside_school_bus.jpeg" id="5_df0dt"]
 [ext_resource type="Script" uid="uid://dsql1y5eo0iqa" path="res://scripts/MiniGames/mini_game_1.gd" id="6_gxr4e"]
 [ext_resource type="PackedScene" uid="uid://celorvo0awlfy" path="res://scenes/sounds.tscn" id="7_rc77a"]
+[ext_resource type="Script" uid="uid://dad4mm06hytbk" path="res://scripts/utils/bezier_curve.gd" id="8_3hb8f"]
+[ext_resource type="Script" uid="uid://cdj2i1qeyfyb1" path="res://scripts/MiniGames/plane.gd" id="9_36a8y"]
 
 [node name="TestingGroundsBIGJ" type="Node" unique_id=750049049]
 
@@ -19,23 +21,19 @@ script = ExtResource("1_d3ich")
 script = ExtResource("3_j1r41")
 metadata/_custom_type_script = "uid://c1tjjll3equ0l"
 
-[node name="MiniGame1" type="Node2D" parent="." unique_id=321490363]
+[node name="MiniGame1" type="Node" parent="." unique_id=525531960]
 script = ExtResource("6_gxr4e")
+metadata/_custom_type_script = "uid://dsql1y5eo0iqa"
 
 [node name="Timer" type="Timer" parent="MiniGame1" unique_id=139929345]
 wait_time = 15.0
 
-[node name="MiniGame2" type="Node2D" parent="." unique_id=2097584126]
-script = ExtResource("4_oa3b6")
-
-[node name="Sounds" parent="." unique_id=1645715420 instance=ExtResource("7_rc77a")]
-
 [node name="UI_Root" type="CanvasLayer" parent="." unique_id=1046426192]
 
-[node name="Background" type="TextureRect" parent="UI_Root" unique_id=771576177]
+[node name="TextureRect" type="TextureRect" parent="UI_Root" unique_id=771576177]
 offset_left = 3.0
-offset_right = 1923.0
-offset_bottom = 1080.0
+offset_right = 1027.0
+offset_bottom = 768.0
 texture = ExtResource("5_df0dt")
 
 [node name="CloutProgress" type="ProgressBar" parent="UI_Root" unique_id=894154021]
@@ -55,7 +53,6 @@ script = ExtResource("5_8lkwd")
 metadata/_custom_type_script = "uid://5sck2ktsxyyq"
 
 [node name="Game Description" type="Label" parent="UI_Root" unique_id=1713131781]
-visible = false
 offset_left = 284.0
 offset_top = 244.0
 offset_right = 711.0
@@ -98,24 +95,53 @@ offset_bottom = 148.0
 [node name="InventoryUi" parent="UI_Root" unique_id=315292029 instance=ExtResource("4_pmva6")]
 
 [node name="Panel" parent="UI_Root/InventoryUi" index="0" unique_id=1589345108]
-offset_left = 640.0
-offset_top = 976.0
-offset_right = 680.0
-offset_bottom = 1016.0
-
-[node name="InventorySlot3" parent="UI_Root/InventoryUi/Panel/GridContainer" parent_id_path=PackedInt32Array(315292029, 2129711916) index="2" unique_id=1171403083]
+offset_left = 248.0
+offset_top = 664.0
+offset_right = 288.0
+offset_bottom = 704.0
 mouse_filter = 2
 
-[node name="InventorySlot4" parent="UI_Root/InventoryUi/Panel/GridContainer" parent_id_path=PackedInt32Array(315292029, 2129711916) index="3" unique_id=1727412832]
+[node name="GridContainer" parent="UI_Root/InventoryUi/Panel" index="0" unique_id=2129711916]
 mouse_filter = 2
 
-[node name="InventorySlot5" parent="UI_Root/InventoryUi/Panel/GridContainer" parent_id_path=PackedInt32Array(315292029, 2129711916) index="4" unique_id=1148888977]
+[node name="InventorySlot" parent="UI_Root/InventoryUi/Panel/GridContainer" index="0" unique_id=1898348738]
 mouse_filter = 2
 
-[node name="InventorySlot6" parent="UI_Root/InventoryUi/Panel/GridContainer" parent_id_path=PackedInt32Array(315292029, 2129711916) index="5" unique_id=1311264384]
+[node name="InventorySlot2" parent="UI_Root/InventoryUi/Panel/GridContainer" index="1" unique_id=1338082132]
 mouse_filter = 2
 
-[editable path="Sounds"]
+[node name="InventorySlot3" parent="UI_Root/InventoryUi/Panel/GridContainer" index="2" unique_id=1171403083]
+mouse_filter = 2
+
+[node name="InventorySlot4" parent="UI_Root/InventoryUi/Panel/GridContainer" index="3" unique_id=1727412832]
+mouse_filter = 2
+
+[node name="InventorySlot5" parent="UI_Root/InventoryUi/Panel/GridContainer" index="4" unique_id=1148888977]
+mouse_filter = 2
+
+[node name="InventorySlot6" parent="UI_Root/InventoryUi/Panel/GridContainer" index="5" unique_id=1311264384]
+mouse_filter = 2
+
+[node name="BezierCurve" type="Line2D" parent="UI_Root" unique_id=2098976067]
+position = Vector2(3, 5)
+scale = Vector2(10.280002, 1)
+script = ExtResource("8_3hb8f")
+
+[node name="Plane" type="Node2D" parent="UI_Root" unique_id=385580725]
+position = Vector2(120, 168)
+script = ExtResource("9_36a8y")
+metadata/_custom_type_script = "uid://cdj2i1qeyfyb1"
+
+[node name="MiniGame2" type="Node" parent="." unique_id=65821817 node_paths=PackedStringArray("_plane_trajectory", "_plane")]
+script = ExtResource("4_oa3b6")
+_plane_trajectory = NodePath("../UI_Root/BezierCurve")
+_plane = NodePath("../UI_Root/Plane")
+_plane_speed = 300.0
+metadata/_custom_type_script = "uid://lp1li2aa7ucq"
+
+[node name="Sounds" parent="." unique_id=1645715420 instance=ExtResource("7_rc77a")]
+
 [editable path="UI_Root/InventoryUi"]
 [editable path="UI_Root/InventoryUi/Panel/GridContainer/InventorySlot2"]
 [editable path="UI_Root/InventoryUi/Panel/GridContainer/InventorySlot3"]
+[editable path="Sounds"]

@@ -2,10 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://c6hye878afeps" path="res://assets/icon.svg" id="1_14any"]
 
-[node name="InventorySlot" type="PanelContainer" unique_id=1898348738]
-offset_right = 14.0
-offset_bottom = 23.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14any"]
+size = Vector2(63.32808, 64.43969)
+
+[node name="InventorySlot" type="PanelContainer" unique_id=1894238539]
+offset_right = 64.0
+offset_bottom = 64.0
 scale = Vector2(0.36318803, 0.18622065)
+mouse_filter = 1
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1928513826]
 custom_minimum_size = Vector2(64, 64)
@@ -19,3 +23,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "1"
 horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="." unique_id=577188246]
+
+[node name="Collision" type="CollisionShape2D" parent="Area2D" unique_id=1432752581]
+position = Vector2(31.664045, 32.21985)
+shape = SubResource("RectangleShape2D_14any")

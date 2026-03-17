@@ -28,22 +28,23 @@ func _ready() -> void:
 	game_timer = get_node("Timer")
 	#await game_timer.ready
 	game_timer.timeout.connect(_on_timeout)
+	set_process_input(true)
 	
 func _input(event):
 	
+	print("run minigame")
+		
 	if _current_letter_index >= _alphabet.size():
 		return
-		
+
 	if event is InputEventKey and event.pressed:
 		var keycode = event.as_text_physical_keycode()
-		print("keycode: ", keycode)
 		if _current_letter_index < _alphabet.size() \
 			and keycode in _alphabet:
 			
 			if _update_timer < 0 or _update_timer >= 0.6:	
 				if _update_timer < 0:
 					start()
-					print("oko")
 					game_timer.start()
 				Game_Manager.sounds.play_random_burp_sound()
 				burp_start_time = Game_Manager.global_timer
@@ -51,31 +52,37 @@ func _input(event):
 				evaluate(keycode)
 				_current_letter_index += 1
 				running = _current_letter_index < _alphabet.size() and _busdriver.get_total_suspicion() < 100
+				if !running:
+					ended.emit(self)
 				_update_timer = 0.0	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	if !running:
 		return
+
 	if _update_timer >= 0.0:
 		_update_timer+=delta
 		
 	UI_Manager.updateMiniGame(self)
 
 func start():
+	print("start minigame")
 	super.start()
+	set_process_input(true)
 	
 func evaluate(letter):
 		
 	if letter != _alphabet[_current_letter_index]:
 		if _busdriver._looking_at_mirror:
-			_suspicion_multiplier= 1.4
+			_suspicion_multiplier= 1.3
 		else:
 			_suspicion_multiplier =1.1
 		fail()
 	else:
 		if _busdriver._looking_at_mirror:
-			_suspicion_multiplier = 1.25
+			_suspicion_multiplier = 1.15
 			fail()
 		else:
 			_suspicion_multiplier = 1.05
@@ -106,6 +113,7 @@ func is_noisy()->bool:
 
 func _on_timeout():
 	running = false
+	ended.emit(self)
 	
 func _on_busdriver_look_at_mirror(start_looking:float):
 	_start_looking = start_looking

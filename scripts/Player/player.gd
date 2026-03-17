@@ -58,7 +58,9 @@ func _process(delta: float) -> void:
 	pass
 
 func increase_clout(clout_gain) -> void:
-	clout_levels[CloutLevel.currentLevel].increase_clout(clout_gain)
+	#clout_levels[CloutLevel.currentLevel].increase_clout(clout_gain)
+	_total_clout += clout_gain
+	print("player clout", clout_gain)
 	G_Inventory.update()
 	
 #Reads the anger levels from a text file
