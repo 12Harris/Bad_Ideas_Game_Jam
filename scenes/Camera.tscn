@@ -3,6 +3,6 @@
 [ext_resource type="Script" uid="uid://cic25658vrsal" path="res://scripts/main_camera.gd" id="1_a3ute"]
 
 [node name="Camera" type="Camera3D" unique_id=1795028140]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0, 960, 540, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 960, 540, 0)
 current = true
 script = ExtResource("1_a3ute")

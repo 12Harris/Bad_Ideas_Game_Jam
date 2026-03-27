@@ -6,43 +6,15 @@ var _total_clout : int
 var bus_driver : BusDriver
 
 signal powerboost
+signal on_entered_action_zone
+signal on_left_action_zone
 
-#nested class for the player clout
-class CloutLevel:
-	var _min_clout:float
-	var _max_clout : float
-	var _current_clout : float
-	var _player : Player
-	var suspicion_level_id : int
-	static var currentLevel : int = 0
-	
-	signal clout_level_increased()
-	
-	func _init(player,max_clout,min_clout) -> void:
-		_max_clout = max_clout
-		_min_clout = min_clout
-		_current_clout = _min_clout
-		_player = player
-		clout_level_increased.connect(_player._on_clout_level_increased)
-	
-	#get the max anger
-	func get_max_clout():
-		return _max_clout
-		
-	func increase_clout(clout) -> void:
-		if _current_clout < _max_clout:
-			if _current_clout + clout > _max_clout:
-				clout = _max_clout-_current_clout
-			_current_clout += clout
-			_player._total_clout += clout
-			UI_Manager.increase_clout_meter(clout)
-		elif _current_clout >= _max_clout and currentLevel < 9:
-			currentLevel += 1
-			UI_Manager.set_min_clout(_max_clout)
-			clout_level_increased.emit()	
+var poses: Node2D
+var _current_pose: TextureRect
+var _is_moving:bool = false
 
-var clout_levels: Array[CloutLevel] = []
-var clout_levels_file : String
+@export var _move_speed:float
+@export var _paper_plane:Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -50,7 +22,6 @@ func _ready() -> void:
 	Game_Manager.register_player(self)
 	set_process_unhandled_input(true)
 	bus_driver = Game_Manager.get_bus_driver()
-	read_clout_levels_from_file()
 	_total_clout = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,30 +31,103 @@ func _process(delta: float) -> void:
 func increase_clout(clout_gain) -> void:
 	#clout_levels[CloutLevel.currentLevel].increase_clout(clout_gain)
 	_total_clout += clout_gain
-	print("player clout", clout_gain)
+	UI_Manager.increase_clout_meter(clout_gain)
 	G_Inventory.update()
+	if _total_clout >= 100:
+		_total_clout = 100
+		Game_Manager.enable_67_mode(13)
+		await G_Utils.wait(1)
+		_total_clout = 0
+		UI_Manager.reset_clout_meter(100)
 	
-#Reads the anger levels from a text file
-func read_clout_levels_from_file() -> void:
-	var file = FileAccess.open("res://data/clout_levels.txt", FileAccess.READ)
-	var content = file.get_as_text()
-	content = content.split("\n")
-	var content_size = content.size()
-	var old_clout_level:CloutLevel
-	for i in range(1,content_size-1):
-		var line = content[i].split("\t")
-		if(clout_levels.size() > 0):
-			old_clout_level = clout_levels[clout_levels.size()-1]
-			clout_levels.append(CloutLevel.new(self,float(line[1]),old_clout_level._max_clout))
-		else:
-			clout_levels.append(CloutLevel.new(self,float(line[1]),0))
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		var keycode = event.as_text_physical_keycode()
+		
+		if !Game_Manager.get_current_minigame().requires_arrow_keys():
+			if event.pressed and keycode == "Left" :
+				try_move(-Vector2.RIGHT)
+			elif event.pressed and keycode == "Right" :
+				try_move(Vector2.RIGHT)
+			elif event.is_released() and (keycode == "Left" or keycode == "KEY_RIGHT"):
+				_is_moving = false
 			
-#Notify the ui manager that the anger level increased
-func _on_clout_level_increased() -> void:
-	UI_Manager.reset_clout_meter(clout_levels[CloutLevel.currentLevel].get_max_clout())
-	
+			Game_Manager.get_current_minigame().cancel_actions()
+		else:
+			if Input.is_action_just_pressed("Cancel") and !in_safety_zone():
+				hide()
+			Game_Manager.get_current_minigame().cancel_actions()
+				
 func get_total_clout() -> int:
 	return _total_clout
 	
 func power_boost():
 	powerboost.emit()
+
+func hide():
+	while !in_safety_zone():
+		try_move(-Vector2.RIGHT)
+		await get_tree().process_frame
+	
+func try_move(direction:Vector2):
+	if _current_pose == null:
+		return
+	
+	var first_pose = poses.get_child(0)
+	var screen_pos = get_viewport().get_canvas_transform() * first_pose.global_position
+	var initial_screen_pos = screen_pos
+	print(screen_pos)
+	if direction == -Vector2.RIGHT:
+		if screen_pos.x > 0:
+			screen_pos.x -= _move_speed * get_process_delta_time()
+			#_paper_plane.global_position.x -= 0.1
+			_is_moving = true
+		else:
+			screen_pos.x = 0
+			_is_moving = false
+		
+		if screen_pos.x < 375.0 and in_action_zone():
+			on_left_action_zone.emit()
+
+	elif direction == Vector2.RIGHT:
+		if screen_pos.x < 380:
+			screen_pos.x += _move_speed * get_process_delta_time()
+			#_paper_plane.global_position.x += 0.1
+			_is_moving = true
+		else:
+			screen_pos.x = 380
+			_is_moving = false
+		if screen_pos.x >= 375.0 and !in_action_zone():
+			on_entered_action_zone.emit()
+
+	var world_pos = get_viewport().get_canvas_transform().affine_inverse() * screen_pos
+	first_pose.global_position = world_pos
+	
+	for child in poses.get_children():
+		child.global_position = first_pose.global_position
+
+func in_safety_zone() ->bool:
+	return (get_viewport().get_canvas_transform() * _current_pose.global_position).x <= 20
+
+func in_action_zone() ->bool:
+	return (get_viewport().get_canvas_transform() * _current_pose.global_position).x >= 375
+
+func is_safe() ->bool:
+	return in_safety_zone()
+	
+func set_pose(index, duration, override:bool= false):
+	
+	_current_pose.visible = false
+	
+	if !override:
+		_current_pose = poses.get_child(index)
+	else:
+		_current_pose = Game_Manager._sub_viewport.get_node("TestingGroundsBIGJ/UI_Root/BimmyPoses").get_child(index)
+
+	_current_pose.visible = true
+	
+	if duration > 0:
+		await G_Utils.wait(duration)
+		_current_pose.visible = false
+		_current_pose = poses.get_child(0)
+		_current_pose.visible = true

@@ -23,7 +23,6 @@ func set_angle(angle:float):
 	_angle = angle
 	
 func calculate():
-	print("Drawing bezier ", positions.size())
 	if p0 == Vector2.ZERO:
 		return
 	
@@ -34,8 +33,7 @@ func calculate():
 		var pos = G_Utils._cubic_bezier(p0,p1,p2,p3,float(i*2)/100.0)
 		var line = pos - old_pos
 		line = line.rotated(-_angle)
-		draw_line(to_local(old_pos_shifted),to_local(old_pos_shifted)+to_local(line),Color.GREEN, 1)
 		old_pos = pos
 		old_pos_shifted = old_pos_shifted+line
 		positions[i] = old_pos_shifted
-		print("positions i: ", positions[i])
+		#print("positions i: ", positions[i])

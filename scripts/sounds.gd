@@ -1,30 +1,42 @@
 extends Node
 class_name Sounds
 
-var _burp_sounds: Array[AudioStreamPlayer] = []
-@export var _burp_sound_files: Array[String] = []
+var _minigame_1_sounds: Array[AudioStreamPlayer] = []
+@export var _minigame_1_sound_files: Array[String] = []
 
 var _index_of_last_burp_sound = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for file:String in _burp_sound_files:
-		print("SOUNDS INIT")
+	for file:String in _minigame_1_sound_files:
 		var child = AudioStreamPlayer.new()
 		child.stream = load(file)
 		get_node("MiniGame1/Burping/").add_child(child)
-		_burp_sounds.append(child)
+		_minigame_1_sounds.append(child)
+	
 	Game_Manager.register_sounds(self)
 	randomize()
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func play_sound(minigame, index):
+	if minigame is MiniGame1:
+		_minigame_1_sounds[index].stream.loop = false
+		_minigame_1_sounds[index].play()
+		
+func play_sound_looping(minigame, index):
+	if minigame is MiniGame1:
+		_minigame_1_sounds[index].stream.loop = true
+		_minigame_1_sounds[index].play()
+		
 func play_random_burp_sound():
 	print("playing burp")
-	var index = randi() % _burp_sounds.size()
+	var index = 1
+	index += randi() % (_minigame_1_sounds.size()-1)
 	while(index == _index_of_last_burp_sound):
-		index = randi() % _burp_sounds.size()
+		index = 1
+		index += randi() % (_minigame_1_sounds.size()-1)
 	_index_of_last_burp_sound = index
-	_burp_sounds[index].play()
+	print("burp sound index: ", _index_of_last_burp_sound )
+	_minigame_1_sounds[index].play()

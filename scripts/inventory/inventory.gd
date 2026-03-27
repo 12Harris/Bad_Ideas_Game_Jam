@@ -7,6 +7,7 @@ var _items: Array[Inventory_Item] = []
 var _lockedItems:Array[Inventory_Item] = []
 var _player: Player
 var _totalItems: int = 0
+var requiredItem = 0
 
 # A signal to notify the UI when the inventory changes.
 signal inventory_changed
@@ -30,6 +31,8 @@ func add_item(item : Inventory_Item):
 	_items.append(item)
 	print("item unlocked: " , item.name)
 	inventory_changed.emit()
+	if requiredItem < 4:
+		requiredItem += 1
 
 #Add inventory items from file
 func read_inventory_from_file() -> void:

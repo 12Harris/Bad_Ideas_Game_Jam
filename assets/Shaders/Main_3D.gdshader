@@ -6,6 +6,6 @@ uniform sampler2D tex_b;
 void fragment() {
     vec4 a = texture(TEXTURE, UV);
     vec4 b = texture(tex_b, UV);
-	//COLOR = a;
-   	COLOR = mix(a, b, b.a);
+	COLOR = a;
+   	COLOR = mix(a, b, a.a);
 }

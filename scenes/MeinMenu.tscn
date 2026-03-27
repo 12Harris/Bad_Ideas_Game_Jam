@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bfoblt52iinpy" path="res://assets/main menu/Fire.png" id="2_7aojs"]
 [ext_resource type="Texture2D" uid="uid://bmqx7ijvs4y87" path="res://assets/main menu/start-button.png" id="3_g4rp4"]
 [ext_resource type="Texture2D" uid="uid://dtlw2qgwgxqq1" path="res://assets/main menu/Danger-Yellow-tape.png" id="4_p03u5"]
-[ext_resource type="Texture2D" uid="uid://xj773g11l4qs" path="res://assets/Character/Bimmy-Character.png" id="5_f1jlr"]
-[ext_resource type="Texture2D" path="res://assets/Logo/Logo-School-Bus-Mayhem.png" id="6_x2i1m"]
+[ext_resource type="Texture2D" uid="uid://d3llj4memy443" path="res://assets/Character/Bimmy-Main Menu.png" id="4_tolhe"]
 [ext_resource type="Script" uid="uid://dwjqbnwo5nlkr" path="res://scripts/UI/MainMenu/start_button.gd" id="7_7aojs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4rp4"]
@@ -34,7 +33,6 @@ offset_left = 664.0
 offset_top = 8.0
 offset_right = 1264.0
 offset_bottom = 631.0
-texture = ExtResource("6_x2i1m")
 expand_mode = 1
 stretch_mode = 4
 
@@ -43,7 +41,7 @@ offset_left = 576.0
 offset_top = 176.0
 offset_right = 1326.0
 offset_bottom = 1256.0
-texture = ExtResource("5_f1jlr")
+texture = ExtResource("4_tolhe")
 expand_mode = 1
 stretch_mode = 4
 

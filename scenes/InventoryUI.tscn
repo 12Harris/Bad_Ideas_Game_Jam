@@ -7,51 +7,61 @@
 [ext_resource type="Resource" uid="uid://dkir7hnc2fx64" path="res://data/B.tres" id="4_d0rvq"]
 [ext_resource type="Resource" uid="uid://bacee18bpbu15" path="res://data/C.tres" id="5_4jdrs"]
 [ext_resource type="Resource" uid="uid://djymdvuit4idw" path="res://data/D.tres" id="6_a70b0"]
-[ext_resource type="Resource" uid="uid://vy4fergng112" path="res://data/E.tres" id="7_u03wm"]
-[ext_resource type="Resource" uid="uid://cimjxq7ddedql" path="res://data/F.tres" id="8_gxnuj"]
+[ext_resource type="Texture2D" uid="uid://c3nhn52swqjij" path="res://assets/Inventory/Fizzy-pop.png" id="9_4jdrs"]
+[ext_resource type="Texture2D" uid="uid://70imbxvr50k8" path="res://assets/Character/box-only.png" id="9_hfc6r"]
+[ext_resource type="Texture2D" uid="uid://br5gh1mgku6cc" path="res://assets/Inventory/Fart-bomb.png" id="10_a70b0"]
+[ext_resource type="Texture2D" uid="uid://xhsjkuc2rgew" path="res://assets/Inventory/paperplane.png" id="11_u03wm"]
+[ext_resource type="Texture2D" uid="uid://qyv01evxne64" path="res://assets/Inventory/speaker.png" id="12_gxnuj"]
 
 [node name="InventoryUi" type="CanvasLayer" unique_id=315292029]
 script = ExtResource("1_wqexf")
-item_data = Array[ExtResource("2_tbtli")]([ExtResource("3_hfc6r"), ExtResource("4_d0rvq"), ExtResource("5_4jdrs"), ExtResource("6_a70b0"), ExtResource("7_u03wm"), ExtResource("8_gxnuj")])
+item_data = Array[ExtResource("2_tbtli")]([ExtResource("3_hfc6r"), ExtResource("4_d0rvq"), ExtResource("5_4jdrs"), ExtResource("6_a70b0")])
 
-[node name="Panel" type="Panel" parent="." unique_id=1589345108]
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(1.3599977, 1.3599977)
-mouse_filter = 2
+[node name="Background" type="TextureRect" parent="." unique_id=2138902047]
+offset_right = 1544.0
+offset_bottom = 657.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_hfc6r")
+expand_mode = 1
 
-[node name="GridContainer" type="GridContainer" parent="Panel" unique_id=2129711916]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="GridContainer" type="GridContainer" parent="." unique_id=2129711916]
+offset_left = 242.0
+offset_top = 144.0
+offset_right = 510.0
+offset_bottom = 208.0
 mouse_filter = 2
 columns = 6
 
-[node name="InventorySlot" parent="Panel/GridContainer" unique_id=1898348738 instance=ExtResource("2_ju2k0")]
+[node name="InventorySlot" parent="GridContainer" unique_id=1898348738 instance=ExtResource("2_ju2k0")]
 layout_mode = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 
-[node name="InventorySlot2" parent="Panel/GridContainer" unique_id=1338082132 instance=ExtResource("2_ju2k0")]
+[node name="TextureRect" parent="GridContainer/InventorySlot" index="0" unique_id=1928513826]
+texture = ExtResource("9_4jdrs")
+
+[node name="InventorySlot2" parent="GridContainer" unique_id=1338082132 instance=ExtResource("2_ju2k0")]
 layout_mode = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 3
 
-[node name="TextureRect" parent="Panel/GridContainer/InventorySlot2" index="1" unique_id=1928513826]
-mouse_filter = 1
+[node name="TextureRect" parent="GridContainer/InventorySlot2" index="0" unique_id=1928513826]
+texture = ExtResource("10_a70b0")
 
-[node name="InventorySlot3" parent="Panel/GridContainer" unique_id=1171403083 instance=ExtResource("2_ju2k0")]
+[node name="InventorySlot3" parent="GridContainer" unique_id=1171403083 instance=ExtResource("2_ju2k0")]
 layout_mode = 2
 
-[node name="InventorySlot4" parent="Panel/GridContainer" unique_id=1727412832 instance=ExtResource("2_ju2k0")]
+[node name="TextureRect" parent="GridContainer/InventorySlot3" index="0" unique_id=1928513826]
+texture = ExtResource("11_u03wm")
+
+[node name="InventorySlot4" parent="GridContainer" unique_id=1727412832 instance=ExtResource("2_ju2k0")]
 layout_mode = 2
 
-[node name="InventorySlot5" parent="Panel/GridContainer" unique_id=1148888977 instance=ExtResource("2_ju2k0")]
-layout_mode = 2
+[node name="TextureRect" parent="GridContainer/InventorySlot4" index="0" unique_id=1928513826]
+texture = ExtResource("12_gxnuj")
 
-[node name="InventorySlot6" parent="Panel/GridContainer" unique_id=1311264384 instance=ExtResource("2_ju2k0")]
-layout_mode = 2
-
-[editable path="Panel/GridContainer/InventorySlot2"]
-[editable path="Panel/GridContainer/InventorySlot3"]
+[editable path="GridContainer/InventorySlot"]
+[editable path="GridContainer/InventorySlot2"]
+[editable path="GridContainer/InventorySlot3"]
+[editable path="GridContainer/InventorySlot4"]

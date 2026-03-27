@@ -6,37 +6,56 @@
 [ext_resource type="Script" uid="uid://lp1li2aa7ucq" path="res://scripts/MiniGames/mini_game_2.gd" id="4_oa3b6"]
 [ext_resource type="PackedScene" uid="uid://cnwib4gds2mnf" path="res://scenes/InventoryUI.tscn" id="4_pmva6"]
 [ext_resource type="Script" uid="uid://5sck2ktsxyyq" path="res://scripts/UI/susp_progress_bar.gd" id="5_8lkwd"]
-[ext_resource type="Texture2D" uid="uid://d1dxs48c2imp7" path="res://assets/bus/bus_inside.png" id="5_df0dt"]
+[ext_resource type="Texture2D" uid="uid://fpdkwt0ynpig" path="res://assets/bus/bus-kids.png" id="6_36a8y"]
+[ext_resource type="Texture2D" uid="uid://dvpc1f7r72mwr" path="res://assets/bus/Inside Bus.png" id="6_df0dt"]
 [ext_resource type="Script" uid="uid://dsql1y5eo0iqa" path="res://scripts/MiniGames/mini_game_1.gd" id="6_gxr4e"]
 [ext_resource type="PackedScene" uid="uid://celorvo0awlfy" path="res://scenes/sounds.tscn" id="7_rc77a"]
+[ext_resource type="Texture2D" uid="uid://de4wcqpy1rcfi" path="res://assets/Character/Mayhem-Box.png" id="10_df0dt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oa3b6"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_df0dt"]
 
 [node name="TestingGroundsBIGJ" type="Node" unique_id=750049049]
 
 [node name="BusDriver" type="Node" parent="." unique_id=1316347353]
+process_mode = 1
 script = ExtResource("1_d3ich")
 
 [node name="Player" type="Node" parent="." unique_id=1835008993]
 script = ExtResource("3_j1r41")
 metadata/_custom_type_script = "uid://c1tjjll3equ0l"
 
+[node name="GameTimer" type="Timer" parent="." unique_id=139929345]
+wait_time = 300.0
+autostart = true
+
 [node name="MiniGame1" type="Node2D" parent="." unique_id=321490363]
+process_mode = 1
 script = ExtResource("6_gxr4e")
 
-[node name="Timer" type="Timer" parent="MiniGame1" unique_id=139929345]
-wait_time = 15.0
-
 [node name="MiniGame2" type="Node2D" parent="." unique_id=2097584126]
+process_mode = 1
 script = ExtResource("4_oa3b6")
 
 [node name="Sounds" parent="." unique_id=1645715420 instance=ExtResource("7_rc77a")]
 
 [node name="UI_Root" type="CanvasLayer" parent="." unique_id=1046426192]
+process_mode = 3
+
+[node name="BusKids" type="TextureRect" parent="UI_Root" unique_id=1796011567]
+z_index = 1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_36a8y")
 
 [node name="Background" type="TextureRect" parent="UI_Root" unique_id=771576177]
+process_mode = 1
+modulate = Color(1, 1, 1, 0.32941177)
 offset_left = 3.0
 offset_right = 1923.0
 offset_bottom = 1080.0
-texture = ExtResource("5_df0dt")
+texture = ExtResource("6_df0dt")
 
 [node name="CloutProgress" type="ProgressBar" parent="UI_Root" unique_id=894154021]
 offset_top = 13.973206
@@ -53,16 +72,6 @@ offset_right = 455.0
 offset_bottom = 91.0
 script = ExtResource("5_8lkwd")
 metadata/_custom_type_script = "uid://5sck2ktsxyyq"
-
-[node name="Game Description" type="Label" parent="UI_Root" unique_id=1713131781]
-visible = false
-offset_left = 284.0
-offset_top = 244.0
-offset_right = 711.0
-offset_bottom = 267.0
-text = "Burp the Aplhabet by typing the right letterson the keyboard within the given time!
-Avoid Geting Caught
-Be careful, the driver may be looking into the mirror!"
 
 [node name="SuspicionLabel" type="Label" parent="UI_Root" unique_id=1748116748]
 offset_left = 486.0
@@ -90,32 +99,99 @@ offset_top = -1.0
 offset_right = 993.0
 offset_bottom = 22.0
 
-[node name="MiniGame1Timer" type="Label" parent="UI_Root" unique_id=2063429972]
+[node name="GameTimer" type="Label" parent="UI_Root" unique_id=2063429972]
 offset_top = 125.0
 offset_right = 40.0
 offset_bottom = 148.0
 
 [node name="InventoryUi" parent="UI_Root" unique_id=315292029 instance=ExtResource("4_pmva6")]
 
-[node name="Panel" parent="UI_Root/InventoryUi" index="0" unique_id=1589345108]
-offset_left = 640.0
-offset_top = 976.0
-offset_right = 680.0
-offset_bottom = 1016.0
+[node name="Background" parent="UI_Root/InventoryUi" index="0" unique_id=2138902047]
+self_modulate = Color(1, 1, 1, 0.68235296)
+offset_left = 1144.0
+offset_top = 736.0
+offset_right = 2688.0
+offset_bottom = 1393.0
 
-[node name="InventorySlot3" parent="UI_Root/InventoryUi/Panel/GridContainer" parent_id_path=PackedInt32Array(315292029, 2129711916) index="2" unique_id=1171403083]
+[node name="GridContainer" parent="UI_Root/InventoryUi" index="1" unique_id=2129711916]
+offset_left = 1327.0
+offset_top = 864.00006
+offset_right = 1595.0
+offset_bottom = 928.00006
+scale = Vector2(1.5, 1.5)
+
+[node name="InventorySlot" parent="UI_Root/InventoryUi/GridContainer" index="0" unique_id=1898348738]
+self_modulate = Color(18.892157, 18.892157, 18.892157, 0)
+
+[node name="Area2D" parent="UI_Root/InventoryUi/GridContainer/InventorySlot" index="1" unique_id=577188246]
+visible = false
+
+[node name="InventorySlot2" parent="UI_Root/InventoryUi/GridContainer" index="1" unique_id=1338082132]
+self_modulate = Color(18.892157, 18.892157, 18.892157, 0)
+
+[node name="Area2D" parent="UI_Root/InventoryUi/GridContainer/InventorySlot2" index="1" unique_id=577188246]
+visible = false
+
+[node name="InventorySlot3" parent="UI_Root/InventoryUi/GridContainer" index="2" unique_id=1171403083]
+self_modulate = Color(18.892157, 18.892157, 18.892157, 0)
 mouse_filter = 2
 
-[node name="InventorySlot4" parent="UI_Root/InventoryUi/Panel/GridContainer" parent_id_path=PackedInt32Array(315292029, 2129711916) index="3" unique_id=1727412832]
+[node name="Area2D" parent="UI_Root/InventoryUi/GridContainer/InventorySlot3" index="1" unique_id=577188246]
+visible = false
+
+[node name="InventorySlot4" parent="UI_Root/InventoryUi/GridContainer" index="3" unique_id=1727412832]
+self_modulate = Color(18.892157, 18.892157, 18.892157, 0)
 mouse_filter = 2
 
-[node name="InventorySlot5" parent="UI_Root/InventoryUi/Panel/GridContainer" parent_id_path=PackedInt32Array(315292029, 2129711916) index="4" unique_id=1148888977]
-mouse_filter = 2
+[node name="Area2D" parent="UI_Root/InventoryUi/GridContainer/InventorySlot4" index="1" unique_id=577188246]
+visible = false
 
-[node name="InventorySlot6" parent="UI_Root/InventoryUi/Panel/GridContainer" parent_id_path=PackedInt32Array(315292029, 2129711916) index="5" unique_id=1311264384]
+[node name="Information" type="Node2D" parent="UI_Root" unique_id=390889204]
+process_mode = 3
+visible = false
+position = Vector2(984, 664)
+
+[node name="InfoTextBackground" type="TextureRect" parent="UI_Root/Information" unique_id=600276016]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1, 1, 1, 0.40392157)
+material = SubResource("ShaderMaterial_oa3b6")
+offset_left = -327.99994
+offset_top = -232.0
+offset_right = -199.99994
+offset_bottom = -104.0
+scale = Vector2(6.4799953, 2.7999997)
 mouse_filter = 2
+texture = SubResource("CanvasTexture_df0dt")
+expand_mode = 1
+
+[node name="InfoText" type="Label" parent="UI_Root/Information" unique_id=879208597]
+process_mode = 3
+offset_left = -327.99994
+offset_top = -232.0
+offset_right = -206.99994
+offset_bottom = -209.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "sdfs"
+
+[node name="ContinueBtn" type="Button" parent="UI_Root/Information" unique_id=1993183866]
+process_mode = 3
+offset_left = 416.0
+offset_top = 88.0
+offset_right = 495.0
+offset_bottom = 119.0
+text = "Continue"
+
+[node name="MayhemBox" type="TextureRect" parent="UI_Root" unique_id=1454425575]
+offset_left = 1280.0
+offset_top = 432.0
+offset_right = 1480.0
+offset_bottom = 632.0
+texture = ExtResource("10_df0dt")
+expand_mode = 1
 
 [editable path="Sounds"]
 [editable path="UI_Root/InventoryUi"]
-[editable path="UI_Root/InventoryUi/Panel/GridContainer/InventorySlot2"]
-[editable path="UI_Root/InventoryUi/Panel/GridContainer/InventorySlot3"]
+[editable path="UI_Root/InventoryUi/GridContainer/InventorySlot"]
+[editable path="UI_Root/InventoryUi/GridContainer/InventorySlot2"]
+[editable path="UI_Root/InventoryUi/GridContainer/InventorySlot3"]
+[editable path="UI_Root/InventoryUi/GridContainer/InventorySlot4"]

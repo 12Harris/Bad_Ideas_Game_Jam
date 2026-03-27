@@ -9,7 +9,7 @@ class SuspicionLevel:
 	static var timer : float = 0
 	static var currentLevel : int = 0
 	static var targetLevel: int = 0
-	
+
 	func _init(id,busdriver,max_suspicion, ai_state) -> void:
 		_id = id
 		_max_suspicion = max_suspicion
@@ -48,10 +48,12 @@ class SuspicionLevel:
 	func increase_suspicion(amount) -> void:
 		
 		_busdriver.total_suspicion += amount
+		print("susp amount: ", amount)
 		UI_Manager.inc_susp_meter(amount)
-		if _busdriver.get_total_suspicion() >= _max_suspicion and currentLevel < 9:
+		#if _busdriver.get_total_suspicion() >= _max_suspicion and currentLevel < 9:
+			#currentLevel += 1
+		while _busdriver.get_total_suspicion() >= _busdriver.suspicion_levels[currentLevel]._max_suspicion and currentLevel < 9:
 			currentLevel += 1
-		
 		_busdriver.ai_state = _busdriver.get_suspicion_level(currentLevel)._ai_state
 		UI_Manager.update_ai_state(_busdriver.ai_state,_busdriver._looking_at_mirror)
 
@@ -67,32 +69,37 @@ var _player:Player
 var suspicion_drain : float = 0.01
 var _drain_suspicion = false
 var _looking_at_mirror = false
+var _looking_back = false
 var _timer : float = 0.0
 var _update_interval :float = 4.0
-
 signal suspicion_level_increased
-signal on_look_at_mirror
-signal on_stop_look_at_mirror
+signal on_looking_back(time)
+signal on_stop_looking_back
+var poses: Node2D
+var _current_pose: TextureRect
+var _ignore_suspicion:bool = false
+var _base_update_interval:float = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	initialize()
 	await get_tree().process_frame
-	_player = Game_Manager.get_player()
 	randomize()
+	_player = Game_Manager.get_player()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
 	#drain suspicion logic
-	if _drain_suspicion and SuspicionLevel.currentLevel > SuspicionLevel.targetLevel:
-		suspicion_levels[SuspicionLevel.currentLevel].decrease_suspicion(suspicion_drain)
-	SuspicionLevel.update(self,delta,_drain_suspicion)
+	#if _drain_suspicion and SuspicionLevel.currentLevel > SuspicionLevel.targetLevel:
+		#suspicion_levels[SuspicionLevel.currentLevel].decrease_suspicion(suspicion_drain)
+	#SuspicionLevel.update(self,delta,_drain_suspicion)
 	
 	# do look at mirror logic
 	if _timer >= 0:
 		_timer += delta
-		_update_interval = 3.0 - 2* (SuspicionLevel.currentLevel/10)
+		#_update_interval = 3.0 - 2* (SuspicionLevel.currentLevel/10)
+		_update_interval = _base_update_interval - 2* (SuspicionLevel.currentLevel/10)
 		
 		if _timer > _update_interval:
 			var probability = calculate_look_at_mirror_probability()
@@ -102,7 +109,10 @@ func _process(delta: float) -> void:
 				look_at_mirror()
 			else:
 				_timer = 0
-			
+				
+	if total_suspicion >= 100 and !_looking_at_mirror:
+		look_at_mirror()
+		
 func initialize() -> void:
 	read_suspicion_levels_from_file()
 	for i in range(suspicion_levels.size()):
@@ -121,18 +131,56 @@ func read_suspicion_levels_from_file() -> void:
 
 #Make the bus driver suspicious
 func make_suspicious(suspicion_amount) -> void:
+	
+	if _ignore_suspicion:
+		return
+		
+	print("current susp level(ms): ", SuspicionLevel.currentLevel )
+
 	suspicion_levels[SuspicionLevel.currentLevel].increase_suspicion(suspicion_amount*base_suspicion_multiplier)
-	_drain_suspicion = false
-	await G_Utils.wait(2)
-	SuspicionLevel.targetLevel = SuspicionLevel.currentLevel - 2
-	if SuspicionLevel.targetLevel < 0:
-		SuspicionLevel.targetLevel = 0
-	_drain_suspicion = true
+	#_drain_suspicion = false
+	#await G_Utils.wait(2)
+	#SuspicionLevel.targetLevel = SuspicionLevel.currentLevel - 2
+	#if SuspicionLevel.targetLevel < 0:
+		#SuspicionLevel.targetLevel = 0
+	#_drain_suspicion = true
 	
 	#suspicion_levels[SuspicionLevel.currentLevel].increase_suspicion(suspicion_amount)
 #Notify the ui manager that the anger level increased
 func _on_suspicion_level_increased() -> void:
 	pass
+
+func set_suspicion(value):
+	
+	if _ignore_suspicion:
+		return
+		
+	print("susp amount new:", suspicion_levels[0]._max_suspicion)
+	total_suspicion = 0
+	var suspicion_sum = 0
+	
+	var i = 8
+	while i >= 0:
+		if value > suspicion_levels[i]._max_suspicion:
+			SuspicionLevel.currentLevel = i+1
+			break
+		i -= 1
+	
+	print("current susp level: ", SuspicionLevel.currentLevel )
+	ai_state = get_suspicion_level(SuspicionLevel.currentLevel)._ai_state
+	total_suspicion = value
+	
+	UI_Manager.set_susp_meter(value)
+	
+	#suspicion_sum += suspicion_levels[0]._max_suspicion
+	#if suspicion_sum < value:
+		#make_suspicious(suspicion_levels[0]._max_suspicion)
+#
+	#for i in range(1,10):
+		#suspicion_sum += suspicion_levels[i]._max_suspicion - suspicion_levels[i-1]._max_suspicion
+		#if suspicion_sum < value:
+			#make_suspicious(suspicion_levels[i]._max_suspicion - suspicion_levels[i-1]._max_suspicion)
+	#make_suspicious(value-total_suspicion)		
 	
 #get the total anger
 func get_total_suspicion() -> int:
@@ -147,17 +195,29 @@ func look_at_mirror():
 	var min_duration = 0.5
 	var max_duration = 3.0
 	
+	_timer = -1
 	_looking_at_mirror = true
 	UI_Manager.update_ai_state(ai_state,true)
-	on_look_at_mirror.emit(Game_Manager.global_timer)
+	#on_look_at_mirror.emit(360-Game_Manager.game_timer.get_time_left())
 	var duration = min_duration
-
+	
+	#3 seconds delay between looking at mirror and looking back
+	await G_Utils.wait(3)
+	_looking_back = true
+	on_looking_back.emit(360-Game_Manager.game_timer.get_time_left())
+	
+	_current_pose.visible = false
+	if ai_state == "calm":
+		_current_pose = poses.get_child(1)
+		
 	if ai_state == "suspicious":
 		#duration = 0.5 - 1.0
 		duration = min_duration + randf()
+		_current_pose = poses.get_child(2)
 	
-	elif ai_state == "angry":
+	elif ai_state == "angry" or ai_state == "pullover":
 		#duration = 1.0 - 3.0
+		_current_pose = poses.get_child(3)
 		min_duration = 1.0
 		var temp = randi() % 10
 		var additional:float = 0
@@ -165,15 +225,29 @@ func look_at_mirror():
 			additional = SuspicionLevel.currentLevel/10.0
 		
 		duration = min_duration + additional *(max_duration-min_duration)
-
+		
+	
+	_current_pose.visible = true
 	await G_Utils.wait(duration)
+	_current_pose.visible = false
 	_looking_at_mirror = false
+	_looking_back = false
 	UI_Manager.update_ai_state(ai_state,false)
-	on_stop_look_at_mirror.emit()
+	on_stop_looking_back.emit()
+	_current_pose = poses.get_child(0)
+	_current_pose.visible = true
 	_timer = 0
 
 #in fixed upate intervals the probability is calculated
 #currently just returns the total suspicion
 func calculate_look_at_mirror_probability() -> float:	
-	var probability = get_total_suspicion()
+	var probability = get_total_suspicion()+ 40
+	if probability >=100:
+		probability = 100
 	return probability
+	
+func ignore_suspicion(value):
+	_ignore_suspicion = value
+
+func set_base_update_interval(interval):
+	_base_update_interval = interval

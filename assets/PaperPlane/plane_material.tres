@@ -1,8 +1,14 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://1caneo7f56px"]
 
+[ext_resource type="Texture2D" uid="uid://2brvpomr7cul" path="res://assets/PaperPlane/Flying-paper-airplane.png" id="1_fhj2m"]
+
 [resource]
 render_priority = 1
 transparency = 1
+cull_mode = 2
+no_depth_test = true
+albedo_texture = ExtResource("1_fhj2m")
+texture_filter = 0
 stencil_mode = 3
 stencil_flags = 1
 stencil_compare = 5

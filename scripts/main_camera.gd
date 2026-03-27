@@ -5,12 +5,12 @@ class_name MainCamera
 func _ready() -> void:
 	pass
 	Game_Manager.register_camera(self)
-	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	#get_window().size = Vector2(960,540)
-	#get_window().content_scale_size = get_window().size*2
-	get_window().size = Vector2(1920,1080)
-	get_window().content_scale_size = get_window().size
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	get_window().size = Vector2(959,539)
+	get_window().content_scale_size = get_window().size*2
+	#get_window().size = Vector2(1920,1080)
+	#get_window().content_scale_size = get_window().size
 
 func init():
 	pass
