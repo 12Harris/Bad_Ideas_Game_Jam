@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dexau0wiyanuv"
+path="res://.godot/imported/Bus driver gags.mp3-98f836b01a397ca8120ada9171f36538.mp3str"
+
+[deps]
+
+source_file="res://assets/FartBomb/Bus driver gags.mp3"
+dest_files=["res://.godot/imported/Bus driver gags.mp3-98f836b01a397ca8120ada9171f36538.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

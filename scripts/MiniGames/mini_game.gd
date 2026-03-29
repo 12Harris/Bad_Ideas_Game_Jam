@@ -20,6 +20,8 @@ var _information:String
 var chain_length: int = 0
 var item_required: bool = true
 var _player_spotted:bool = false
+var _num_tries :int = 0
+var id = 0
 
 @export var _inventory_ui:InventoryUI
 
@@ -70,14 +72,18 @@ func _ready() -> void:
 	_inventory_ui.on_item_selected.connect(on_item_selected)
 	_player.on_entered_action_zone.connect(on_player_entered_action_zone)
 	_player.on_left_action_zone.connect(on_player_left_action_zone)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !running:
 		return
 		
-	if !_player_spotted and _busdriver._looking_back and !_player.is_safe():
+	if !_player_spotted and _busdriver._looking_back and !_busdriver.distracted and !_player.is_safe():
 		on_player_spotted.emit()
 		_player_spotted = true
+		
+	if _busdriver.total_suspicion >= 100:
+		Game_Manager.game_over("The Bus Driver caught you. You lost the game!")
 
 #Triggered when the minigame(or a part of the minigame) succeded
 func succeed()->void:
@@ -88,6 +94,7 @@ func fail()->void:
 	failed.emit(self)
 
 func start(show_info = true):
+	_num_tries += 1
 	running = true
 
 func calculate_suspicion():

@@ -76,6 +76,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					print("item selected")
 
 func show_item_indicator(index):
+	print("slotindex: ", index)
 	var offset = slots[index].global_position + Vector2.RIGHT*50 + Vector2.UP * 50
 	_item_indicator.global_position = offset
 	_item_indicator.visible = true

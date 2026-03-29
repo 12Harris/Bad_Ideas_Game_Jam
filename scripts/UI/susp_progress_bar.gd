@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgressBar
 class_name SuspProgressBar
 
 # Called when the node enters the scene tree for the first time.

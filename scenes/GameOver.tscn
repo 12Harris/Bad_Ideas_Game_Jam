@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bvvm2wd72xqqc"]
+
+[ext_resource type="Texture2D" uid="uid://dvs01hyjusavm" path="res://assets/Loose_Win_Screen/Losing-Screen.png" id="1_6bcno"]
+
+[node name="GameOver" type="Node2D" unique_id=1272012593]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1292939904]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_6bcno")

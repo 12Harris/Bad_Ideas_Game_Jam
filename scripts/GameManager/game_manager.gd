@@ -35,14 +35,13 @@ var _sub_viewport:SubViewport
 
 var _sub_viewport_2:SubViewport
 
-
 var interact_input_action = "interact"
 var interact_input_action_2 = "interact2"
 
 var bus_seats_left:Array[StaticBody3D]= []
 var bus_seats_right:Array[StaticBody3D]= []
 
-var current_mini_game : int = 0
+var current_mini_game : int = 1
 
 var _minigame_warnings : int = 0
 
@@ -50,6 +49,7 @@ var _inventory_ui:InventoryUI
 
 var _sixty_seven_enabled:bool = false
 
+var _music:Music
 #Register the UI
 func register_ui(ui):
 	_ui = ui
@@ -74,6 +74,9 @@ func register_minigame(minigame:MiniGame):
 func register_sounds(sounds:Sounds):
 	self.sounds = sounds
 
+func register_music(music:Music):
+	_music = music
+	
 func register_camera(camera:Camera3D):
 	self.camera = camera
 
@@ -99,12 +102,18 @@ func initialize_game() -> void:
 	_busdriver._current_pose = _busdriver.poses.get_child(0)
 	_player.poses =_sub_viewport_2.get_node("BimmyPoses")
 	_player._current_pose = _player.poses.get_child(0)
+	_busdriver._current_pose = _busdriver.poses.get_child(0)
+
 	game_timer.timeout.connect(_on_timeout)
 	await G_Utils.wait(2)
-	mini_games[1].running = true
-	mini_games[1].display_info()
+
+	for i in range(4):
+		if mini_games[i].id == current_mini_game:
+			mini_games[i].running = true
+			mini_games[i].display_info()
+			_inventory_ui.show_item_indicator(mini_games[i].id)
 	
-	_inventory_ui.show_item_indicator(1)
+	_music.play_background_music()
 	
 	#get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 	#Main_Camera.set_limits(0,500,0,0)
@@ -166,9 +175,9 @@ func _on_minigame_succeeded(minigame:MiniGame):
 
 #called when a minigame or a part of a minigame failed
 func _on_minigame_failed(minigame:MiniGame):
-	pass
-	#minigame.calculate_suspicion(false)+
-	#_busdriver.make_suspicious(minigame.suspicion_gain)
+	if minigame is MiniGame3:
+		minigame.calculate_suspicion()
+		_busdriver.make_suspicious(minigame.suspicion_gain)
 	#print("bus driver susp: ", _busdriver.total_suspicion )
 
 func _on_player_powerboost():
@@ -182,35 +191,45 @@ func _on_minigame_ended(minigame):
 	if !game_lost():
 		#start next minigame
 		await G_Utils.wait(2)
-		print("mini game index: ",current_mini_game )
-		if current_mini_game < 1:
+		if current_mini_game < 3:
 			current_mini_game = current_mini_game+1
-			mini_games[current_mini_game].running = true
-			mini_games[current_mini_game].display_info()
-			_inventory_ui.show_item_indicator(current_mini_game)
+			#print("mini game indexi: ",current_mini_game )
+			
+			for i in range(4):
+				if mini_games[i].id == current_mini_game:
+					mini_games[i].running = true
+					mini_games[i].display_info()
+					_inventory_ui.show_item_indicator(mini_games[i].id)
+					print("mini game indexi: ",mini_games[i].id )
+					
+					return
 	else:
-		game_over("The Bus Driver caught you. You lost the game!")
+		G_Utils.load_loose_scene()
 
 func game_over(message):
-	UI_Manager.showInfo(message)
-	UI_Manager.pause_game()
+	G_Utils.load_loose_scene()
 	
 func _on_timeout():
 	game_over("The time has run out!\n You lost the game")
 
 func get_current_minigame():
 	return mini_games[current_mini_game]
+
+func warn_player():
 	
-func on_player_spotted():
 	_minigame_warnings += 1
 	
 	_busdriver.set_suspicion(_busdriver.get_total_suspicion() + 5 + 33)
 	print("player spotted, bus driver has suspicion: ", _busdriver.get_total_suspicion())
 	if _minigame_warnings == 3:
 		_busdriver.set_suspicion(100)
-		
-	UI_Manager.display_warning()	
 	
+	if(_minigame_warnings < 3):
+		UI_Manager.display_warning()	
+	
+func on_player_spotted():
+	warn_player()
+
 func show_item_indicator(index):
 	_inventory_ui.show_item_indicator(index)
 	

@@ -4,8 +4,6 @@ extends MiniGame
 @export var _plane:PaperPlane
 @export var _bus_driver:Node3D
 		
-var stage: int = 0
-var retries = 0
 var target_area_index = -2
 
 # Called when the node enters the scene tree for the first time.
@@ -16,9 +14,20 @@ func _ready() -> void:
 	_plane.on_entered_target_area.connect(on_plane_entered_target_area)
 	_plane.on_landed.connect(on_plane_landed)
 	_plane.on_thrown.connect(on_plane_thrown)
+	id = 1
 
 func _input(event: InputEvent) -> void:
-	pass
+	if !_plane.enabled:
+		return
+		
+	if item_required:
+		return
+		
+	if event is InputEventMouseButton:
+		var btn = event.as_text()
+		if btn == "Left Mouse Button" and event.is_released():
+			if !_plane._is_flying:
+				_plane.throw()
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -33,13 +42,15 @@ func _physics_process(delta):
 func on_plane_landed():
 	await G_Utils.wait(1)
 	evaluate()
+	item_required = true
 	await G_Utils.wait(2)
-	Game_Manager.show_item_indicator(1)
 
 func on_plane_entered_target_area(index):
+	if !running:
+		return
+		
 	target_area_index = index
 	print("target area index: ", target_area_index)
-
 
 func evaluate():
 	
@@ -48,9 +59,12 @@ func evaluate():
 		game_over()
 	else:
 		item_required = true
+		Game_Manager.show_item_indicator(1)
 		fail()
 
 func game_over():
+	print("GAME OVER")
+	_plane.enabled = false
 	super.game_over()
 	
 #only called if minigame succeded	
@@ -67,11 +81,11 @@ func calculate_suspicion():
 func display_info():
 	_information = ""
 	
-	_information = "Congratulations! You won the first minigame!\n\n"
+	_information = "Congratulations! You won the second minigame!\n\n"
 
-	_information += "MINIGAME 2 - Hit the bus driver with a paper plane. Use the mouse to aim the paper plane.\n
-		Press and hold \"F\" to charge the paper plane then release
-		to throw it.\nDon't get caught!\n"
+	_information += "MINIGAME 3 - Hit the bus driver with a paper plane. Use the mouse to aim and charge the paper plane.\n
+		Then release to
+		to throw.\nDon't get caught!\n"
 		
 	UI_Manager.showInfo(_information)
 	UI_Manager.pause_game()
@@ -80,13 +94,13 @@ func start(show_info = true):
 	super.start()
 	print("start minigame 2")
 	
-	_busdriver.set_base_update_interval(5)
+	_busdriver.set_base_update_interval(6)
 	UI_Manager.reset_susp_meter()
 	
-	if _busdriver.total_suspicion > 50:
-		Game_Manager._busdriver.set_suspicion(20)
+	#if _busdriver.total_suspicion > 50 and _busdriver.total_suspicion < 100:
+		#Game_Manager._busdriver.set_suspicion(30)
 		
-	Game_Manager._busdriver.set_suspicion(20)#comment this out later
+	#Game_Manager._busdriver.set_suspicion(30)#comment this out later
 		
 	#_plane.initial_pos = Vector3(13,-3,-21)
 	_plane.reset()
@@ -95,24 +109,36 @@ func start(show_info = true):
 
 func on_item_selected(index):
 	if running and index == 1 and item_required:
-		#drink the soda
+
 		if !_player.in_action_zone():
 			return
 		
+		_plane.reset()
 		Game_Manager.hide_item_indicator()
 		_player.set_pose(3,0,true)
+		await G_Utils.wait(0.1)
 		item_required = false
 		_plane.enabled = true
 		start(false)
+	
+	elif !running:
+		print("not running")
+		_plane.enabled = false
 			
 func on_plane_thrown():
 	_player.set_pose(4,1)
 	_look_at_diff = _start_looking - (300-Game_Manager.game_timer.get_time_left())
 	
 func on_player_entered_action_zone():
-	_player.set_pose(3,0)
+	
+	if !running:
+		return
+	
+	if !item_required:
+		_player.set_pose(3,0)
 	
 func on_player_left_action_zone():
 	_player.set_pose(0,0)
 	if !_plane._is_flying:
 		_plane.enabled = false
+		

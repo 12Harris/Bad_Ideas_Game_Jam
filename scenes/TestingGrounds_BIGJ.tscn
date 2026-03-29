@@ -10,7 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://dvpc1f7r72mwr" path="res://assets/bus/Inside Bus.png" id="6_df0dt"]
 [ext_resource type="Script" uid="uid://dsql1y5eo0iqa" path="res://scripts/MiniGames/mini_game_1.gd" id="6_gxr4e"]
 [ext_resource type="PackedScene" uid="uid://celorvo0awlfy" path="res://scenes/sounds.tscn" id="7_rc77a"]
+[ext_resource type="Texture2D" uid="uid://ki7vd3l8yaq3" path="res://assets/BusDriver/susp_meter.png" id="9_36a8y"]
+[ext_resource type="Texture2D" uid="uid://buad8idlv10e5" path="res://assets/Character/clout_meter.png" id="9_dp0r7"]
+[ext_resource type="Texture2D" uid="uid://c1p8keiucibis" path="res://assets/meter_background_1.png" id="9_olwa8"]
 [ext_resource type="Texture2D" uid="uid://de4wcqpy1rcfi" path="res://assets/Character/Mayhem-Box.png" id="10_df0dt"]
+[ext_resource type="Texture2D" uid="uid://dbdtb5t1vbynq" path="res://assets/FartBomb/throw_force_meter_background.png" id="11_wntq7"]
+[ext_resource type="Texture2D" uid="uid://bnxna2arbh1q4" path="res://assets/FartBomb/throw_force_meter.png" id="12_u1vts"]
+[ext_resource type="Script" uid="uid://dsingcs7fqcq7" path="res://scenes/throw_force_meter.gd" id="13_mdsig"]
+[ext_resource type="Texture2D" uid="uid://xhsjkuc2rgew" path="res://assets/Inventory/paperplane.png" id="17_mdsig"]
+[ext_resource type="Texture2D" uid="uid://br5gh1mgku6cc" path="res://assets/Inventory/Fart-bomb.png" id="18_o6q3x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oa3b6"]
 
@@ -57,21 +65,33 @@ offset_right = 1923.0
 offset_bottom = 1080.0
 texture = ExtResource("6_df0dt")
 
-[node name="CloutProgress" type="ProgressBar" parent="UI_Root" unique_id=894154021]
-offset_top = 13.973206
+[node name="CloutProgress" type="TextureProgressBar" parent="UI_Root" unique_id=236410749]
+offset_top = 16.0
 offset_right = 455.7481
-offset_bottom = 40.973206
-theme_override_colors/font_outline_color = Color(0.8, 0, 0, 1)
+offset_bottom = 43.0
 max_value = 50.0
+texture_over = ExtResource("9_olwa8")
+texture_progress = ExtResource("9_dp0r7")
 script = ExtResource("2_sporm")
-metadata/_custom_type_script = "uid://cnhg0s65yy82f"
 
-[node name="SuspProgressBar" type="ProgressBar" parent="UI_Root" unique_id=239608066]
+[node name="ThrowForceMeter" type="TextureProgressBar" parent="UI_Root" unique_id=553623052]
+offset_left = 1729.0
+offset_top = 688.0
+offset_right = 1754.0
+offset_bottom = 788.0
+max_value = 50.0
+fill_mode = 3
+texture_over = ExtResource("11_wntq7")
+texture_progress = ExtResource("12_u1vts")
+script = ExtResource("13_mdsig")
+
+[node name="SuspProgressBar" type="TextureProgressBar" parent="UI_Root" unique_id=1185315787]
 offset_top = 64.0
 offset_right = 455.0
 offset_bottom = 91.0
+texture_over = ExtResource("9_olwa8")
+texture_progress = ExtResource("9_36a8y")
 script = ExtResource("5_8lkwd")
-metadata/_custom_type_script = "uid://5sck2ktsxyyq"
 
 [node name="SuspicionLabel" type="Label" parent="UI_Root" unique_id=1748116748]
 offset_left = 486.0
@@ -129,12 +149,18 @@ visible = false
 [node name="InventorySlot2" parent="UI_Root/InventoryUi/GridContainer" index="1" unique_id=1338082132]
 self_modulate = Color(18.892157, 18.892157, 18.892157, 0)
 
+[node name="TextureRect" parent="UI_Root/InventoryUi/GridContainer/InventorySlot2" index="0" unique_id=1928513826]
+texture = ExtResource("17_mdsig")
+
 [node name="Area2D" parent="UI_Root/InventoryUi/GridContainer/InventorySlot2" index="1" unique_id=577188246]
 visible = false
 
 [node name="InventorySlot3" parent="UI_Root/InventoryUi/GridContainer" index="2" unique_id=1171403083]
 self_modulate = Color(18.892157, 18.892157, 18.892157, 0)
 mouse_filter = 2
+
+[node name="TextureRect" parent="UI_Root/InventoryUi/GridContainer/InventorySlot3" index="0" unique_id=1928513826]
+texture = ExtResource("18_o6q3x")
 
 [node name="Area2D" parent="UI_Root/InventoryUi/GridContainer/InventorySlot3" index="1" unique_id=577188246]
 visible = false
@@ -146,14 +172,27 @@ mouse_filter = 2
 [node name="Area2D" parent="UI_Root/InventoryUi/GridContainer/InventorySlot4" index="1" unique_id=577188246]
 visible = false
 
-[node name="Information" type="Node2D" parent="UI_Root" unique_id=390889204]
-process_mode = 3
-visible = false
-position = Vector2(984, 664)
+[node name="MayhemBox" type="TextureRect" parent="UI_Root" unique_id=1454425575]
+offset_left = 1280.0
+offset_top = 432.0
+offset_right = 1480.0
+offset_bottom = 632.0
+texture = ExtResource("10_df0dt")
+expand_mode = 1
 
-[node name="InfoTextBackground" type="TextureRect" parent="UI_Root/Information" unique_id=600276016]
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=927583162]
+process_mode = 3
+layer = 2
+
+[node name="Information" type="Node2D" parent="PauseMenu" unique_id=266624996]
+process_mode = 3
+z_index = 2
+position = Vector2(1352, 392)
+
+[node name="InfoTextBackground" type="TextureRect" parent="PauseMenu/Information" unique_id=1943506048]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(1, 1, 1, 0.40392157)
+z_index = 2
 material = SubResource("ShaderMaterial_oa3b6")
 offset_left = -327.99994
 offset_top = -232.0
@@ -163,31 +202,38 @@ scale = Vector2(6.4799953, 2.7999997)
 mouse_filter = 2
 texture = SubResource("CanvasTexture_df0dt")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="InfoText" type="Label" parent="UI_Root/Information" unique_id=879208597]
+[node name="InfoText" type="Label" parent="PauseMenu/Information" unique_id=2062327048]
 process_mode = 3
-offset_left = -327.99994
-offset_top = -232.0
-offset_right = -206.99994
-offset_bottom = -209.0
+z_index = 2
+offset_left = -304.0
+offset_top = -216.0
+offset_right = -183.0
+offset_bottom = -193.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "sdfs"
+metadata/_edit_use_anchors_ = true
 
-[node name="ContinueBtn" type="Button" parent="UI_Root/Information" unique_id=1993183866]
+[node name="ContinueBtn" type="Button" parent="PauseMenu/Information" unique_id=745203820]
 process_mode = 3
+z_index = 2
+offset_left = 320.0
+offset_top = 88.0
+offset_right = 399.0
+offset_bottom = 119.0
+text = "Continue"
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitBtn" type="Button" parent="PauseMenu/Information" unique_id=925538339]
+process_mode = 3
+z_index = 2
 offset_left = 416.0
 offset_top = 88.0
 offset_right = 495.0
 offset_bottom = 119.0
-text = "Continue"
-
-[node name="MayhemBox" type="TextureRect" parent="UI_Root" unique_id=1454425575]
-offset_left = 1280.0
-offset_top = 432.0
-offset_right = 1480.0
-offset_bottom = 632.0
-texture = ExtResource("10_df0dt")
-expand_mode = 1
+text = "Quit"
+metadata/_edit_use_anchors_ = true
 
 [editable path="Sounds"]
 [editable path="UI_Root/InventoryUi"]

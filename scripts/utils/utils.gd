@@ -7,7 +7,15 @@ func wait(seconds: float) -> void:
 func load_game_scene():
 	await change_scene("res://scenes/Main_3D.tscn")
 	Game_Manager.initialize_game()
-	
+
+func load_loose_scene():
+	await change_scene("res://scenes/GameOver.tscn")
+	Game_Manager.sounds.play_loose_game_sound()
+
+func load_win_scene():
+	await change_scene("res://scenes/GameWon.tscn")
+	Game_Manager.sounds.play_win_game_sound()
+
 func change_scene(scene_path: String):
 	get_tree().change_scene_to_file(scene_path)
 	# Wait until the current scene is replaced

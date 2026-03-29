@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dj85v51gcwmeu"
+path="res://.godot/imported/Pose Music loopable.mp3-97636657c67fb8061b4b0acc00bdc39f.mp3str"
+
+[deps]
+
+source_file="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/Pose Music loopable.mp3"
+dest_files=["res://.godot/imported/Pose Music loopable.mp3-97636657c67fb8061b4b0acc00bdc39f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

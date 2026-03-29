@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://e4ogdpel1cpn"]
+
+[ext_resource type="Texture2D" uid="uid://br5gh1mgku6cc" path="res://assets/Inventory/Fart-bomb.png" id="1_p8kor"]
+
+[resource]
+render_priority = 1
+transparency = 1
+cull_mode = 2
+no_depth_test = true
+albedo_texture = ExtResource("1_p8kor")
+texture_filter = 0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5

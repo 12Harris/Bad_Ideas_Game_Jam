@@ -3,6 +3,7 @@ class_name  UIManager
 
 var _clout_progress_bar : CloutProgressBar
 var _susp_progress_bar : SuspProgressBar
+var _throw_force_meter: ThrowForceMeter
 var _ai_state : Label
 var _look_at_mirror : Label
 var  game_timer : Label
@@ -23,7 +24,7 @@ func initialize_game() -> void:
 		print("AI STATE NULL!!")
 	_look_at_mirror = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/LookAtMirror")
 	game_timer = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/GameTimer")
-	_information = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/Information")
+	_information = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/PauseMenu/Information")
 	_information_continue_btn = _information.get_node("ContinueBtn")
 	_quit_btn = _information.get_node("QuitBtn")
 	_information_continue_btn.pressed.connect(continue_game)
@@ -42,7 +43,7 @@ func _ready() -> void:
 func updateMiniGame(minigame:MiniGame):
 	pass
 	
-func register_progress_bar(progress_bar:ProgressBar):
+func register_progress_bar(progress_bar:TextureProgressBar):
 	
 	if progress_bar is CloutProgressBar:
 		_clout_progress_bar = progress_bar
@@ -52,6 +53,10 @@ func register_progress_bar(progress_bar:ProgressBar):
 		_susp_progress_bar = progress_bar
 		_susp_progress_bar.max_value = 100  # set max when registered
 		_susp_progress_bar.value = 0
+	if progress_bar is ThrowForceMeter:
+		_throw_force_meter = progress_bar
+		_throw_force_meter.max_value = 100  # set max when registered
+		_throw_force_meter.value = 0
 	
 func register_inventory_ui(ui: InventoryUI):
 	_inventory_ui = ui
@@ -62,6 +67,12 @@ func reset_clout_meter(max_value):
 	
 func reset_susp_meter():
 	_susp_progress_bar.value = 0
+
+func reset_throw_force_meter():
+	_throw_force_meter.value = 0
+	
+func inc_throw_force_meter(amount):
+	_throw_force_meter.increase_meter(amount)
 
 func increase_clout_meter(amount):
 	_clout_progress_bar.increase_meter(amount)
@@ -75,6 +86,9 @@ func set_susp_meter(amount):
 func inc_susp_meter(amount):
 	_susp_progress_bar.increase_meter(amount)
 
+func show_throw_force_meter(hide:bool):
+	_throw_force_meter.visible = hide
+	
 func update():
 	
 	if game_timer == null:
@@ -93,7 +107,7 @@ func update_ai_state(state:String,look_at_mirror:bool):
 		
 func showInfo(text:String):
 	_information.get_node("InfoText").text = "Try to complete as many minigames before the time runs out.\n" \
-		+ "Avoid getting caught by the driver!\n\n" + text + "\n\nPress Space to pause the game."
+		+ "Avoid getting caught by the driver!\n\n" + text + "\n\nPress Tab to pause the game."
 	
 func continue_game():
 	

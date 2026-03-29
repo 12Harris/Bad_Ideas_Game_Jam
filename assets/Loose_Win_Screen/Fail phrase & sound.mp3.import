@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://m1t7rrq0mm30"
+path="res://.godot/imported/Fail phrase & sound.mp3-e1f1226f03c2881d59d74c1b8c9e8869.mp3str"
+
+[deps]
+
+source_file="res://assets/Loose_Win_Screen/Fail phrase & sound.mp3"
+dest_files=["res://.godot/imported/Fail phrase & sound.mp3-e1f1226f03c2881d59d74c1b8c9e8869.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

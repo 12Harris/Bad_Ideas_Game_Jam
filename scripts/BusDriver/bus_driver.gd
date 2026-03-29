@@ -79,6 +79,7 @@ var poses: Node2D
 var _current_pose: TextureRect
 var _ignore_suspicion:bool = false
 var _base_update_interval:float = 4
+var distracted:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -86,7 +87,6 @@ func _ready() -> void:
 	await get_tree().process_frame
 	randomize()
 	_player = Game_Manager.get_player()
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
@@ -95,6 +95,9 @@ func _process(delta: float) -> void:
 		#suspicion_levels[SuspicionLevel.currentLevel].decrease_suspicion(suspicion_drain)
 	#SuspicionLevel.update(self,delta,_drain_suspicion)
 	
+	if distracted:
+		return
+		
 	# do look at mirror logic
 	if _timer >= 0:
 		_timer += delta
@@ -228,15 +231,23 @@ func look_at_mirror():
 		
 	
 	_current_pose.visible = true
-	await G_Utils.wait(duration)
-	_current_pose.visible = false
-	_looking_at_mirror = false
-	_looking_back = false
-	UI_Manager.update_ai_state(ai_state,false)
-	on_stop_looking_back.emit()
-	_current_pose = poses.get_child(0)
-	_current_pose.visible = true
-	_timer = 0
+	
+	var timer = 0
+	while !distracted and timer < duration:
+		timer += get_process_delta_time()
+		await get_tree().process_frame
+	
+	#await G_Utils.wait(duration)
+
+	if !distracted:
+		_current_pose.visible = false
+		_looking_at_mirror = false
+		_looking_back = false
+		UI_Manager.update_ai_state(ai_state,false)
+		on_stop_looking_back.emit()
+		_current_pose = poses.get_child(0)
+		_current_pose.visible = true
+		_timer = 0
 
 #in fixed upate intervals the probability is calculated
 #currently just returns the total suspicion
@@ -251,3 +262,20 @@ func ignore_suspicion(value):
 
 func set_base_update_interval(interval):
 	_base_update_interval = interval
+	
+func set_pose(index, duration):
+	
+	_current_pose.visible = false
+	_current_pose = poses.get_child(index)
+	_current_pose.visible = true
+	
+	if index == 4:
+		distracted = true
+	
+	if duration > 0:
+		await G_Utils.wait(duration)
+		_current_pose.visible = false
+		_current_pose = poses.get_child(0)
+		_current_pose.visible = true
+		distracted = false
+		_timer = 0

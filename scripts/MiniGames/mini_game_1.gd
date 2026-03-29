@@ -87,7 +87,9 @@ func _process(delta: float) -> void:
 func display_info():
 	_information = "MINIGAME 1\n\nDrink some Fizzy Pop and burp the alphabet in the correct order using the keyboard
 					\nBe careful, the driver may be looking into the mirror!"
-
+	
+	UI_Manager.showInfo(_information)
+	UI_Manager.pause_game()
 
 func start(show_info=true):
 	print("start minigame")

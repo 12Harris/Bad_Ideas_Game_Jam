@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://g6gojkywvjnf"]
+
+[ext_resource type="Texture2D" uid="uid://dvkuryfv04iwx" path="res://assets/Loose_Win_Screen/Win Screen/Winning-Screen.png" id="1_7btj6"]
+
+[node name="GameWon" type="Node2D" unique_id=214636168]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2052829711]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_7btj6")
