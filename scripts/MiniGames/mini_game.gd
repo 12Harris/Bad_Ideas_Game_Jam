@@ -21,6 +21,7 @@ var chain_length: int = 0
 var item_required: bool = true
 var _player_spotted:bool = false
 var _num_tries :int = 0
+var stop_game:bool = false
 var id = 0
 
 @export var _inventory_ui:InventoryUI
@@ -82,9 +83,10 @@ func _process(delta: float) -> void:
 		on_player_spotted.emit()
 		_player_spotted = true
 		
-	if _busdriver.total_suspicion >= 100:
+	if _busdriver.total_suspicion >= 100 and !stop_game:
 		Game_Manager.game_over("The Bus Driver caught you. You lost the game!")
-
+		stop_game = true
+		
 #Triggered when the minigame(or a part of the minigame) succeded
 func succeed()->void:
 	succeeded.emit(self)

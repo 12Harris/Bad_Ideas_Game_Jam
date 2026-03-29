@@ -1,10 +1,21 @@
 [gd_scene format=3 uid="uid://bvvm2wd72xqqc"]
 
 [ext_resource type="Texture2D" uid="uid://dvs01hyjusavm" path="res://assets/Loose_Win_Screen/Losing-Screen.png" id="1_6bcno"]
+[ext_resource type="AudioStream" uid="uid://ccvd3csysx20t" path="res://assets/Loose_Win_Screen/Win Screen/Win Sound & quote.mp3" id="3_gijjb"]
+[ext_resource type="AudioStream" uid="uid://m1t7rrq0mm30" path="res://assets/Loose_Win_Screen/Fail phrase & sound.mp3" id="4_88ekj"]
 
-[node name="GameOver" type="Node2D" unique_id=1272012593]
+[node name="Game_Over" type="Node2D" unique_id=1272012593]
+process_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1292939904]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_6bcno")
+
+[node name="GlobalSounds" type="Node" parent="." unique_id=1042229351]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GlobalSounds" unique_id=754468663]
+stream = ExtResource("3_gijjb")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GlobalSounds" unique_id=1949342628]
+stream = ExtResource("4_88ekj")

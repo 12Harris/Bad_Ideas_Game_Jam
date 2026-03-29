@@ -22,6 +22,7 @@ UI_Manager="*uid://c4uwr1nywqsl1"
 G_Inventory="*uid://dt8mhip0sdnm6"
 G_Utils="*uid://crlkh6xwd8rna"
 Main_Camera="*uid://dtyjfldcj6d2w"
+Global_Sounds="*uid://criq6hl3uw4v4"
 
 [display]
 

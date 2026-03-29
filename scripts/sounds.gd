@@ -5,8 +5,6 @@ var _minigame_1_sounds: Array[AudioStreamPlayer] = []
 var _minigame_3_sounds: Array[AudioStreamPlayer] = []
 @export var _minigame_1_sound_files: Array[String] = []
 @export var _minigame_3_sound_files: Array[String] = []
-@onready var win_game_sound: AudioStreamPlayer = get_node("WinGameSound")
-@onready var loose_game_sound: AudioStreamPlayer = get_node("LooseGameSound")
 
 var _index_of_last_burp_sound = 0
 # Called when the node enters the scene tree for the first time.
@@ -29,12 +27,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	
-func play_win_game_sound():
-	win_game_sound.play()
-	
-func play_loose_game_sound():
-	loose_game_sound.play()
 	
 func play_sound(minigame, index):
 	if minigame is MiniGame1:

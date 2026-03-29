@@ -9,12 +9,16 @@ func load_game_scene():
 	Game_Manager.initialize_game()
 
 func load_loose_scene():
-	await change_scene("res://scenes/GameOver.tscn")
-	Game_Manager.sounds.play_loose_game_sound()
+	change_scene("res://scenes/GameOver.tscn")
+	await wait(0.2)
+	Global_Sounds.initialize()
+	await wait(0.1)
+	Global_Sounds.play_loose_game_sound()
 
 func load_win_scene():
 	await change_scene("res://scenes/GameWon.tscn")
-	Game_Manager.sounds.play_win_game_sound()
+	Global_Sounds.initialize()
+	Global_Sounds.play_win_game_sound()
 
 func change_scene(scene_path: String):
 	get_tree().change_scene_to_file(scene_path)

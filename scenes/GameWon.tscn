@@ -1,10 +1,25 @@
 [gd_scene format=3 uid="uid://g6gojkywvjnf"]
 
 [ext_resource type="Texture2D" uid="uid://dvkuryfv04iwx" path="res://assets/Loose_Win_Screen/Win Screen/Winning-Screen.png" id="1_7btj6"]
+[ext_resource type="Script" uid="uid://criq6hl3uw4v4" path="res://global_sounds.gd" id="2_iyci0"]
+[ext_resource type="AudioStream" uid="uid://ccvd3csysx20t" path="res://assets/Loose_Win_Screen/Win Screen/Win Sound & quote.mp3" id="3_fj3gx"]
+[ext_resource type="AudioStream" uid="uid://m1t7rrq0mm30" path="res://assets/Loose_Win_Screen/Fail phrase & sound.mp3" id="4_msnca"]
 
 [node name="GameWon" type="Node2D" unique_id=214636168]
+process_mode = 3
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2052829711]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_7btj6")
+
+[node name="GlobalSounds" type="Node" parent="." unique_id=510674946]
+script = ExtResource("2_iyci0")
+metadata/_custom_type_script = "uid://criq6hl3uw4v4"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GlobalSounds" unique_id=1054826124]
+stream = ExtResource("3_fj3gx")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GlobalSounds" unique_id=1712781710]
+stream = ExtResource("4_msnca")

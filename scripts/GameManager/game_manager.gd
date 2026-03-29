@@ -41,7 +41,7 @@ var interact_input_action_2 = "interact2"
 var bus_seats_left:Array[StaticBody3D]= []
 var bus_seats_right:Array[StaticBody3D]= []
 
-var current_mini_game : int = 1
+var current_mini_game : int = 3
 
 var _minigame_warnings : int = 0
 
@@ -207,6 +207,8 @@ func _on_minigame_ended(minigame):
 		G_Utils.load_loose_scene()
 
 func game_over(message):
+	await G_Utils.wait(1.5)
+	_busdriver.distracted = true
 	G_Utils.load_loose_scene()
 	
 func _on_timeout():

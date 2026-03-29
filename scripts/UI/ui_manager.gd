@@ -17,6 +17,7 @@ var _warning:Label
 var _item_indicator : Sprite2D
 var	_typed_letter_label:Label
 var _sixty_seven_mode:Sprite2D
+var minigame_4_hints:Node2D
 
 func initialize_game() -> void:
 	_ai_state = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/AI State")
@@ -34,7 +35,7 @@ func initialize_game() -> void:
 	_warning = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/WarningLabel")
 	_typed_letter_label = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/LetterLabel")
 	_sixty_seven_mode = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/67Mode")
-	
+	minigame_4_hints = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame4Hints")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Game_Manager.register_ui(self)
@@ -141,7 +142,17 @@ func display_67_mode(duration):
 func display_warning():
 	_warning.visible = true
 	await G_Utils.wait(2.0)
-	_warning.visible = false
+	
+	if _warning:
+		_warning.visible = false
 	
 func update_minigame_1(letter):
 	_typed_letter_label.text = "Current Letter: " + letter
+
+func unhint_pose(index):
+	minigame_4_hints.get_child(index).visible = false
+	
+func hint_pose(index,duration):
+	minigame_4_hints.get_child(index).visible = true
+	await G_Utils.wait(duration)
+	minigame_4_hints.get_child(index).visible = false
