@@ -74,6 +74,7 @@ func _ready() -> void:
 	_inventory_ui.on_item_selected.connect(on_item_selected)
 	_player.on_entered_action_zone.connect(on_player_entered_action_zone)
 	_player.on_left_action_zone.connect(on_player_left_action_zone)
+	G_Inventory.inventory_removed.connect(on_item_removed)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -81,12 +82,15 @@ func _process(delta: float) -> void:
 		return
 		
 	if !_player_spotted and _busdriver._looking_back and !_busdriver.distracted and !_player.is_safe():
-		on_player_spotted.emit()
-		_player_spotted = true
+		#on_player_spotted.emit()
+		#print("player spotted!!!")
+		#_player_spotted = true
+		pass
 		
 	if _busdriver.total_suspicion >= 100 and !stop_game:
-		Game_Manager.game_over("The Bus Driver caught you. You lost the game!")
-		stop_game = true
+		#Game_Manager.game_over("The Bus Driver caught you. You lost the game!")
+		#stop_game = true
+		pass
 		
 #Triggered when the minigame(or a part of the minigame) succeded
 func succeed()->void:
@@ -127,6 +131,8 @@ func game_over():
 	_completed = true
 	ended.emit(self)
 	running = false
+	display_info(true)
+	UI_Manager.pause_game()
 	G_Inventory.remove_item(id)
 	
 
@@ -152,7 +158,7 @@ func requires_arrow_keys():
 func cancel_actions():
 	pass
 
-func display_info():
+func display_info(game_over:bool):
 	pass
 
 func on_player_entered_action_zone():
@@ -160,3 +166,11 @@ func on_player_entered_action_zone():
 
 func on_player_left_action_zone():
 	pass
+
+func on_item_removed(index):
+	pass
+	#if index <= id:
+		#return
+	#if id > index:
+		#print("id: ", id , " > ", index)
+		#id-= 1

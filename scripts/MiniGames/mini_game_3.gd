@@ -112,14 +112,18 @@ func calculate_suspicion():
 	if _busdriver._looking_back:
 		pass
 		
-func display_info():
+func display_info(game_over = false):
 	_information = ""
 	
 	_information = "Congratulations! You won the second minigame!\n\n"
 
 	_information += "MINIGAME 3 - Hit the bus driver with a fart bomb. Use the mouse to aim.
 		Hold \"F\" to charge and release to throw.\nDon't get caught!\n"
-		
+	
+	if game_over:
+		_information = "Congratulations! You won this minigame!\n\n"
+
+
 	UI_Manager.showInfo(_information)
 	UI_Manager.pause_game()
 		
@@ -132,7 +136,7 @@ func start(show_info = true):
 	
 	UI_Manager.show_throw_force_meter(true)
 	_busdriver.set_base_update_interval(6)
-
+	UI_Manager.enable_letter_hint(false)
 
 	#if _busdriver.total_suspicion > 50 and _busdriver.total_suspicion < 100:
 		#Game_Manager._busdriver.set_suspicion(30)

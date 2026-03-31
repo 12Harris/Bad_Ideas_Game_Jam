@@ -60,14 +60,16 @@ func _physics_process(delta):
 		
 		Game_Manager.get_current_minigame().cancel_actions()
 	else:
-		_move_speed = 440 #470 original
+		#470 original
 		if Input.is_action_pressed("Right") and !in_action_zone():
+			_move_speed = 440
 			try_move(Vector2.RIGHT)
 		
 		elif Input.is_action_pressed("Left") and !in_action_zone():
+			_move_speed = 440
 			try_move(-Vector2.RIGHT)
 			
-		elif Input.is_action_pressed("Cancel") and !in_safety_zone():
+		elif Input.is_action_just_pressed("Cancel") and !in_safety_zone():
 			hide()
 	Game_Manager.get_current_minigame().cancel_actions()
 	#move_and_slide()		
@@ -83,7 +85,7 @@ func power_boost():
 
 func hide():
 	print("hide!")
-	_move_speed = 50
+	_move_speed = 200
 	while !in_safety_zone():
 		try_move(-Vector2.RIGHT)
 		await get_tree().process_frame

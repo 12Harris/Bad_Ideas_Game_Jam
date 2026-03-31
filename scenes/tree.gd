@@ -13,7 +13,10 @@ func move():
 	print("moving tree")
 	while is_moving:
 		global_position -= Vector3.FORWARD*get_process_delta_time() * 500
-		await get_tree().process_frame
+		if !Game_Manager.game_lost():
+			await get_tree().process_frame
+		else:
+			is_moving = false
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

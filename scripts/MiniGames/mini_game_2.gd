@@ -89,22 +89,24 @@ func calculate_suspicion():
 	if _busdriver._looking_back:
 		suspicion_gain = 8.0
 		
-func display_info():
+func display_info(game_over = false):
 	_information = ""
 	
-	_information = "Congratulations! You won the second minigame!\n\n"
-
 	_information += "MINIGAME 2 - Hit the bus driver with a paper plane. Use the mouse to aim and charge the paper plane.\n
 		Then release to
 		to throw.\nDon't get caught!\n"
+
+	if game_over:
+		_information = "Congratulations you won this minigame!"
 		
 	UI_Manager.showInfo(_information)
 	UI_Manager.pause_game()
+	
 		
 func start(show_info = true):
 	super.start()
 	print("start minigame 2")
-	UI_Manager.disable_letter_hint()
+	UI_Manager.enable_letter_hint(false)
 	UI_Manager.show_throw_force_meter(false)
 	_busdriver.set_base_update_interval(6)
 

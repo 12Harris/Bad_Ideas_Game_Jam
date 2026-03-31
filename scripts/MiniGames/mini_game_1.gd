@@ -85,10 +85,12 @@ func _process(delta: float) -> void:
 		
 	UI_Manager.updateMiniGame(self)
 
-func display_info():
+func display_info(game_over = false):
 	_information = "MINIGAME 1\n\nDrink some Fizzy Pop and burp the alphabet in the correct order using the keyboard
 					\nBe careful, the driver may be looking into the mirror!"
 	
+	if game_over:
+		_information = "Congratulations you won this minigame!"
 	UI_Manager.showInfo(_information)
 	UI_Manager.pause_game()
 
@@ -97,6 +99,7 @@ func start(show_info=true):
 	num_burps = 0
 	_current_letter_index = 0
 	suspicion_gain = 0
+	UI_Manager.enable_letter_hint(true)
 	UI_Manager.show_throw_force_meter(false)
 	super.start()
 	set_process_input(true)

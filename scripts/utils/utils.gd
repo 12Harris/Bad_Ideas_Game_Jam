@@ -16,9 +16,9 @@ func load_game_scene():
 
 func load_loose_scene():
 	change_scene("res://scenes/GameOver.tscn")
-	await wait(0.2)
+	await wait(0.23)
 	Global_Sounds.initialize()
-	await wait(0.1)
+	await wait(0.2)
 	Global_Sounds.play_loose_game_sound()
 	UI_Manager.display_lost_game_label()
 	await wait(6.0)
@@ -28,7 +28,7 @@ func load_win_scene():
 	await change_scene("res://scenes/GameWon.tscn")
 	await wait(0.2)
 	Global_Sounds.initialize()
-	await wait(0.1)
+	await wait(0.32)
 	Global_Sounds.play_win_game_sound()
 	await wait(6.0)
 	UI_Manager.show_credits()

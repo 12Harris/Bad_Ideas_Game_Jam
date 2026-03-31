@@ -52,6 +52,8 @@ var _sixty_seven_enabled:bool = false
 var _music:Music
 
 var num_completed_games: int = 0
+
+var _game_over = false
 #Register the UI
 func register_ui(ui):
 	_ui = ui
@@ -138,6 +140,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	UI_Manager.update()
+	
+	if _busdriver != null and _busdriver.total_suspicion >= 100 and !_game_over:
+		game_over("The Bus Driver caught you. You lost the game!")
+		_game_over = true
 
 func _input(event):
 		# Mouse in viewport coordinates.
@@ -227,7 +233,7 @@ func _on_minigame_ended(minigame):
 
 func game_over(message):
 	await G_Utils.wait(1.5)
-	_busdriver.distracted = true
+	#_busdriver.distracted = true
 	G_Utils.load_loose_scene()
 	
 func _on_timeout():

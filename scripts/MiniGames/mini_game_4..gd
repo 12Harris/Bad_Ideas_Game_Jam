@@ -103,15 +103,15 @@ func _process(delta: float) -> void:
 		
 	super._process(delta)
 
-func display_info():
-	_information = ""
-	
-	_information = "Congratulations! You won the third minigame!\n\n"
+func display_info(game_over = false):
 
 	_information += "MINIGAME 4 - Strike the correct poses using the arrow keys.Hold the key for the length of the pose
 	and release for the next pose. Press space key to hide.
 	\nDon't get caught!\n"
-		
+	
+	if game_over:
+		_information = "Congratulations! You won this  minigame!\n\n"
+
 	UI_Manager.showInfo(_information)
 	UI_Manager.pause_game()
 	
@@ -125,6 +125,7 @@ func start(show_info=true):
 	pose_music_playing = true
 	UI_Manager.show_throw_force_meter(false)
 	_busdriver.set_base_update_interval(7)
+	UI_Manager.enable_letter_hint(false)
 	
 	timeout = 0
 	next_step = true

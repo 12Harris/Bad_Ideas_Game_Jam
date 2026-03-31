@@ -170,8 +170,8 @@ func display_warning():
 func update_minigame_1(letter):
 	_typed_letter_label.text = "Current Letter: " + letter
 
-func disable_letter_hint():
-	_typed_letter_label.visible = false
+func enable_letter_hint(value):
+	_typed_letter_label.visible = value
 	
 func unhint_pose(index):
 	minigame_4_hints.get_child(index).visible = false

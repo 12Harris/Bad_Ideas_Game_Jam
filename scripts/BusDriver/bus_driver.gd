@@ -80,6 +80,7 @@ var _current_pose: TextureRect
 var _ignore_suspicion:bool = false
 var _base_update_interval:float = 4
 var distracted:bool = false
+var player_spotted = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -97,7 +98,7 @@ func _process(delta: float) -> void:
 	
 	if distracted:
 		return
-		
+	
 	# do look at mirror logic
 	if _timer >= 0:
 		_timer += delta
@@ -235,10 +236,17 @@ func look_at_mirror():
 	var timer = 0
 	while !distracted and timer < duration:
 		timer += get_process_delta_time()
-		await get_tree().process_frame
-	
+		if !player_spotted and !_player.is_safe():
+			player_spotted = true
+			Game_Manager.on_player_spotted()
+		
+		if !Game_Manager.game_lost():
+			await get_tree().process_frame
+		else:
+			distracted = true
 	#await G_Utils.wait(duration)
-
+	player_spotted = false
+	
 	if !distracted:
 		_current_pose.visible = false
 		_looking_at_mirror = false

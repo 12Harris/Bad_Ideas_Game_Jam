@@ -5,8 +5,9 @@ var _trees: Array[OutDoorTree] = []
 var _streetstrips: Array = []
 @export var _streetstrip_spawnpoint:Node3D
 @export var _startpos:Node3D
-var _spawnInterval = 1.5
-var _timer = 0.0
+var _spawnInterval1 = 1.5
+var _spawnInterval2 = 2
+var _timer1 = 0.0
 var _timer2 = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,23 +19,25 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	_timer+= delta
-	if _timer > _spawnInterval:
+	_timer1+= delta
+	_timer2+=delta
+	if _timer1 > _spawnInterval1:
+		
 		var xmin = randf_range(-200, -100)
-		var xmax = randf_range(100, 200)
-		
-		var randx = randi()%2
-		
-		if randx == 0:
-			randx = xmin
-		else:
-			randx = xmax
-			
-		var randz = randf_range(0,-300)
-		_spawn_tree(_startpos.global_position + Vector3(randx,0,randz))
-		#_spawn_street_strip()
-		_timer = 0
+		var randz = randf_range(0,-600)
+		_spawn_tree(_startpos.global_position + Vector3(xmin,0,randz))
 	
+		_timer1 = 0
+		
+	if _timer2 > _spawnInterval2:
+
+		var xmax = randf_range(100, 200)
+		var randz = randf_range(0,-600)
+		_spawn_tree(_startpos.global_position + Vector3(xmax,0,randz))
+		
+	
+		_timer2 = 0
+		
 	for strip in _streetstrips:
 		strip.move(delta)
 

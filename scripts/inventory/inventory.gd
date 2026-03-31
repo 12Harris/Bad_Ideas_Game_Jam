@@ -36,7 +36,7 @@ func add_item(item : Inventory_Item):
 		requiredItem += 1
 		
 func remove_item(index):
-	_items.remove_at(index)
+	#_items.remove_at(index)
 	inventory_removed.emit(index)
 	
 #Add inventory items from file

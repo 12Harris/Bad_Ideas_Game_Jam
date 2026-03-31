@@ -12,6 +12,7 @@ func _ready() -> void:
 func initialize():
 	
 	print("initialize gsounds")
+	print("cur ceni: ",get_tree().current_scene.name)
 	win_game_sound = get_tree().current_scene.get_node("GlobalSounds").get_child(0)
 	loose_game_sound = get_tree().current_scene.get_node("GlobalSounds").get_child(1)
 	
