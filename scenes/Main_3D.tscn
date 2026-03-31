@@ -1,21 +1,26 @@
 [gd_scene format=4 uid="uid://c37atglk3gfo6"]
 
-[ext_resource type="PackedScene" uid="uid://pq6ug3wnw2o0" path="res://scenes/TestingGrounds_BIGJ.tscn" id="1_w0p03"]
 [ext_resource type="Script" uid="uid://cic25658vrsal" path="res://scripts/main_camera.gd" id="2_2le81"]
 [ext_resource type="Material" uid="uid://1caneo7f56px" path="res://assets/PaperPlane/plane_material.tres" id="3_f0ufm"]
 [ext_resource type="Texture2D" uid="uid://2brvpomr7cul" path="res://assets/PaperPlane/Flying-paper-airplane.png" id="5_hxc5g"]
 [ext_resource type="Shader" uid="uid://3g0g0lram41h" path="res://assets/Shaders/Main_3D.gdshader" id="6_0w5yn"]
 [ext_resource type="Texture2D" uid="uid://bhgygnefltp44" path="res://assets/Character/Bimmy-aiming-paper-airplane_2.png" id="7_gbcym"]
 [ext_resource type="Texture2D" uid="uid://ntlvg6dial16" path="res://assets/BusDriver/unsuspecting-Bus-driver.png" id="7_jygef"]
+[ext_resource type="Script" uid="uid://db581owr58s5r" path="res://scripts/BusDriver/bus_driver.gd" id="8_evs4q"]
+[ext_resource type="Script" uid="uid://bj8nj2afr16pn" path="res://scenes/out_door.gd" id="8_h6lwt"]
 [ext_resource type="Material" uid="uid://dttfuhijclma1" path="res://assets/bus/seat.tres" id="8_hxc5g"]
 [ext_resource type="Texture2D" uid="uid://b8316m3lqv3ir" path="res://assets/BusDriver/bus-driver-looking-back.png" id="8_wrqd1"]
+[ext_resource type="Script" uid="uid://c1tjjll3equ0l" path="res://scripts/Player/player.gd" id="9_1c85f"]
 [ext_resource type="Texture2D" uid="uid://5482xr08dxdq" path="res://assets/Character/Bimmy-holding-fart-bomb_2.png" id="9_4ih45"]
+[ext_resource type="Material" uid="uid://cbit6fp5opp3x" path="res://assets/OutDoorMaterial.tres" id="9_4uypw"]
 [ext_resource type="Script" uid="uid://ciep5p657rohw" path="res://scripts/MiniGames/fart_bomb.gd" id="9_aeyvy"]
 [ext_resource type="Script" uid="uid://dad4mm06hytbk" path="res://scripts/utils/bezier_curve.gd" id="9_d7edy"]
 [ext_resource type="Texture2D" uid="uid://bic2xej2vyhhg" path="res://assets/BusDriver/bus-driver-suspecting.png" id="9_jmner"]
 [ext_resource type="Script" uid="uid://cdj2i1qeyfyb1" path="res://scripts/MiniGames/plane.gd" id="10_fo02i"]
+[ext_resource type="Script" uid="uid://dsql1y5eo0iqa" path="res://scripts/MiniGames/mini_game_1.gd" id="10_h6lwt"]
 [ext_resource type="Texture2D" uid="uid://1mm1knx5o1ro" path="res://assets/FartBomb/Fartbomb-explodes-on-Bimmy.png" id="10_m3xaf"]
 [ext_resource type="Texture2D" uid="uid://dhnw8ctlkbsvf" path="res://assets/BusDriver/bus-driver-angry.png" id="10_wt48i"]
+[ext_resource type="Script" uid="uid://lp1li2aa7ucq" path="res://scripts/MiniGames/mini_game_2.gd" id="11_4uypw"]
 [ext_resource type="Texture2D" uid="uid://gscs8d45hbnn" path="res://assets/BusDriver/bus-driver-smells-fart.png" id="11_v148l"]
 [ext_resource type="Texture2D" uid="uid://bcbtakgnjrpe0" path="res://assets/FartBomb/Fart-smoke.png" id="11_vt1g0"]
 [ext_resource type="Material" uid="uid://e4ogdpel1cpn" path="res://assets/PaperPlane/fartbomb_material.tres" id="12_717cw"]
@@ -23,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://cmvsv14e5e1d6" path="res://assets/Character/Bimmy-in-bus.png" id="12_wt48i"]
 [ext_resource type="Texture2D" uid="uid://3xglxpctrlc1" path="res://assets/Character/Bimmy-drinking.png" id="13_6wwyq"]
 [ext_resource type="Texture2D" uid="uid://dow82jekpojts" path="res://assets/Character/Bimmy-burping.png" id="13_v148l"]
+[ext_resource type="PackedScene" uid="uid://celorvo0awlfy" path="res://scenes/sounds.tscn" id="13_wkics"]
 [ext_resource type="Texture2D" uid="uid://dxg5w6baibigp" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/pose-1.png" id="14_3qvwq"]
 [ext_resource type="Texture2D" uid="uid://dwf3m0mqtjryw" path="res://assets/Character/Bimmy-throwing.png" id="15_6wwyq"]
 [ext_resource type="Texture2D" uid="uid://bor8h8w8q3k2c" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/pose-2.png" id="15_ign4p"]
@@ -31,36 +37,35 @@
 [ext_resource type="Texture2D" uid="uid://bd2m1yeni72pc" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/pose-4.png" id="17_abdvq"]
 [ext_resource type="Texture2D" uid="uid://cf7vu1jktt18s" path="res://assets/Inventory/arrow.png" id="17_s87hc"]
 [ext_resource type="Texture2D" uid="uid://dvvput3wuneys" path="res://assets/Character/6-7-Mode-power-up.png" id="19_ueldn"]
+[ext_resource type="Texture2D" uid="uid://fpdkwt0ynpig" path="res://assets/bus/bus-kids.png" id="21_3gr0o"]
+[ext_resource type="Texture2D" uid="uid://c1p8keiucibis" path="res://assets/meter_background_1.png" id="22_2qbd8"]
+[ext_resource type="Texture2D" uid="uid://buad8idlv10e5" path="res://assets/Character/clout_meter.png" id="23_5bew6"]
 [ext_resource type="Texture2D" uid="uid://c75ovq5123b1f" path="res://assets/PaperPlane/boom.png" id="23_ign4p"]
 [ext_resource type="AudioStream" uid="uid://mjer7834jocw" path="res://assets/sounds/Whisper sound effect .mp3" id="24_lvi67"]
+[ext_resource type="Script" uid="uid://cnhg0s65yy82f" path="res://scripts/UI/clout_progress_bar.gd" id="24_rg1fq"]
+[ext_resource type="Texture2D" uid="uid://dbdtb5t1vbynq" path="res://assets/FartBomb/throw_force_meter_background.png" id="25_sywfs"]
+[ext_resource type="Texture2D" uid="uid://bnxna2arbh1q4" path="res://assets/FartBomb/throw_force_meter.png" id="26_onyep"]
 [ext_resource type="Texture2D" uid="uid://dqo8krthnqgee" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/mewing-pose-1.png" id="26_xqbkx"]
+[ext_resource type="Script" uid="uid://dsingcs7fqcq7" path="res://scenes/throw_force_meter.gd" id="27_77yl2"]
 [ext_resource type="Texture2D" uid="uid://bhlk82gjyqk5n" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/mewing-pose-2.png" id="27_421sk"]
 [ext_resource type="Script" uid="uid://crsgmr04np1" path="res://assets/sounds/music.gd" id="28_ufv53"]
+[ext_resource type="Texture2D" uid="uid://ki7vd3l8yaq3" path="res://assets/BusDriver/susp_meter.png" id="28_wflly"]
 [ext_resource type="AudioStream" uid="uid://5rg2vxq4s6db" path="res://assets/sounds/In Game Music.mp3" id="29_qof8a"]
-[ext_resource type="Texture2D" uid="uid://du8bj7bf3xwx8" path="res://assets/bus/Inside-Bus-No-Windows.png" id="30_abdvq"]
+[ext_resource type="Script" uid="uid://5sck2ktsxyyq" path="res://scripts/UI/susp_progress_bar.gd" id="29_u57tv"]
+[ext_resource type="Texture2D" uid="uid://b2emmusq5vyky" path="res://assets/bus/Inside-Bus-No-Windows_tr.png" id="31_abdvq"]
+[ext_resource type="PackedScene" uid="uid://cnwib4gds2mnf" path="res://scenes/InventoryUI.tscn" id="31_t8kdv"]
+[ext_resource type="Texture2D" uid="uid://xhsjkuc2rgew" path="res://assets/Inventory/paperplane.png" id="32_c2plu"]
 [ext_resource type="Texture2D" uid="uid://dvwlo2nbvggcr" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/arrow.png" id="32_ign4p"]
 [ext_resource type="AudioStream" uid="uid://dj85v51gcwmeu" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/Pose Music loopable.mp3" id="32_xqbkx"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_0w5yn"]
-viewport_path = NodePath("SubViewportContainer/SubViewport2D")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_abdvq"]
-viewport_path = NodePath("SubViewportContainer/SubViewport2D")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hxc5g"]
-resource_local_to_scene = true
-shader = ExtResource("6_0w5yn")
-shader_parameter/tex_a = SubResource("ViewportTexture_0w5yn")
-shader_parameter/tex_b = SubResource("ViewportTexture_abdvq")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_hxc5g"]
-viewport_path = NodePath("SubViewportContainer/SubViewport2D")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qof8a"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_mhma7"]
+[ext_resource type="Texture2D" uid="uid://br5gh1mgku6cc" path="res://assets/Inventory/Fart-bomb.png" id="33_0sab3"]
+[ext_resource type="Texture2D" uid="uid://de4wcqpy1rcfi" path="res://assets/Character/Mayhem-Box.png" id="35_uc0x1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ueldn"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_abdvq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h6lwt"]
+size = Vector3(1.6464844, 1, 4.315918)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iyy8v"]
 
@@ -133,334 +138,34 @@ size = Vector3(10.065988, 5.817383, 9.448408)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wt48i"]
 size = Vector3(1.0112305, 1.0566406, 0.7758789)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_abdvq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qof8a"]
 
-[node name="Main3d" type="Node3D" unique_id=1690980446]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10388839, -2.1447692)
+[sub_resource type="CanvasTexture" id="CanvasTexture_mhma7"]
 
-[node name="Final Output" type="TextureRect" parent="." unique_id=1869331791]
-material = SubResource("ShaderMaterial_hxc5g")
-offset_left = 2.0
-offset_top = 4.0
-offset_right = 1922.0
-offset_bottom = 1084.0
-mouse_filter = 2
-texture = SubResource("ViewportTexture_hxc5g")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oa3b6"]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1770688312]
-process_mode = 3
-z_index = -1
-z_as_relative = false
-offset_right = 1920.0
-offset_bottom = 1080.0
+[sub_resource type="CanvasTexture" id="CanvasTexture_df0dt"]
 
-[node name="SubViewport2D" type="SubViewport" parent="SubViewportContainer" unique_id=675229591]
-process_mode = 3
-transparent_bg = true
-handle_input_locally = false
-audio_listener_enable_3d = true
-size = Vector2i(1920, 1080)
-render_target_update_mode = 4
+[sub_resource type="ViewportTexture" id="ViewportTexture_evs4q"]
+viewport_path = NodePath("ViewportContainer/SubViewport3D")
 
-[node name="TestingGroundsBIGJ" parent="SubViewportContainer/SubViewport2D" unique_id=750049049 instance=ExtResource("1_w0p03")]
-process_mode = 1
+[sub_resource type="ViewportTexture" id="ViewportTexture_1c85f"]
+viewport_path = NodePath("SubViewportContainer/SubViewport2D")
 
-[node name="Player" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" index="1" unique_id=1835008993]
-process_mode = 1
-_move_speed = 470.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hxc5g"]
+resource_local_to_scene = true
+shader = ExtResource("6_0w5yn")
+shader_parameter/tex_a = SubResource("ViewportTexture_evs4q")
+shader_parameter/tex_b = SubResource("ViewportTexture_1c85f")
 
-[node name="GameTimer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" index="2" unique_id=139929345]
-wait_time = 302.0
+[sub_resource type="ViewportTexture" id="ViewportTexture_4ih45"]
 
-[node name="MiniGame1" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" index="3" unique_id=321490363 node_paths=PackedStringArray("_inventory_ui")]
-_inventory_ui = NodePath("../UI_Root/InventoryUi")
+[node name="Main3d" type="Node" unique_id=225736704]
 
-[node name="MiniGame2" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" index="4" unique_id=2097584126 node_paths=PackedStringArray("_plane", "_bus_driver", "_inventory_ui")]
-_plane = NodePath("../../../../ViewportContainer/SubViewport3D/PaperPlane")
-_bus_driver = NodePath("../../../../ViewportContainer/SubViewport3D/DriverPosition")
-_inventory_ui = NodePath("../UI_Root/InventoryUi")
-
-[node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/MiniGame2" index="0" unique_id=595318136]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
-visible = false
-texture = ExtResource("23_ign4p")
-
-[node name="Sounds" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" index="5" unique_id=1645715420]
-visible = false
-_minigame_1_sound_files = Array[String](["res://assets/sounds/mini_game_1/Soda Slurp.mp3", "res://assets/sounds/mini_game_1/burp 01.wav", "res://assets/sounds/mini_game_1/burp 02.wav", "res://assets/sounds/mini_game_1/burp 03.wav", "res://assets/sounds/mini_game_1/burp 04.wav", "res://assets/sounds/mini_game_1/burp 05.wav"])
-_minigame_2_sound_files = Array[String](["res://assets/sounds/mini_game_2/yeet.mp3"])
-_minigame_3_sound_files = Array[String](["res://assets/FartBomb/fartbomb.mp3", "res://assets/FartBomb/Bus driver gags.mp3", "res://assets/FartBomb/Bimmy-Let it Rip12.mp3"])
-
-[node name="MiniGame1" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds" index="0" unique_id=46708315]
-process_mode = 1
-
-[node name="MiniGame3" type="Node" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds" index="1" unique_id=962993018]
-process_mode = 1
-
-[node name="MiniGame2" type="Node" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds" index="2" unique_id=726820942]
-process_mode = 1
-
-[node name="WhisperSound" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds" index="3" unique_id=1388445612]
-stream = ExtResource("24_lvi67")
-
-[node name="UI_Root" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" index="6" unique_id=1046426192]
-process_mode = 1
-
-[node name="BusDriverPoses" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="0" unique_id=1517440591]
-process_mode = 1
+[node name="BimmyPoses" type="Node2D" parent="." unique_id=1448521555]
 z_index = 1
 
-[node name="Unsuspecting" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/BusDriverPoses" unique_id=99064855]
-texture = ExtResource("7_jygef")
-
-[node name="Looking Back" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/BusDriverPoses" unique_id=1203342633]
-visible = false
-texture = ExtResource("8_wrqd1")
-
-[node name="Suspecting" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/BusDriverPoses" unique_id=1794973075]
-visible = false
-texture = ExtResource("9_jmner")
-
-[node name="Angry" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/BusDriverPoses" unique_id=476304211]
-visible = false
-texture = ExtResource("10_wt48i")
-
-[node name="Smells Fart" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/BusDriverPoses" unique_id=808055615]
-visible = false
-texture = ExtResource("11_v148l")
-
-[node name="Background" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="1" unique_id=771576177]
-modulate = Color(1, 1, 1, 0.2627451)
-visibility_layer = 2
-z_index = -1
-z_as_relative = true
-offset_left = 0.0
-offset_right = 1924.0
-mouse_filter = 2
-texture = ExtResource("30_abdvq")
-
-[node name="CloutProgress" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="3" unique_id=236410749]
-max_value = 100.0
-
-[node name="ThrowForceMeter" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="4" unique_id=553623052]
-step = 0.01
-
-[node name="Information" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter" index="0" unique_id=553011022]
-process_mode = 3
-visible = false
-position = Vector2(984, 664)
-
-[node name="Information" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information" unique_id=1925432005]
-process_mode = 3
-position = Vector2(984, 664)
-
-[node name="InfoTextBackground" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information/Information" unique_id=130445378]
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(1, 1, 1, 0.40392157)
-material = SubResource("ShaderMaterial_qof8a")
-offset_left = -327.99994
-offset_top = -232.0
-offset_right = -199.99994
-offset_bottom = -104.0
-scale = Vector2(6.4799953, 2.7999997)
-mouse_filter = 2
-texture = SubResource("CanvasTexture_mhma7")
-expand_mode = 1
-
-[node name="InfoText" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information/Information" unique_id=342420277]
-process_mode = 3
-offset_left = -327.99994
-offset_top = -232.0
-offset_right = -206.99994
-offset_bottom = -209.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "sdfs"
-
-[node name="ContinueBtn" type="Button" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information/Information" unique_id=1625824987]
-process_mode = 3
-offset_left = 416.0
-offset_top = 88.0
-offset_right = 495.0
-offset_bottom = 119.0
-text = "Continue"
-
-[node name="SuspicionLabel" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="6" unique_id=1748116748]
-visible = false
-
-[node name="CloutLabel" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="7" unique_id=17553903]
-visible = false
-
-[node name="LookAtMirror" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="9" unique_id=522930878]
-process_mode = 1
-offset_left = 906.0
-offset_top = 69.0
-offset_right = 975.0
-offset_bottom = 92.0
-scale = Vector2(2, 2)
-theme_override_colors/font_color = Color(0.8, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-
-[node name="PlaneTrajectory" type="Line2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="11" unique_id=1133139275]
-script = ExtResource("9_d7edy")
-
-[node name="FartBombTrajectory" type="Line2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="12" unique_id=1347051548]
-script = ExtResource("9_d7edy")
-
-[node name="InventoryUi" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="13" unique_id=315292029 node_paths=PackedStringArray("_item_indicator")]
-layer = 3
-_item_indicator = NodePath("ItemIndicator")
-
-[node name="Background" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi" index="0" unique_id=2138902047]
-offset_left = 1264.0
-offset_top = 792.0
-offset_right = 2808.0
-offset_bottom = 1449.0
-mouse_filter = 2
-
-[node name="GridContainer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi" index="1" unique_id=2129711916]
-offset_left = 1440.0
-offset_top = 912.0
-offset_right = 1708.0
-offset_bottom = 976.0
-scale = Vector2(1.6, 1.6)
-
-[node name="InventorySlot" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer" index="0" unique_id=1898348738]
-mouse_filter = 0
-mouse_behavior_recursive = 1
-
-[node name="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot" index="0" unique_id=1928513826]
-mouse_filter = 2
-
-[node name="Area2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot" index="1" unique_id=577188246]
-visible = true
-
-[node name="InventorySlot2" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer" index="1" unique_id=1338082132]
-mouse_filter = 0
-mouse_behavior_recursive = 1
-mouse_default_cursor_shape = 0
-
-[node name="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot2" index="0" unique_id=1928513826]
-mouse_filter = 2
-
-[node name="Area2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot2" index="1" unique_id=577188246]
-visible = true
-
-[node name="InventorySlot3" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer" index="2" unique_id=1171403083]
-mouse_filter = 0
-mouse_behavior_recursive = 1
-
-[node name="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot3" index="0" unique_id=1928513826]
-mouse_filter = 2
-
-[node name="Area2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot3" index="1" unique_id=577188246]
-visible = true
-
-[node name="InventorySlot4" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer" index="3" unique_id=1727412832]
-mouse_filter = 0
-mouse_behavior_recursive = 1
-
-[node name="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot4" index="0" unique_id=1928513826]
-mouse_filter = 2
-
-[node name="Area2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot4" index="1" unique_id=577188246]
-visible = true
-
-[node name="ItemIndicator" type="Sprite2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi" index="2" unique_id=1777002803]
-visible = false
-position = Vector2(1672, 783)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("17_s87hc")
-
-[node name="MayhemBox" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="14" unique_id=1454425575]
-offset_left = 810.0
-offset_top = 383.0
-offset_right = 1010.0
-offset_bottom = 583.0
-
-[node name="WarningLabel" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="15" unique_id=1655777934]
-process_mode = 1
-visible = false
-offset_left = 864.0
-offset_top = 392.0
-offset_right = 929.0
-offset_bottom = 441.0
-theme_override_colors/font_color = Color(0.7059392, 3.5376102e-06, 3.85046e-07, 1)
-theme_override_font_sizes/font_size = 64
-text = "Warning
-"
-
-[node name="LetterLabel" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="16" unique_id=448813765]
-process_mode = 1
-offset_top = 208.0
-offset_right = 40.0
-offset_bottom = 231.0
-theme_override_colors/font_color = Color(0, 0, 1, 1)
-theme_override_font_sizes/font_size = 32
-
-[node name="67Mode" type="Sprite2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="17" unique_id=345515651]
-process_mode = 1
-visible = false
-position = Vector2(1288, 944)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("19_ueldn")
-
-[node name="MiniGame4Hints" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="18" unique_id=2020110533]
-process_mode = 1
-position = Vector2(906, 480)
-
-[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame4Hints" unique_id=1571131533]
-process_mode = 1
-visible = false
-offset_top = -276.0
-offset_right = 42.0
-offset_bottom = -218.0
-pivot_offset = Vector2(20, 30)
-texture = ExtResource("32_ign4p")
-
-[node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame4Hints" unique_id=878347853]
-process_mode = 1
-visible = false
-offset_top = -276.0
-offset_right = 42.0
-offset_bottom = -218.0
-rotation = 1.5707964
-pivot_offset = Vector2(20, 30)
-texture = ExtResource("32_ign4p")
-
-[node name="TextureRect3" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame4Hints" unique_id=590457037]
-process_mode = 1
-visible = false
-offset_top = -276.0
-offset_right = 42.0
-offset_bottom = -218.0
-rotation = 3.1415927
-pivot_offset = Vector2(20, 30)
-texture = ExtResource("32_ign4p")
-
-[node name="TextureRect4" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame4Hints" unique_id=1984337469]
-process_mode = 1
-visible = false
-offset_top = -276.0
-offset_right = 42.0
-offset_bottom = -218.0
-rotation = 4.712389
-pivot_offset = Vector2(20, 30)
-texture = ExtResource("32_ign4p")
-
-[node name="PoseCounter" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" index="19" unique_id=944346483]
-visible = false
-offset_left = 1264.0
-offset_top = 268.0
-offset_right = 1592.0
-offset_bottom = 310.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-
-[node name="BimmyPoses" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=1623383976]
-self_modulate = Color(1, 1, 1, 0)
-z_index = 3
-
-[node name="Idle" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=389552455]
-visible = false
+[node name="Idle" type="TextureRect" parent="BimmyPoses" unique_id=418745318]
 z_index = 1
 material = SubResource("ShaderMaterial_ueldn")
 anchors_preset = 8
@@ -476,7 +181,7 @@ grow_vertical = 2
 pivot_offset = Vector2(540, 540)
 texture = ExtResource("12_wt48i")
 
-[node name="Drinking" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=2004144356]
+[node name="Drinking" type="TextureRect" parent="BimmyPoses" unique_id=1023049885]
 visible = false
 z_index = 1
 anchors_preset = 8
@@ -493,7 +198,7 @@ grow_vertical = 2
 pivot_offset = Vector2(540, 540)
 texture = ExtResource("13_6wwyq")
 
-[node name="Burping" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=35236742]
+[node name="Burping" type="TextureRect" parent="BimmyPoses" unique_id=1629648063]
 visible = false
 z_index = 1
 anchors_preset = 8
@@ -510,9 +215,9 @@ grow_vertical = 2
 pivot_offset = Vector2(540, 540)
 texture = ExtResource("13_v148l")
 
-[node name="AimingPaperPlane" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=614223385]
+[node name="AimingPaperPlane" type="TextureRect" parent="BimmyPoses" unique_id=1704304158]
 visible = false
-z_index = 2
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -527,8 +232,9 @@ grow_vertical = 2
 pivot_offset = Vector2(540, 540)
 texture = ExtResource("7_gbcym")
 
-[node name="Throwing" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=1176045454]
+[node name="Throwing" type="TextureRect" parent="BimmyPoses" unique_id=2122228607]
 visible = false
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -543,73 +249,131 @@ grow_vertical = 2
 pivot_offset = Vector2(540, 540)
 texture = ExtResource("15_6wwyq")
 
-[node name="HoldingFartBomb" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=618799152]
+[node name="HoldingFartBomb" type="TextureRect" parent="BimmyPoses" unique_id=1669247122]
 visible = false
+z_index = 1
 offset_left = 380.0
 offset_top = 448.0
 offset_right = 1460.0
 offset_bottom = 1528.0
 texture = ExtResource("9_4ih45")
 
-[node name="Mewing1" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=797696813]
+[node name="FartBombExploded" type="TextureRect" parent="BimmyPoses" unique_id=999462251]
 visible = false
+z_index = 1
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+texture = ExtResource("10_m3xaf")
+
+[node name="Explosion" type="TextureRect" parent="BimmyPoses/FartBombExploded" unique_id=1270447806]
+visible = false
+layout_mode = 0
+offset_left = 372.0
+offset_top = 176.0
+offset_right = 1452.0
+offset_bottom = 1256.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_vt1g0")
+
+[node name="Mewing1" type="TextureRect" parent="BimmyPoses" unique_id=2090708358]
+visible = false
+z_index = 1
 offset_left = 380.0
 offset_top = 448.0
 offset_right = 1460.0
 offset_bottom = 1528.0
 texture = ExtResource("26_xqbkx")
 
-[node name="Mewing2" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=1484083232]
+[node name="Mewing2" type="TextureRect" parent="BimmyPoses" unique_id=375644532]
 visible = false
+z_index = 1
 offset_left = 380.0
 offset_top = 448.0
 offset_right = 1460.0
 offset_bottom = 1528.0
 texture = ExtResource("27_421sk")
 
-[node name="Information" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/PauseMenu" parent_id_path=PackedInt32Array(750049049, 927583162) index="0" unique_id=266624996]
+[node name="pose1" type="TextureRect" parent="BimmyPoses" unique_id=1151332795]
 visible = false
-position = Vector2(1329, 392)
+z_index = 1
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+texture = ExtResource("14_3qvwq")
 
-[node name="InfoTextBackground" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/PauseMenu/Information" index="0" unique_id=1943506048]
-scale = Vector2(6.9199963, 5.24)
+[node name="pose2" type="TextureRect" parent="BimmyPoses" unique_id=1484455277]
+visible = false
+z_index = 1
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+texture = ExtResource("15_ign4p")
 
-[node name="InfoText" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/PauseMenu/Information" index="1" unique_id=2062327048]
-theme_override_font_sizes/font_size = 18
+[node name="pose3" type="TextureRect" parent="BimmyPoses" unique_id=1643314750]
+visible = false
+z_index = 1
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+texture = ExtResource("16_lvi67")
 
-[node name="ContinueBtn" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/PauseMenu/Information" index="2" unique_id=745203820]
-offset_top = 391.0
-offset_bottom = 422.0
+[node name="pose4" type="TextureRect" parent="BimmyPoses" unique_id=842211374]
+visible = false
+z_index = 1
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+texture = ExtResource("17_abdvq")
 
-[node name="QuitBtn" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/PauseMenu/Information" index="3" unique_id=925538339]
-offset_top = 391.0
-offset_bottom = 422.0
+[node name="SubViewportContainerOverlay3D" type="SubViewportContainer" parent="." unique_id=1301833045]
+z_index = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
 
-[node name="MiniGame3" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=75637132 node_paths=PackedStringArray("_fartbomb", "_bus_driver", "_inventory_ui")]
-process_mode = 1
-script = ExtResource("12_d7edy")
-_fartbomb = NodePath("../../../../ViewportContainer/SubViewport3D/FartBomb")
-_bus_driver = NodePath("../../../../ViewportContainer/SubViewport3D/DriverPosition")
-_inventory_ui = NodePath("../UI_Root/InventoryUi")
-metadata/_custom_type_script = "uid://c208yrqtkuk3q"
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainerOverlay3D" unique_id=329965068]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4294967294
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
 
-[node name="MiniGame4" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=54776835 node_paths=PackedStringArray("_inventory_ui")]
-process_mode = 1
-script = ExtResource("17_5kjyj")
-_inventory_ui = NodePath("../UI_Root/InventoryUi")
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainerOverlay3D/SubViewport" unique_id=1030657183]
+transform = Transform3D(0.99939084, 0.005459484, -0.034469824, 0, 0.98768836, 0.15643448, 0.034899496, -0.15633918, 0.9870867, 0, 5.698, 0)
+cull_mask = 3
+current = true
+fov = 40.0
+script = ExtResource("2_2le81")
 
-[node name="Music" type="Node" parent="SubViewportContainer" unique_id=1091058361]
-script = ExtResource("28_ufv53")
-metadata/_custom_type_script = "uid://crsgmr04np1"
+[node name="OutDoor" type="Node3D" parent="SubViewportContainerOverlay3D/SubViewport" unique_id=1767533217 node_paths=PackedStringArray("_startpos")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32.735786, 760.9407)
+script = ExtResource("8_h6lwt")
+_startpos = NodePath("SpawnArea")
 
-[node name="InGameMusic" type="AudioStreamPlayer" parent="SubViewportContainer/Music" unique_id=403077817]
-stream = ExtResource("29_qof8a")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=1134982791]
+transform = Transform3D(250, 0, 0, 0, 100, 0, 0, 0, 1000, 0, 0, -1675.2571)
+layers = 4
+material_override = ExtResource("9_4uypw")
+mesh = SubResource("PlaneMesh_abdvq")
 
-[node name="PoseMusic" type="AudioStreamPlayer" parent="SubViewportContainer/Music" unique_id=2081041784]
-stream = ExtResource("32_xqbkx")
+[node name="BusArea" type="Area3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=1452286860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -900.1632)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/BusArea" unique_id=1456839243]
+transform = Transform3D(300.28497, 0, 0, 0, 50, 0, 0, 0, 233.5357, 0.87974167, 0, -353.07867)
+shape = SubResource("BoxShape3D_h6lwt")
+
+[node name="SpawnArea" type="Node3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=1296151801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.399048, 0, -1815.9846)
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="." unique_id=209541442]
 process_mode = 1
+z_as_relative = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
@@ -620,170 +384,10 @@ handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="BimmyPoses" type="Node2D" parent="ViewportContainer/SubViewport3D" unique_id=1448521555]
-z_index = 3
-
-[node name="Idle" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=418745318]
-material = SubResource("ShaderMaterial_ueldn")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = 448.0
-offset_right = 1080.0
-offset_bottom = 1528.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(540, 540)
-texture = ExtResource("12_wt48i")
-
-[node name="Drinking" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=1023049885]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(540, 540)
-texture = ExtResource("13_6wwyq")
-
-[node name="Burping" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=1629648063]
-visible = false
-z_index = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(540, 540)
-texture = ExtResource("13_v148l")
-
-[node name="AimingPaperPlane" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=1704304158]
-visible = false
-z_index = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(540, 540)
-texture = ExtResource("7_gbcym")
-
-[node name="Throwing" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=2122228607]
-visible = false
-z_index = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(540, 540)
-texture = ExtResource("15_6wwyq")
-
-[node name="HoldingFartBomb" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=1669247122]
-visible = false
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-texture = ExtResource("9_4ih45")
-
-[node name="FartBombExploded" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=999462251]
-visible = false
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-texture = ExtResource("10_m3xaf")
-
-[node name="Explosion" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses/FartBombExploded" unique_id=1270447806]
-visible = false
-layout_mode = 0
-offset_left = 372.0
-offset_top = 176.0
-offset_right = 1452.0
-offset_bottom = 1256.0
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("11_vt1g0")
-
-[node name="Mewing1" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=2090708358]
-visible = false
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-texture = ExtResource("26_xqbkx")
-
-[node name="Mewing2" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=375644532]
-visible = false
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-texture = ExtResource("27_421sk")
-
-[node name="pose1" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=1151332795]
-visible = false
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-texture = ExtResource("14_3qvwq")
-
-[node name="pose2" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=1484455277]
-visible = false
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-texture = ExtResource("15_ign4p")
-
-[node name="pose3" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=1643314750]
-visible = false
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-texture = ExtResource("16_lvi67")
-
-[node name="pose4" type="TextureRect" parent="ViewportContainer/SubViewport3D/BimmyPoses" unique_id=842211374]
-visible = false
-offset_left = 380.0
-offset_top = 448.0
-offset_right = 1460.0
-offset_bottom = 1528.0
-texture = ExtResource("17_abdvq")
-
-[node name="UI_Root" type="CanvasLayer" parent="ViewportContainer/SubViewport3D" unique_id=1382793243]
-layer = 2
-
 [node name="Camera3D" type="Camera3D" parent="ViewportContainer/SubViewport3D" unique_id=212161571]
 transform = Transform3D(0.99939084, 0.005459484, -0.034469824, 0, 0.98768836, 0.15643448, 0.034899496, -0.15633918, 0.9870867, 0, 5.698, 0)
+cull_mask = 7
+current = true
 fov = 40.0
 script = ExtResource("2_2le81")
 
@@ -1189,6 +793,28 @@ transform = Transform3D(0.9460854, -0.10652563, 0.3059, 0, 0.94437635, 0.3288666
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="ViewportContainer/SubViewport3D" unique_id=1712312810]
 transform = Transform3D(0.9460854, -0.106525674, 0.30589995, 0.15995699, -0.6675504, -0.7271797, 0.2816669, 0.7369049, -0.61452013, 9.764955, -17.188816, -42.767273)
 
+[node name="FartBombBody" type="RigidBody3D" parent="ViewportContainer/SubViewport3D" unique_id=1067286522]
+transform = Transform3D(4, 0, 0, 0, -1.7484555e-07, -4, 0, 4, -1.7484555e-07, 1.8479099, -4.2702208, -19.300653)
+gravity_scale = 0.0
+sleeping = true
+lock_rotation = true
+freeze = true
+freeze_mode = 1
+continuous_cd = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportContainer/SubViewport3D/FartBombBody" unique_id=2003658273]
+transform = Transform3D(0.33275002, 0, 0, 0, -1.9233012e-08, -0.055, 0, 0.44, -2.4041265e-09, -0.0018686056, 0.012460947, -0.006164551)
+shape = SubResource("BoxShape3D_wt48i")
+debug_color = Color(1, 1, 1, 0.41960785)
+
+[node name="Sprite3D" type="Sprite3D" parent="ViewportContainer/SubViewport3D/FartBombBody" unique_id=1326916365]
+transform = Transform3D(0.1, 0, 0, 0, 0.056352604, 0.08260983, 0, -0.08260983, 0.056352604, 0, 0, 0)
+layers = 2
+material_override = ExtResource("12_717cw")
+texture_filter = 0
+render_priority = 2
+texture = ExtResource("5_hxc5g")
+
 [node name="PlaneBody" type="RigidBody3D" parent="ViewportContainer/SubViewport3D" unique_id=335779594]
 transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 3.8518057, -4.9975033, -34.685802)
 gravity_scale = 0.0
@@ -1219,7 +845,6 @@ texture = ExtResource("5_hxc5g")
 
 [node name="Sprite3D3" type="Sprite3D" parent="ViewportContainer/SubViewport3D/PlaneBody" unique_id=2023522257]
 transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, 0.1, 0, -0.1, -4.371139e-09, 0, -0.0016474128, 0)
-visible = false
 material_override = ExtResource("3_f0ufm")
 texture_filter = 0
 texture = ExtResource("5_hxc5g")
@@ -1231,46 +856,579 @@ material_override = ExtResource("3_f0ufm")
 texture_filter = 0
 texture = ExtResource("5_hxc5g")
 
-[node name="FartBombBody" type="RigidBody3D" parent="ViewportContainer/SubViewport3D" unique_id=1067286522]
-transform = Transform3D(4, 0, 0, 0, -1.7484555e-07, -4, 0, 4, -1.7484555e-07, 1.8479099, -4.2702208, -19.300653)
-gravity_scale = 0.0
-sleeping = true
-lock_rotation = true
-freeze = true
-freeze_mode = 1
-continuous_cd = true
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1770688312]
+process_mode = 3
+z_as_relative = false
+offset_right = 1920.0
+offset_bottom = 1080.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewportContainer/SubViewport3D/FartBombBody" unique_id=2003658273]
-transform = Transform3D(0.33275002, 0, 0, 0, -1.9233012e-08, -0.055, 0, 0.44, -2.4041265e-09, -0.0018686056, 0.012460947, -0.006164551)
-shape = SubResource("BoxShape3D_wt48i")
-debug_color = Color(1, 1, 1, 0.41960785)
-
-[node name="Sprite3D" type="Sprite3D" parent="ViewportContainer/SubViewport3D/FartBombBody" unique_id=1326916365]
-transform = Transform3D(0.1, 0, 0, 0, 0.056352604, 0.08260983, 0, -0.08260983, 0.056352604, 0, 0, 0)
-material_override = ExtResource("12_717cw")
-texture_filter = 0
-render_priority = 2
-texture = ExtResource("5_hxc5g")
-
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="." unique_id=311100977]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2" unique_id=1557731321]
+[node name="SubViewport2D" type="SubViewport" parent="SubViewportContainer" unique_id=675229591]
+process_mode = 3
 transparent_bg = true
 handle_input_locally = false
+audio_listener_enable_3d = true
 size = Vector2i(1920, 1080)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
-[node name="Node3D" type="Node3D" parent="SubViewportContainer2/SubViewport" unique_id=727907401]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32.735786, 0)
+[node name="TestingGroundsBIGJ" type="Node2D" parent="SubViewportContainer/SubViewport2D" unique_id=1999356085]
+process_mode = 1
+
+[node name="BusDriver" type="Node" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=1316347353]
+process_mode = 1
+script = ExtResource("8_evs4q")
+
+[node name="Player" type="Node" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=1835008993]
+process_mode = 1
+script = ExtResource("9_1c85f")
+_move_speed = 470.0
+metadata/_custom_type_script = "uid://c1tjjll3equ0l"
+
+[node name="GameTimer" type="Timer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=139929345]
+wait_time = 302.0
+autostart = true
+
+[node name="MiniGame1" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=321490363 node_paths=PackedStringArray("_inventory_ui")]
+process_mode = 1
+script = ExtResource("10_h6lwt")
+_inventory_ui = NodePath("../UI_Root/InventoryUi")
+
+[node name="MiniGame2" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=2097584126 node_paths=PackedStringArray("_plane", "_bus_driver", "_inventory_ui")]
+process_mode = 1
+script = ExtResource("11_4uypw")
+_plane = NodePath("../../../../ViewportContainer/SubViewport3D/PaperPlane")
+_bus_driver = NodePath("../../../../ViewportContainer/SubViewport3D/DriverPosition")
+_inventory_ui = NodePath("../UI_Root/InventoryUi")
+
+[node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/MiniGame2" unique_id=595318136]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 visible = false
+texture = ExtResource("23_ign4p")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer2/SubViewport/Node3D" unique_id=842046911]
-transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
-mesh = SubResource("PlaneMesh_abdvq")
+[node name="Sounds" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=1645715420 instance=ExtResource("13_wkics")]
+visible = false
+_minigame_1_sound_files = Array[String](["res://assets/sounds/mini_game_1/Soda Slurp.mp3", "res://assets/sounds/mini_game_1/burp 01.wav", "res://assets/sounds/mini_game_1/burp 02.wav", "res://assets/sounds/mini_game_1/burp 03.wav", "res://assets/sounds/mini_game_1/burp 04.wav", "res://assets/sounds/mini_game_1/burp 05.wav"])
+_minigame_2_sound_files = Array[String](["res://assets/sounds/mini_game_2/yeet.mp3"])
+_minigame_3_sound_files = Array[String](["res://assets/FartBomb/fartbomb.mp3", "res://assets/FartBomb/Bus driver gags.mp3", "res://assets/FartBomb/Bimmy-Let it Rip12.mp3"])
 
+[node name="MiniGame1" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds" index="0" unique_id=46708315]
+process_mode = 1
+
+[node name="MiniGame3" type="Node" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds" unique_id=962993018]
+process_mode = 1
+
+[node name="MiniGame2" type="Node" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds" unique_id=726820942]
+process_mode = 1
+
+[node name="WhisperSound" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds" unique_id=1388445612]
+stream = ExtResource("24_lvi67")
+
+[node name="UI_Root" type="CanvasLayer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=1046426192]
+process_mode = 1
+layer = -1
+
+[node name="BusDriverPoses" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1517440591]
+process_mode = 1
+z_index = 1
+
+[node name="Unsuspecting" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/BusDriverPoses" unique_id=99064855]
+texture = ExtResource("7_jygef")
+
+[node name="Looking Back" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/BusDriverPoses" unique_id=1203342633]
+visible = false
+texture = ExtResource("8_wrqd1")
+
+[node name="Suspecting" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/BusDriverPoses" unique_id=1794973075]
+visible = false
+texture = ExtResource("9_jmner")
+
+[node name="Angry" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/BusDriverPoses" unique_id=476304211]
+visible = false
+texture = ExtResource("10_wt48i")
+
+[node name="Smells Fart" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/BusDriverPoses" unique_id=808055615]
+visible = false
+texture = ExtResource("11_v148l")
+
+[node name="BusKids" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1796011567]
+z_index = 1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("21_3gr0o")
+
+[node name="CloutProgress" type="TextureProgressBar" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=236410749]
+offset_top = 16.0
+offset_right = 455.7481
+offset_bottom = 43.0
+texture_over = ExtResource("22_2qbd8")
+texture_progress = ExtResource("23_5bew6")
+script = ExtResource("24_rg1fq")
+
+[node name="ThrowForceMeter" type="TextureProgressBar" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=553623052]
+visible = false
+offset_left = 1729.0
+offset_top = 688.0
+offset_right = 1754.0
+offset_bottom = 788.0
+max_value = 50.0
+step = 0.01
+fill_mode = 3
+texture_over = ExtResource("25_sywfs")
+texture_progress = ExtResource("26_onyep")
+script = ExtResource("27_77yl2")
+
+[node name="Information" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter" unique_id=553011022]
+process_mode = 3
+visible = false
+position = Vector2(984, 664)
+
+[node name="Information" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information" unique_id=1925432005]
+process_mode = 3
+position = Vector2(984, 664)
+
+[node name="InfoTextBackground" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information/Information" unique_id=130445378]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1, 1, 1, 0.40392157)
+material = SubResource("ShaderMaterial_qof8a")
+offset_left = -327.99994
+offset_top = -232.0
+offset_right = -199.99994
+offset_bottom = -104.0
+scale = Vector2(6.4799953, 2.7999997)
+mouse_filter = 2
+texture = SubResource("CanvasTexture_mhma7")
+expand_mode = 1
+
+[node name="InfoText" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information/Information" unique_id=342420277]
+process_mode = 3
+offset_left = -327.99994
+offset_top = -232.0
+offset_right = -206.99994
+offset_bottom = -209.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "sdfs"
+
+[node name="ContinueBtn" type="Button" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information/Information" unique_id=1625824987]
+process_mode = 3
+offset_left = 416.0
+offset_top = 88.0
+offset_right = 495.0
+offset_bottom = 119.0
+text = "Continue"
+
+[node name="SuspProgressBar" type="TextureProgressBar" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1185315787]
+offset_top = 64.0
+offset_right = 455.0
+offset_bottom = 91.0
+texture_over = ExtResource("22_2qbd8")
+texture_progress = ExtResource("28_wflly")
+script = ExtResource("29_u57tv")
+
+[node name="SuspicionLabel" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1748116748]
+visible = false
+offset_left = 486.0
+offset_top = 69.0
+offset_right = 913.0
+offset_bottom = 92.0
+text = "Suspicion"
+
+[node name="CloutLabel" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=17553903]
+visible = false
+offset_left = 484.0
+offset_top = 17.0
+offset_right = 911.0
+offset_bottom = 40.0
+text = "Clout"
+
+[node name="AI State" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1764359367]
+offset_left = 665.0
+offset_right = 734.0
+offset_bottom = 23.0
+text = "AI State: "
+
+[node name="LookAtMirror" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=522930878]
+process_mode = 1
+offset_left = 906.0
+offset_top = 69.0
+offset_right = 975.0
+offset_bottom = 92.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.8, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+
+[node name="GameTimer" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=2063429972]
+offset_top = 125.0
+offset_right = 40.0
+offset_bottom = 148.0
+
+[node name="PlaneTrajectory" type="Line2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1133139275]
+script = ExtResource("9_d7edy")
+
+[node name="FartBombTrajectory" type="Line2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1347051548]
+script = ExtResource("9_d7edy")
+
+[node name="InventoryUi" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=315292029 node_paths=PackedStringArray("_item_indicator") instance=ExtResource("31_t8kdv")]
+layer = 3
+_item_indicator = NodePath("ItemIndicator")
+
+[node name="Background" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi" index="0" unique_id=2138902047]
+self_modulate = Color(1, 1, 1, 0.68235296)
+offset_left = 1264.0
+offset_top = 792.0
+offset_right = 2808.0
+offset_bottom = 1449.0
+mouse_filter = 2
+
+[node name="GridContainer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi" index="1" unique_id=2129711916]
+offset_left = 1440.0
+offset_top = 912.0
+offset_right = 1708.0
+offset_bottom = 976.0
+scale = Vector2(1.6, 1.6)
+
+[node name="InventorySlot" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer" index="0" unique_id=1898348738]
+self_modulate = Color(18.892157, 18.892157, 18.892157, 0)
+mouse_filter = 0
+mouse_behavior_recursive = 1
+
+[node name="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot" index="0" unique_id=1928513826]
+mouse_filter = 2
+
+[node name="InventorySlot2" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer" index="1" unique_id=1338082132]
+self_modulate = Color(18.892157, 18.892157, 18.892157, 0)
+mouse_filter = 0
+mouse_behavior_recursive = 1
+mouse_default_cursor_shape = 0
+
+[node name="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot2" index="0" unique_id=1928513826]
+mouse_filter = 2
+texture = ExtResource("32_c2plu")
+
+[node name="InventorySlot3" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer" index="2" unique_id=1171403083]
+self_modulate = Color(18.892157, 18.892157, 18.892157, 0)
+mouse_filter = 0
+mouse_behavior_recursive = 1
+
+[node name="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot3" index="0" unique_id=1928513826]
+mouse_filter = 2
+texture = ExtResource("33_0sab3")
+
+[node name="InventorySlot4" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer" index="3" unique_id=1727412832]
+self_modulate = Color(18.892157, 18.892157, 18.892157, 0)
+mouse_filter = 0
+mouse_behavior_recursive = 1
+
+[node name="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot4" index="0" unique_id=1928513826]
+mouse_filter = 2
+
+[node name="ItemIndicator" type="Sprite2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi" unique_id=1777002803]
+visible = false
+position = Vector2(1672, 783)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("17_s87hc")
+
+[node name="MayhemBox" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1454425575]
+offset_left = 810.0
+offset_top = 383.0
+offset_right = 1010.0
+offset_bottom = 583.0
+texture = ExtResource("35_uc0x1")
+expand_mode = 1
+
+[node name="WarningLabel" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1655777934]
+process_mode = 1
+visible = false
+offset_left = 864.0
+offset_top = 392.0
+offset_right = 929.0
+offset_bottom = 441.0
+theme_override_colors/font_color = Color(0.7059392, 3.5376102e-06, 3.85046e-07, 1)
+theme_override_font_sizes/font_size = 64
+text = "Warning
+"
+
+[node name="LetterLabel" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=448813765]
+process_mode = 1
+offset_top = 208.0
+offset_right = 40.0
+offset_bottom = 231.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_font_sizes/font_size = 32
+
+[node name="67Mode" type="Sprite2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=345515651]
+process_mode = 1
+visible = false
+position = Vector2(1288, 944)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("19_ueldn")
+
+[node name="MiniGame4Hints" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=2020110533]
+process_mode = 1
+position = Vector2(906, 480)
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame4Hints" unique_id=1571131533]
+process_mode = 1
+visible = false
+offset_top = -276.0
+offset_right = 42.0
+offset_bottom = -218.0
+pivot_offset = Vector2(20, 30)
+texture = ExtResource("32_ign4p")
+
+[node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame4Hints" unique_id=878347853]
+process_mode = 1
+visible = false
+offset_top = -276.0
+offset_right = 42.0
+offset_bottom = -218.0
+rotation = 1.5707964
+pivot_offset = Vector2(20, 30)
+texture = ExtResource("32_ign4p")
+
+[node name="TextureRect3" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame4Hints" unique_id=590457037]
+process_mode = 1
+visible = false
+offset_top = -276.0
+offset_right = 42.0
+offset_bottom = -218.0
+rotation = 3.1415927
+pivot_offset = Vector2(20, 30)
+texture = ExtResource("32_ign4p")
+
+[node name="TextureRect4" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame4Hints" unique_id=1984337469]
+process_mode = 1
+visible = false
+offset_top = -276.0
+offset_right = 42.0
+offset_bottom = -218.0
+rotation = 4.712389
+pivot_offset = Vector2(20, 30)
+texture = ExtResource("32_ign4p")
+
+[node name="PoseCounter" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=944346483]
+visible = false
+offset_left = 1264.0
+offset_top = 268.0
+offset_right = 1592.0
+offset_bottom = 310.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Completed Poses: 0/15"
+
+[node name="Background" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=771576177]
+process_mode = 1
+visibility_layer = 2
+z_as_relative = false
+offset_right = 1924.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("31_abdvq")
+
+[node name="BimmyPoses" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=1623383976]
+self_modulate = Color(1, 1, 1, 0)
+z_index = -1
+
+[node name="Idle" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=389552455]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_ueldn")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 448.0
+offset_right = 1080.0
+offset_bottom = 1528.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(540, 540)
+texture = ExtResource("12_wt48i")
+
+[node name="Drinking" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=2004144356]
+visible = false
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(540, 540)
+texture = ExtResource("13_6wwyq")
+
+[node name="Burping" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=35236742]
+visible = false
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(540, 540)
+texture = ExtResource("13_v148l")
+
+[node name="AimingPaperPlane" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=614223385]
+visible = false
+z_index = -5
+z_as_relative = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(540, 540)
+texture = ExtResource("7_gbcym")
+
+[node name="Throwing" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=1176045454]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(540, 540)
+texture = ExtResource("15_6wwyq")
+
+[node name="HoldingFartBomb" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=618799152]
+visible = false
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+texture = ExtResource("9_4ih45")
+
+[node name="Mewing1" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=797696813]
+visible = false
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+texture = ExtResource("26_xqbkx")
+
+[node name="Mewing2" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/BimmyPoses" unique_id=1484083232]
+visible = false
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+texture = ExtResource("27_421sk")
+
+[node name="PauseMenu" type="CanvasLayer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=927583162]
+process_mode = 3
+layer = 2
+
+[node name="Information" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/PauseMenu" unique_id=266624996]
+process_mode = 3
+visible = false
+z_index = 2
+position = Vector2(1329, 392)
+
+[node name="InfoTextBackground" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/PauseMenu/Information" unique_id=1943506048]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1, 1, 1, 0.40392157)
+z_index = 2
+material = SubResource("ShaderMaterial_oa3b6")
+offset_left = -327.99994
+offset_top = -232.0
+offset_right = -199.99994
+offset_bottom = -104.0
+scale = Vector2(6.9199963, 5.24)
+mouse_filter = 2
+texture = SubResource("CanvasTexture_df0dt")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoText" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/PauseMenu/Information" unique_id=2062327048]
+process_mode = 3
+z_index = 2
+offset_left = -304.0
+offset_top = -216.0
+offset_right = -183.0
+offset_bottom = -193.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "sdfs"
+metadata/_edit_use_anchors_ = true
+
+[node name="ContinueBtn" type="Button" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/PauseMenu/Information" unique_id=745203820]
+process_mode = 3
+z_index = 2
+offset_left = 320.0
+offset_top = 391.0
+offset_right = 399.0
+offset_bottom = 422.0
+text = "Continue"
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitBtn" type="Button" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/PauseMenu/Information" unique_id=925538339]
+process_mode = 3
+z_index = 2
+offset_left = 416.0
+offset_top = 391.0
+offset_right = 495.0
+offset_bottom = 422.0
+text = "Quit"
+metadata/_edit_use_anchors_ = true
+
+[node name="MiniGame3" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=75637132 node_paths=PackedStringArray("_fartbomb", "_bus_driver", "_inventory_ui")]
+process_mode = 1
+script = ExtResource("12_d7edy")
+_fartbomb = NodePath("../../../../ViewportContainer/SubViewport3D/FartBomb")
+_bus_driver = NodePath("../../../../ViewportContainer/SubViewport3D/DriverPosition")
+_inventory_ui = NodePath("../UI_Root/InventoryUi")
+metadata/_custom_type_script = "uid://c208yrqtkuk3q"
+
+[node name="MiniGame4" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=54776835 node_paths=PackedStringArray("_inventory_ui")]
+process_mode = 1
+script = ExtResource("17_5kjyj")
+_inventory_ui = NodePath("../UI_Root/InventoryUi")
+
+[node name="Music" type="Node" parent="SubViewportContainer" unique_id=1091058361]
+script = ExtResource("28_ufv53")
+metadata/_custom_type_script = "uid://crsgmr04np1"
+
+[node name="InGameMusic" type="AudioStreamPlayer" parent="SubViewportContainer/Music" unique_id=403077817]
+stream = ExtResource("29_qof8a")
+
+[node name="PoseMusic" type="AudioStreamPlayer" parent="SubViewportContainer/Music" unique_id=2081041784]
+stream = ExtResource("32_xqbkx")
+
+[node name="Final Output" type="TextureRect" parent="." unique_id=1869331791]
+z_index = -1
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_hxc5g")
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 1922.0
+offset_bottom = 1084.0
+mouse_filter = 2
+texture = SubResource("ViewportTexture_4ih45")
+
+[connection signal="body_entered" from="SubViewportContainerOverlay3D/SubViewport/OutDoor/BusArea" to="SubViewportContainerOverlay3D/SubViewport/OutDoor" method="_on_bus_area_body_entered"]
+[connection signal="body_exited" from="SubViewportContainerOverlay3D/SubViewport/OutDoor/BusArea" to="SubViewportContainerOverlay3D/SubViewport/OutDoor" method="_on_bus_area_body_exited"]
 [connection signal="body_entered" from="ViewportContainer/SubViewport3D/Collision/FrontSeatArea" to="ViewportContainer/SubViewport3D/PaperPlane" method="_on_ground_collision_occured"]
 [connection signal="body_entered" from="ViewportContainer/SubViewport3D/Collision/FrontSeatArea" to="ViewportContainer/SubViewport3D/FartBomb" method="_on_ground_collision_occured"]
 [connection signal="body_entered" from="ViewportContainer/SubViewport3D/Collision/FrontSeatArea3" to="ViewportContainer/SubViewport3D/PaperPlane" method="_on_ground_collision_occured"]
@@ -1339,7 +1497,6 @@ mesh = SubResource("PlaneMesh_abdvq")
 [connection signal="body_entered" from="ViewportContainer/SubViewport3D/DriverTargetArea" to="ViewportContainer/SubViewport3D/FartBomb" method="_on_fartbomb_target_area_entered"]
 [connection signal="body_exited" from="ViewportContainer/SubViewport3D/DriverTargetArea" to="ViewportContainer/SubViewport3D/PaperPlane" method="_on_plane_target_area_exited"]
 
-[editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ"]
 [editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds"]
 [editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi"]
 [editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot"]

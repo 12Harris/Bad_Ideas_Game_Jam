@@ -111,9 +111,10 @@ func initialize_game() -> void:
 	#await game_timer.ready
 	_busdriver.poses =_sub_viewport.get_node("TestingGroundsBIGJ/UI_Root/BusDriverPoses")
 	_busdriver._current_pose = _busdriver.poses.get_child(0)
-	_player.poses =_sub_viewport_2.get_node("BimmyPoses")
+	_player.poses = get_tree().current_scene.get_node("BimmyPoses")
 	_player._current_pose = _player.poses.get_child(0)
 	_busdriver._current_pose = _busdriver.poses.get_child(0)
+	_sub_viewport.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
 	
 	sounds.play_whisper_sound()
 	game_timer.timeout.connect(_on_timeout)

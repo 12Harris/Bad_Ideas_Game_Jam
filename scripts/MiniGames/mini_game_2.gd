@@ -126,8 +126,6 @@ func on_item_selected(index):
 
 		if !_player.in_action_zone():
 			return
-		
-		_plane.reset()
 		Game_Manager.hide_item_indicator()
 		_player.set_pose(3,0,true)
 		await G_Utils.wait(0.1)
@@ -137,6 +135,7 @@ func on_item_selected(index):
 		start(false)
 	
 	elif !running:
+		print("not running mg2")
 		_plane.enabled = false
 			
 func on_plane_thrown():

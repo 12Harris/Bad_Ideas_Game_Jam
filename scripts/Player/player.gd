@@ -143,10 +143,12 @@ func set_pose(index, duration, override:bool= false):
 	print("setting new pose")
 	_current_pose.visible = false
 	
-	if !override:
-		_current_pose = poses.get_child(index)
-	else:
-		_current_pose = Game_Manager._sub_viewport.get_node("TestingGroundsBIGJ/UI_Root/BimmyPoses").get_child(index)
+	_current_pose = poses.get_child(index)
+	
+	#if !override:
+		#_current_pose = poses.get_child(index)
+	#else:
+		#_current_pose = Game_Manager._sub_viewport.get_node("TestingGroundsBIGJ/BimmyPoses").get_child(index)
 
 	_current_pose.visible = true
 	

@@ -2,19 +2,18 @@ shader_type canvas_item;
 
 uniform sampler2D tex_a;
 uniform sampler2D tex_b;
-//uniform sampler2D tex_c;
 
 void fragment() {
-    vec4 a = texture(TEXTURE, UV);
-    vec4 b = texture(tex_b, UV);
-	//vec4 c = texture(tex_c, UV);
-
+    //vec4 a = texture(TEXTURE, UV);
+	//vec4 a = texture(tex_a, UV);
+    //vec4 b = texture(tex_b, UV);
+	// mask = 1.0-scene.a;
 	//COLOR = a;
-   	//COLOR = mix(a, b, b.a);
+   //COLOR = mix(a, b, b.a);
+  	vec4 ui = texture(tex_b, UV);
+    vec4 scene = texture(tex_a, UV);
+
+    COLOR.rgb = mix(scene.rgb, ui.rgb,scene.a);
 	
-	vec4 temp = mix(a, b, b.a);
-	float mask = texture(tex_a, UV).a;
-	//COLOR = vec4(temp.rgb, mask);
-	vec4 temp2 = vec4(temp.rgb, mask);
-	COLOR = mix(a, b, b.a);
+   	COLOR.a = 1.0;
 }
