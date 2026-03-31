@@ -366,6 +366,7 @@ _startpos = NodePath("SpawnArea")
 
 [node name="Background" type="MeshInstance3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=1134982791]
 transform = Transform3D(400, 0, 0, 0, 100, 0, 0, 0, 1000, 0, 0, -1675.2571)
+layers = 4
 material_override = ExtResource("9_4uypw")
 mesh = SubResource("PlaneMesh_abdvq")
 
@@ -385,8 +386,8 @@ layers = 4
 material_override = SubResource("StandardMaterial3D_h6lwt")
 mesh = SubResource("PlaneMesh_4uypw")
 
-[node name="StreetStripSpawnPoint" type="Node3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=2046438817]
-transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -2550.2856)
+[node name="StreetStripSpawnPoint" type="Node3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=354801797]
+transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 0, 7.027397, -2670.8296)
 
 [node name="Street Strips" type="Node3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=1069675120]
 
@@ -405,14 +406,8 @@ transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -2075.
 [node name="StreetStrip4" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips" unique_id=2138854677 instance=ExtResource("18_4uypw")]
 transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -1833.7095)
 
-[node name="MeshInstance3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip4" index="0" unique_id=893639243]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, -0.47055435)
-
 [node name="StreetStrip5" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips" unique_id=1687948240 instance=ExtResource("18_4uypw")]
 transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -1607.7725)
-
-[node name="MeshInstance3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip5" index="0" unique_id=893639243]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, -0.49886894)
 
 [node name="StreetStrip6" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips" unique_id=1770831084 instance=ExtResource("18_4uypw")]
 transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -1420.4312)

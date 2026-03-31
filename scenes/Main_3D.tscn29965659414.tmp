@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bhgygnefltp44" path="res://assets/Character/Bimmy-aiming-paper-airplane_2.png" id="7_gbcym"]
 [ext_resource type="Texture2D" uid="uid://ntlvg6dial16" path="res://assets/BusDriver/unsuspecting-Bus-driver.png" id="7_jygef"]
 [ext_resource type="Script" uid="uid://db581owr58s5r" path="res://scripts/BusDriver/bus_driver.gd" id="8_evs4q"]
-[ext_resource type="Script" uid="uid://bj8nj2afr16pn" path="res://scripts/out_door.gd" id="8_h6lwt"]
+[ext_resource type="Script" uid="uid://bj8nj2afr16pn" path="res://scenes/out_door.gd" id="8_h6lwt"]
 [ext_resource type="Material" uid="uid://dttfuhijclma1" path="res://assets/bus/seat.tres" id="8_hxc5g"]
 [ext_resource type="Texture2D" uid="uid://b8316m3lqv3ir" path="res://assets/BusDriver/bus-driver-looking-back.png" id="8_wrqd1"]
 [ext_resource type="Script" uid="uid://c1tjjll3equ0l" path="res://scripts/Player/player.gd" id="9_1c85f"]
@@ -36,7 +36,6 @@
 [ext_resource type="Script" uid="uid://fp01jqg12mia" path="res://scripts/MiniGames/mini_game_4..gd" id="17_5kjyj"]
 [ext_resource type="Texture2D" uid="uid://bd2m1yeni72pc" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/pose-4.png" id="17_abdvq"]
 [ext_resource type="Texture2D" uid="uid://cf7vu1jktt18s" path="res://assets/Inventory/arrow.png" id="17_s87hc"]
-[ext_resource type="PackedScene" uid="uid://cswuxj0p1ugy6" path="res://scenes/StreetStrip.tscn" id="18_4uypw"]
 [ext_resource type="Texture2D" uid="uid://dvvput3wuneys" path="res://assets/Character/6-7-Mode-power-up.png" id="19_ueldn"]
 [ext_resource type="Texture2D" uid="uid://fpdkwt0ynpig" path="res://assets/bus/bus-kids.png" id="21_3gr0o"]
 [ext_resource type="Texture2D" uid="uid://c1p8keiucibis" path="res://assets/meter_background_1.png" id="22_2qbd8"]
@@ -74,6 +73,10 @@ no_depth_test = true
 albedo_color = Color(0.32259828, 0.34262827, 0.33135653, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4uypw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4uypw"]
+render_priority = 2
+no_depth_test = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iyy8v"]
 
@@ -358,14 +361,14 @@ current = true
 fov = 40.0
 script = ExtResource("2_2le81")
 
-[node name="OutDoor" type="Node3D" parent="SubViewportContainerOverlay3D/SubViewport" unique_id=1767533217 node_paths=PackedStringArray("_streetstrip_spawnpoint", "_startpos")]
+[node name="OutDoor" type="Node3D" parent="SubViewportContainerOverlay3D/SubViewport" unique_id=1767533217 node_paths=PackedStringArray("_startpos")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32.735786, 760.9407)
 script = ExtResource("8_h6lwt")
-_streetstrip_spawnpoint = NodePath("StreetStripSpawnPoint")
 _startpos = NodePath("SpawnArea")
 
 [node name="Background" type="MeshInstance3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=1134982791]
 transform = Transform3D(400, 0, 0, 0, 100, 0, 0, 0, 1000, 0, 0, -1675.2571)
+layers = 4
 material_override = ExtResource("9_4uypw")
 mesh = SubResource("PlaneMesh_abdvq")
 
@@ -385,40 +388,23 @@ layers = 4
 material_override = SubResource("StandardMaterial3D_h6lwt")
 mesh = SubResource("PlaneMesh_4uypw")
 
-[node name="StreetStripSpawnPoint" type="Node3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=2046438817]
-transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -2550.2856)
+[node name="StreetStrip" type="MeshInstance3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=1759416618]
+transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 0, 7.027397, -1313.0703)
+layers = 4
+material_override = SubResource("StandardMaterial3D_4uypw")
+mesh = SubResource("PlaneMesh_4uypw")
 
-[node name="Street Strips" type="Node3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=1069675120]
+[node name="StreetStrip2" type="MeshInstance3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=201229457]
+transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 0, 7.027397, -1527.2024)
+layers = 4
+material_override = SubResource("StandardMaterial3D_4uypw")
+mesh = SubResource("PlaneMesh_4uypw")
 
-[node name="StreetStrip" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips" unique_id=22789611 instance=ExtResource("18_4uypw")]
-transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -2550.2856)
-
-[node name="StreetStrip2" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips" unique_id=234540516 instance=ExtResource("18_4uypw")]
-transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -2329.781)
-
-[node name="MeshInstance3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip2" index="0" unique_id=893639243]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0.43766785)
-
-[node name="StreetStrip3" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips" unique_id=1634987406 instance=ExtResource("18_4uypw")]
-transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -2075.3997)
-
-[node name="StreetStrip4" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips" unique_id=2138854677 instance=ExtResource("18_4uypw")]
-transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -1833.7095)
-
-[node name="MeshInstance3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip4" index="0" unique_id=893639243]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, -0.47055435)
-
-[node name="StreetStrip5" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips" unique_id=1687948240 instance=ExtResource("18_4uypw")]
-transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -1607.7725)
-
-[node name="MeshInstance3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip5" index="0" unique_id=893639243]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, -0.49886894)
-
-[node name="StreetStrip6" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips" unique_id=1770831084 instance=ExtResource("18_4uypw")]
-transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -1420.4312)
-
-[node name="StreetStrip7" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips" unique_id=228150980 instance=ExtResource("18_4uypw")]
-transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 1.138382, 12.386253, -1233.2373)
+[node name="StreetStrip3" type="MeshInstance3D" parent="SubViewportContainerOverlay3D/SubViewport/OutDoor" unique_id=961158318]
+transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 0, 7.027397, -1771.4019)
+layers = 4
+material_override = SubResource("StandardMaterial3D_4uypw")
+mesh = SubResource("PlaneMesh_4uypw")
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="." unique_id=209541442]
 process_mode = 1
@@ -1546,13 +1532,6 @@ texture = SubResource("ViewportTexture_4ih45")
 [connection signal="body_entered" from="ViewportContainer/SubViewport3D/DriverTargetArea" to="ViewportContainer/SubViewport3D/FartBomb" method="_on_fartbomb_target_area_entered"]
 [connection signal="body_exited" from="ViewportContainer/SubViewport3D/DriverTargetArea" to="ViewportContainer/SubViewport3D/PaperPlane" method="_on_plane_target_area_exited"]
 
-[editable path="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip"]
-[editable path="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip2"]
-[editable path="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip3"]
-[editable path="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip4"]
-[editable path="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip5"]
-[editable path="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip6"]
-[editable path="SubViewportContainerOverlay3D/SubViewport/OutDoor/Street Strips/StreetStrip7"]
 [editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds"]
 [editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi"]
 [editable path="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/InventoryUi/GridContainer/InventorySlot"]

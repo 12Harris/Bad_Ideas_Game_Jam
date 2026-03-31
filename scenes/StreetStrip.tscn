@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cswuxj0p1ugy6"]
+
+[ext_resource type="Script" uid="uid://yuhw3ha3y7qf" path="res://street_strip.gd" id="1_41hhy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_41hhy"]
+render_priority = 3
+no_depth_test = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_41hhy"]
+
+[node name="StreetStrip" type="Node3D" unique_id=234540516]
+transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, 0, 0, 0)
+script = ExtResource("1_41hhy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=893639243]
+layers = 4
+material_override = SubResource("StandardMaterial3D_41hhy")
+mesh = SubResource("PlaneMesh_41hhy")
