@@ -133,6 +133,8 @@ size = Vector3(10.065988, 5.817383, 9.448408)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wt48i"]
 size = Vector3(1.0112305, 1.0566406, 0.7758789)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_abdvq"]
+
 [node name="Main3d" type="Node3D" unique_id=1690980446]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10388839, -2.1447692)
 
@@ -147,6 +149,8 @@ texture = SubResource("ViewportTexture_hxc5g")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1770688312]
 process_mode = 3
+z_index = -1
+z_as_relative = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 
@@ -1247,6 +1251,25 @@ material_override = ExtResource("12_717cw")
 texture_filter = 0
 render_priority = 2
 texture = ExtResource("5_hxc5g")
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="." unique_id=311100977]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2" unique_id=1557731321]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 0
+
+[node name="Node3D" type="Node3D" parent="SubViewportContainer2/SubViewport" unique_id=727907401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32.735786, 0)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer2/SubViewport/Node3D" unique_id=842046911]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
+mesh = SubResource("PlaneMesh_abdvq")
 
 [connection signal="body_entered" from="ViewportContainer/SubViewport3D/Collision/FrontSeatArea" to="ViewportContainer/SubViewport3D/PaperPlane" method="_on_ground_collision_occured"]
 [connection signal="body_entered" from="ViewportContainer/SubViewport3D/Collision/FrontSeatArea" to="ViewportContainer/SubViewport3D/FartBomb" method="_on_ground_collision_occured"]
