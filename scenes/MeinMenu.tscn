@@ -3,12 +3,33 @@
 [ext_resource type="Texture2D" uid="uid://bi1gd014od600" path="res://assets/main menu/Paper-Main-menu-background.png" id="1_tolhe"]
 [ext_resource type="Texture2D" uid="uid://bfoblt52iinpy" path="res://assets/main menu/Fire.png" id="2_7aojs"]
 [ext_resource type="Texture2D" uid="uid://bmqx7ijvs4y87" path="res://assets/main menu/start-button.png" id="3_g4rp4"]
+[ext_resource type="Texture2D" uid="uid://00smnf2roa7p" path="res://assets/main menu/Logo-School-Bus-Mayhem.png" id="4_7aojs"]
 [ext_resource type="Texture2D" uid="uid://dtlw2qgwgxqq1" path="res://assets/main menu/Danger-Yellow-tape.png" id="4_p03u5"]
 [ext_resource type="Texture2D" uid="uid://d3llj4memy443" path="res://assets/Character/Bimmy-Main Menu.png" id="4_tolhe"]
 [ext_resource type="Script" uid="uid://dwjqbnwo5nlkr" path="res://scripts/UI/MainMenu/start_button.gd" id="7_7aojs"]
+[ext_resource type="Texture2D" uid="uid://bl6qltpkqbeim" path="res://assets/main menu 2/Characters.png" id="8_f1jlr"]
+[ext_resource type="AudioStream" uid="uid://bxo8j87yb1xcl" path="res://assets/sounds/Main Menu Theme.mp3" id="8_g4rp4"]
+[ext_resource type="Script" uid="uid://w7ar44n1aau0" path="res://scenes/characters_button.gd" id="9_qidtl"]
+[ext_resource type="Texture2D" uid="uid://b5fienmvxn40m" path="res://assets/main menu 2/Items-Guide.png" id="9_x2i1m"]
+[ext_resource type="Script" uid="uid://d1nohiiwsb7cg" path="res://items_guide_btn.gd" id="11_pqbxy"]
+[ext_resource type="Texture2D" uid="uid://dwoaswksuskqn" path="res://assets/main menu 2/Character Bios (Main Menu)/Bimmys Bios update.png" id="12_5v284"]
+[ext_resource type="Texture2D" uid="uid://buev4d6ggnqx8" path="res://assets/main menu 2/Character Bios (Main Menu)/Bus driver bio.png" id="13_cfe7c"]
+[ext_resource type="Texture2D" uid="uid://d3vetan03dlwf" path="res://assets/main menu 2/Character Bios (Main Menu)/Bimmys moms bio.png" id="14_tgckn"]
+[ext_resource type="Texture2D" uid="uid://2yvp1ukac8sy" path="res://assets/main menu 2/Items Guide (Main Menu)/Yeetforce one.png" id="15_5v284"]
+[ext_resource type="Texture2D" uid="uid://c6a1iw56bsufr" path="res://assets/main menu 2/Items Guide (Main Menu)/Mayhem Box slide 1.png" id="16_0t5gk"]
+[ext_resource type="Texture2D" uid="uid://b12umxlwki7gl" path="res://assets/main menu 2/Items Guide (Main Menu)/Fizzy Pop Can.png" id="17_pqbxy"]
+[ext_resource type="Texture2D" uid="uid://dxbvxw37obgdh" path="res://assets/main menu 2/Items Guide (Main Menu)/BoomBoombox.png" id="19_4i03b"]
+[ext_resource type="Texture2D" uid="uid://byxvfx5hdlru1" path="res://assets/main menu 2/Items Guide (Main Menu)/Fartbomb.png" id="19_pqbxy"]
+[ext_resource type="Texture2D" uid="uid://doshta2hitv5w" path="res://assets/main menu 2/Items Guide (Main Menu)/67 mini game.png" id="20_du65c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qidtl"]
+radius = 95.918526
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5v284"]
+radius = 95.918526
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4rp4"]
-radius = 61.46364
+radius = 95.918526
 
 [node name="MainMenu" type="CanvasLayer" unique_id=1416074231]
 follow_viewport_enabled = true
@@ -29,10 +50,12 @@ offset_bottom = 1080.0
 texture = ExtResource("4_p03u5")
 
 [node name="Logo" type="TextureRect" parent="." unique_id=1214686206]
-offset_left = 664.0
-offset_top = 8.0
-offset_right = 1264.0
-offset_bottom = 631.0
+z_index = 2
+offset_left = 656.0
+offset_top = -40.0
+offset_right = 1256.0
+offset_bottom = 583.0
+texture = ExtResource("4_7aojs")
 expand_mode = 1
 stretch_mode = 4
 
@@ -45,23 +68,146 @@ texture = ExtResource("4_tolhe")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="StartButton" type="TextureRect" parent="." unique_id=203347638]
+[node name="StartButton" type="TextureRect" parent="." unique_id=203347638 node_paths=PackedStringArray("_main_menu_music")]
 offset_left = 672.0
 offset_top = 824.0
 offset_right = 1249.0
 offset_bottom = 1085.0
 texture = ExtResource("3_g4rp4")
 script = ExtResource("7_7aojs")
+_main_menu_music = NodePath("../MainMenuMusic")
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="StartButton" unique_id=1035527306]
 position = Vector2(288, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StartButton/Area2D" unique_id=832296817]
 position = Vector2(0, 4)
-scale = Vector2(3, 1)
+scale = Vector2(1.9, 0.6)
+shape = SubResource("CircleShape2D_qidtl")
+
+[node name="CharactersButton" type="TextureRect" parent="." unique_id=554543399]
+offset_left = 136.00002
+offset_top = 832.00006
+offset_right = 914.0
+offset_bottom = 1184.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("8_f1jlr")
+expand_mode = 1
+script = ExtResource("9_qidtl")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="CharactersButton" unique_id=2120414705]
+position = Vector2(288, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharactersButton/Area2D" unique_id=1757278718]
+position = Vector2(100.57143, 49.142822)
+scale = Vector2(3.5, 0.9)
+shape = SubResource("CircleShape2D_5v284")
+
+[node name="ItemsGuideButton" type="TextureRect" parent="." unique_id=1874137856]
+offset_left = 1288.0
+offset_top = 839.99994
+offset_right = 2066.0
+offset_bottom = 1192.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("9_x2i1m")
+expand_mode = 1
+script = ExtResource("11_pqbxy")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="ItemsGuideButton" unique_id=1452339895]
+position = Vector2(388.57147, 171.4287)
+scale = Vector2(1.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemsGuideButton/Area2D" unique_id=1648441894]
+position = Vector2(0, 4)
+scale = Vector2(3, 0.9)
 shape = SubResource("CircleShape2D_g4rp4")
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="." unique_id=1207864976]
+stream = ExtResource("8_g4rp4")
+
+[node name="CharacterBios" type="Node2D" parent="." unique_id=160173319]
+
+[node name="Bimmy" type="TextureRect" parent="CharacterBios" unique_id=213772875]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("12_5v284")
+
+[node name="BusDriver" type="TextureRect" parent="CharacterBios" unique_id=1769879812]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("13_cfe7c")
+
+[node name="Mum" type="TextureRect" parent="CharacterBios" unique_id=1196376536]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("14_tgckn")
+
+[node name="ItemsGuide" type="Node2D" parent="." unique_id=122896689]
+
+[node name="TextureRect" type="TextureRect" parent="ItemsGuide" unique_id=942080948]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("15_5v284")
+
+[node name="TextureRect2" type="TextureRect" parent="ItemsGuide" unique_id=570508552]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("16_0t5gk")
+
+[node name="TextureRect3" type="TextureRect" parent="ItemsGuide" unique_id=1862607892]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("17_pqbxy")
+
+[node name="TextureRect4" type="TextureRect" parent="ItemsGuide" unique_id=1231060476]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("19_pqbxy")
+
+[node name="TextureRect5" type="TextureRect" parent="ItemsGuide" unique_id=1830728562]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("19_4i03b")
+
+[node name="TextureRect6" type="TextureRect" parent="ItemsGuide" unique_id=1890197600]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("20_du65c")
+
+[node name="NextBtn" type="Button" parent="." unique_id=197705303]
+offset_left = 184.0
+offset_top = 1024.0
+offset_right = 266.0
+offset_bottom = 1077.0
+theme_override_font_sizes/font_size = 32
+text = "Next
+"
+
+[node name="PrevBtn" type="Button" parent="." unique_id=1495425194]
+offset_left = 8.0
+offset_top = 1024.0
+offset_right = 149.0
+offset_bottom = 1077.0
+theme_override_font_sizes/font_size = 32
+text = "Previous"
 
 [connection signal="mouse_entered" from="StartButton" to="StartButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="StartButton" to="StartButton" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="StartButton/Area2D" to="StartButton" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="StartButton/Area2D" to="StartButton" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="CharactersButton/Area2D" to="CharactersButton" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CharactersButton/Area2D" to="CharactersButton" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="ItemsGuideButton/Area2D" to="ItemsGuideButton" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="ItemsGuideButton/Area2D" to="ItemsGuideButton" method="_on_area_2d_mouse_exited"]

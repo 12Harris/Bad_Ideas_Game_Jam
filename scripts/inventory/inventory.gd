@@ -11,6 +11,7 @@ var requiredItem = 0
 
 # A signal to notify the UI when the inventory changes.
 signal inventory_changed
+signal inventory_removed(index)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,7 +34,11 @@ func add_item(item : Inventory_Item):
 	inventory_changed.emit()
 	if requiredItem < 4:
 		requiredItem += 1
-
+		
+func remove_item(index):
+	_items.remove_at(index)
+	inventory_removed.emit(index)
+	
 #Add inventory items from file
 func read_inventory_from_file() -> void:
 	print("okosk")

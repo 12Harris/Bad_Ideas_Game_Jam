@@ -2,12 +2,23 @@
 
 [ext_resource type="Texture2D" uid="uid://dvs01hyjusavm" path="res://assets/Loose_Win_Screen/Losing-Screen.png" id="1_6bcno"]
 [ext_resource type="AudioStream" uid="uid://ccvd3csysx20t" path="res://assets/Loose_Win_Screen/Win Screen/Win Sound & quote.mp3" id="3_gijjb"]
+[ext_resource type="Texture2D" uid="uid://blmis1g8q82lk" path="res://assets/Loose_Win_Screen/Lose-Text-(pop-up-effect).png" id="4_4noiy"]
 [ext_resource type="AudioStream" uid="uid://m1t7rrq0mm30" path="res://assets/Loose_Win_Screen/Fail phrase & sound.mp3" id="4_88ekj"]
+[ext_resource type="Texture2D" uid="uid://ddpx5slynggpx" path="res://assets/credits/credits.png" id="6_88ekj"]
+
+[sub_resource type="Gradient" id="Gradient_88ekj"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gijjb"]
+gradient = SubResource("Gradient_88ekj")
+width = 1920
+height = 1080
+fill_from = Vector2(0, 0.03846154)
 
 [node name="Game_Over" type="Node2D" unique_id=1272012593]
 process_mode = 3
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1292939904]
+[node name="LooseScreen" type="TextureRect" parent="." unique_id=1292939904]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_6bcno")
@@ -19,3 +30,21 @@ stream = ExtResource("3_gijjb")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GlobalSounds" unique_id=1949342628]
 stream = ExtResource("4_88ekj")
+
+[node name="LostGameLabel" type="Sprite2D" parent="." unique_id=675052719]
+visible = false
+position = Vector2(1568, 360)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_4noiy")
+
+[node name="CreditsScreen" type="Sprite2D" parent="." unique_id=63263766]
+visible = false
+position = Vector2(960, 540)
+texture = SubResource("GradientTexture2D_gijjb")
+
+[node name="Image2" type="TextureRect" parent="CreditsScreen" unique_id=933113602]
+offset_left = -488.0
+offset_top = -436.0
+offset_right = 466.0
+offset_bottom = 372.0
+texture = ExtResource("6_88ekj")

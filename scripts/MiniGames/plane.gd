@@ -28,25 +28,6 @@ func _process(delta: float) -> void:
 	calculate_trajectory()
 	
 	
-func _input(event):
-	pass
-	#if event is InputEventKey and event.pressed:
-		#var keycode = event.as_text_physical_keycode()	
-		#
-		#if keycode == "F":
-			#if flight_distance < max_flight_distance:
-				#flight_distance+=2.5
-			#if _speed < _max_speed:
-				#_speed += 0.1
-	#
-			#calculate_plane_trajectory()
-	
-	#elif event is InputEventKey and event.is_released():
-		#var keycode = event.as_text_physical_keycode()
-		#if keycode == "F":
-			#throw_plane()
-			#on_thrown.emit()
-			
 func _physics_process(delta):
 	super._physics_process(delta)
 	

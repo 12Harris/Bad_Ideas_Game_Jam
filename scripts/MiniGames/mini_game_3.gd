@@ -87,6 +87,7 @@ func fail():
 	Game_Manager.warn_player()
 	item_required = true
 	Game_Manager.sounds.play_sound(self,0)
+	_player.increase_clout(-clout_gain)
 	await G_Utils.wait(2)
 	Game_Manager.show_item_indicator(2)
 	#decerase clout points
@@ -114,9 +115,9 @@ func calculate_suspicion():
 func display_info():
 	_information = ""
 	
-	_information = "Congratulations! You won the first minigame!\n\n"
+	_information = "Congratulations! You won the second minigame!\n\n"
 
-	_information += "MINIGAME 2 - Hit the bus driver with a fart bomb. Use the mouse to aim.
+	_information += "MINIGAME 3 - Hit the bus driver with a fart bomb. Use the mouse to aim.
 		Hold \"F\" to charge and release to throw.\nDon't get caught!\n"
 		
 	UI_Manager.showInfo(_information)
@@ -131,8 +132,8 @@ func start(show_info = true):
 	
 	UI_Manager.show_throw_force_meter(true)
 	_busdriver.set_base_update_interval(6)
-	UI_Manager.reset_susp_meter()
-	
+
+
 	#if _busdriver.total_suspicion > 50 and _busdriver.total_suspicion < 100:
 		#Game_Manager._busdriver.set_suspicion(30)
 		
@@ -144,6 +145,9 @@ func start(show_info = true):
 		display_info()
 
 func on_item_selected(index):
+	
+	super.on_item_selected(index)
+	
 	if running and index == 2 and item_required:
 
 		if !_player.in_action_zone():
@@ -177,10 +181,11 @@ func on_player_entered_action_zone():
 	
 func on_player_left_action_zone():
 	
-	if !running:
+	if!running:
 		return
-
 	_player.set_pose(0,0)
 	if !_fartbomb._is_flying:
-		_fartbomb.reset()	
+		_fartbomb.reset()
+		item_required = true	
 		_fartbomb.enabled = false
+		Game_Manager.show_item_indicator(2)

@@ -39,24 +39,41 @@ func increase_clout(clout_gain) -> void:
 		await G_Utils.wait(1)
 		_total_clout = 0
 		UI_Manager.reset_clout_meter(100)
-	
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-		var keycode = event.as_text_physical_keycode()
 		
-		if !Game_Manager.get_current_minigame().requires_arrow_keys():
-			if event.pressed and keycode == "Left" :
-				try_move(-Vector2.RIGHT)
-			elif event.pressed and keycode == "Right" :
-				try_move(Vector2.RIGHT)
-			elif event.is_released() and (keycode == "Left" or keycode == "KEY_RIGHT"):
-				_is_moving = false
-			
-			Game_Manager.get_current_minigame().cancel_actions()
+		
+
+func _physics_process(delta):
+   	
+	if Game_Manager.game_timer == null:
+		return
+		
+	if Game_Manager.current_mini_game == -1 or !Game_Manager.get_current_minigame().requires_arrow_keys():
+		
+		print("moiving")
+		_move_speed = 440 #470 original
+		if Input.is_action_pressed("Left"):
+			try_move(-Vector2.RIGHT)
+		elif Input.is_action_pressed("Right") :
+			try_move(Vector2.RIGHT)
 		else:
-			if Input.is_action_just_pressed("Cancel") and !in_safety_zone():
-				hide()
-			Game_Manager.get_current_minigame().cancel_actions()
+			_is_moving = false
+		
+		Game_Manager.get_current_minigame().cancel_actions()
+	else:
+		_move_speed = 440 #470 original
+		if Input.is_action_pressed("Right") and !in_action_zone():
+			try_move(Vector2.RIGHT)
+		
+		elif Input.is_action_pressed("Left") and !in_action_zone():
+			try_move(-Vector2.RIGHT)
+			
+		elif Input.is_action_pressed("Cancel") and !in_safety_zone():
+			hide()
+	Game_Manager.get_current_minigame().cancel_actions()
+	#move_and_slide()		
+
+func _input(event: InputEvent) -> void:
+	pass
 				
 func get_total_clout() -> int:
 	return _total_clout
@@ -65,6 +82,8 @@ func power_boost():
 	powerboost.emit()
 
 func hide():
+	print("hide!")
+	_move_speed = 50
 	while !in_safety_zone():
 		try_move(-Vector2.RIGHT)
 		await get_tree().process_frame
@@ -74,7 +93,7 @@ func try_move(direction:Vector2):
 		return
 	
 	var first_pose = poses.get_child(0)
-	var screen_pos = get_viewport().get_canvas_transform() * first_pose.global_position
+	var screen_pos  =Game_Manager._sub_viewport_2.get_canvas_transform() * first_pose.global_position
 	var initial_screen_pos = screen_pos
 	print(screen_pos)
 	if direction == -Vector2.RIGHT:
@@ -100,23 +119,28 @@ func try_move(direction:Vector2):
 		if screen_pos.x >= 375.0 and !in_action_zone():
 			on_entered_action_zone.emit()
 
-	var world_pos = get_viewport().get_canvas_transform().affine_inverse() * screen_pos
+	var world_pos = Game_Manager._sub_viewport_2.get_canvas_transform().affine_inverse() * screen_pos
 	first_pose.global_position = world_pos
 	
 	for child in poses.get_children():
 		child.global_position = first_pose.global_position
 
 func in_safety_zone() ->bool:
-	return (get_viewport().get_canvas_transform() * _current_pose.global_position).x <= 20
+	return (Game_Manager._sub_viewport_2.get_canvas_transform() * _current_pose.global_position).x <= 20
 
 func in_action_zone() ->bool:
-	return (get_viewport().get_canvas_transform() * _current_pose.global_position).x >= 375
-
+	
+	if(!Game_Manager.game_lost()):
+		return (Game_Manager._sub_viewport_2.get_canvas_transform() * _current_pose.global_position).x >= 375
+	else:
+		return false
+		
 func is_safe() ->bool:
 	return in_safety_zone()
 	
 func set_pose(index, duration, override:bool= false):
 	
+	print("setting new pose")
 	_current_pose.visible = false
 	
 	if !override:

@@ -2,10 +2,16 @@ extends Node
 class_name Utils
 
 func wait(seconds: float) -> void:
-	await get_tree().create_timer(seconds).timeout
+	await get_tree().create_timer(seconds, false).timeout
 
+func load_intro_scene():
+	change_scene("res://scenes/IntroVideo.tscn")
+	await wait(0.1)
+	Game_Manager.play_intro_video()
+	
 func load_game_scene():
-	await change_scene("res://scenes/Main_3D.tscn")
+	change_scene("res://scenes/Main_3D.tscn")
+	await wait(0.1)
 	Game_Manager.initialize_game()
 
 func load_loose_scene():
@@ -14,11 +20,18 @@ func load_loose_scene():
 	Global_Sounds.initialize()
 	await wait(0.1)
 	Global_Sounds.play_loose_game_sound()
+	UI_Manager.display_lost_game_label()
+	await wait(6.0)
+	UI_Manager.show_credits()
 
 func load_win_scene():
 	await change_scene("res://scenes/GameWon.tscn")
+	await wait(0.2)
 	Global_Sounds.initialize()
+	await wait(0.1)
 	Global_Sounds.play_win_game_sound()
+	await wait(6.0)
+	UI_Manager.show_credits()
 
 func change_scene(scene_path: String):
 	get_tree().change_scene_to_file(scene_path)

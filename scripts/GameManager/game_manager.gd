@@ -41,7 +41,7 @@ var interact_input_action_2 = "interact2"
 var bus_seats_left:Array[StaticBody3D]= []
 var bus_seats_right:Array[StaticBody3D]= []
 
-var current_mini_game : int = 3
+var current_mini_game : int = -1
 
 var _minigame_warnings : int = 0
 
@@ -50,10 +50,21 @@ var _inventory_ui:InventoryUI
 var _sixty_seven_enabled:bool = false
 
 var _music:Music
+
+var num_completed_games: int = 0
 #Register the UI
 func register_ui(ui):
 	_ui = ui
 
+func skip_intro_video():
+	get_tree().current_scene.get_node("VideoStreamPlayer").stop()
+	G_Utils.load_game_scene()
+	
+func play_intro_video():
+	get_tree().current_scene.get_node("SkipBtn").pressed.connect(skip_intro_video)
+	get_tree().current_scene.get_node("VideoStreamPlayer").finished.connect(G_Utils.load_game_scene)
+	get_tree().current_scene.get_node("VideoStreamPlayer").play()
+	
 #Register the player
 func register_player(p):
 	_player = p
@@ -93,7 +104,7 @@ func initialize_game() -> void:
 	_sub_viewport.physics_object_picking = true
 	_inventory_ui = _sub_viewport.get_node("TestingGroundsBIGJ/UI_Root/InventoryUi/")
 	UI_Manager.fade_in_background()
-	_sub_viewport_2 = get_tree().current_scene.get_node("ViewportContainer/SubViewport")
+	_sub_viewport_2 = get_tree().current_scene.get_node("ViewportContainer/SubViewport3D")
 	bus_seats_left.assign(_sub_viewport_2.get_node("Collision/Seats/Left").get_children())
 	bus_seats_right.assign(_sub_viewport_2.get_node("Collision/Seats/Right").get_children())
 	game_timer = _sub_viewport.get_node("TestingGroundsBIGJ/GameTimer")
@@ -103,15 +114,16 @@ func initialize_game() -> void:
 	_player.poses =_sub_viewport_2.get_node("BimmyPoses")
 	_player._current_pose = _player.poses.get_child(0)
 	_busdriver._current_pose = _busdriver.poses.get_child(0)
-
+	
+	sounds.play_whisper_sound()
 	game_timer.timeout.connect(_on_timeout)
 	await G_Utils.wait(2)
-
-	for i in range(4):
-		if mini_games[i].id == current_mini_game:
-			mini_games[i].running = true
-			mini_games[i].display_info()
-			_inventory_ui.show_item_indicator(mini_games[i].id)
+	UI_Manager._mayhem_box.visible = false
+	#for i in range(4):
+		#if mini_games[i].id == current_mini_game:
+			#mini_games[i].running = true
+			#mini_games[i].display_info()
+			#_inventory_ui.show_item_indicator(mini_games[i].id)
 	
 	_music.play_background_music()
 	
@@ -120,11 +132,12 @@ func initialize_game() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	UI_Manager.update()
-	
+
 func _input(event):
 		# Mouse in viewport coordinates.
 	if event is InputEventMouseMotion:
@@ -189,22 +202,27 @@ func game_lost():
 func _on_minigame_ended(minigame):
 	print("mini game index: ",current_mini_game )
 	if !game_lost():
+		num_completed_games += 1
 		#start next minigame
-		await G_Utils.wait(2)
-		if current_mini_game < 3:
-			current_mini_game = current_mini_game+1
-			#print("mini game indexi: ",current_mini_game )
-			
-			for i in range(4):
-				if mini_games[i].id == current_mini_game:
-					mini_games[i].running = true
-					mini_games[i].display_info()
-					_inventory_ui.show_item_indicator(mini_games[i].id)
-					print("mini game indexi: ",mini_games[i].id )
-					
-					return
-	else:
-		G_Utils.load_loose_scene()
+		#await G_Utils.wait(2)
+		if num_completed_games < 3:
+			pass
+			#current_mini_game = current_mini_game+1
+			##print("mini game indexi: ",current_mini_game )
+			#
+			#for i in range(4):
+				#if mini_games[i].id == current_mini_game:
+					#mini_games[i].running = true
+					#mini_games[i].display_info()
+					#_inventory_ui.show_item_indicator(mini_games[i].id)
+					#print("mini game indexi: ",mini_games[i].id )
+					#
+					#return
+		else:
+			await G_Utils.wait(1.5)
+			_busdriver.distracted = true
+			G_Utils.load_win_scene()
+
 
 func game_over(message):
 	await G_Utils.wait(1.5)

@@ -22,6 +22,7 @@ var item_required: bool = true
 var _player_spotted:bool = false
 var _num_tries :int = 0
 var stop_game:bool = false
+var _completed = false
 var id = 0
 
 @export var _inventory_ui:InventoryUI
@@ -96,8 +97,8 @@ func fail()->void:
 	failed.emit(self)
 
 func start(show_info = true):
-	_num_tries += 1
 	running = true
+	_num_tries += 1
 
 func calculate_suspicion():
 	pass
@@ -123,8 +124,10 @@ func _on_clout_level_increased() -> void:
 	Game_Manager._on_player_powerboost()
 
 func game_over():
+	_completed = true
 	ended.emit(self)
 	running = false
+	G_Inventory.remove_item(id)
 	
 
 func _on_busdriver_stop_looking_back():
@@ -134,8 +137,15 @@ func _on_busdriver_stop_looking_back():
 	_player_spotted = false
 	
 func on_item_selected(index):
-	pass
-
+	
+	if !_completed and (Game_Manager.current_mini_game == -1 or !Game_Manager.get_current_minigame().running):
+		
+		if _num_tries == 0 or UI_Manager._item_indicator.visible == true:
+			Game_Manager.current_mini_game = index
+			Game_Manager.get_current_minigame().running = true
+			UI_Manager.pause_game()
+			Game_Manager.get_current_minigame().display_info()
+		
 func requires_arrow_keys():
 	return false
 	
@@ -149,5 +159,4 @@ func on_player_entered_action_zone():
 	pass
 
 func on_player_left_action_zone():
-	pass
 	pass

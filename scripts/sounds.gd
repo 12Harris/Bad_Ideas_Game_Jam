@@ -2,8 +2,11 @@ extends Node
 class_name Sounds
 
 var _minigame_1_sounds: Array[AudioStreamPlayer] = []
+var _minigame_2_sounds: Array[AudioStreamPlayer] = []
 var _minigame_3_sounds: Array[AudioStreamPlayer] = []
+var _whisper_sound:AudioStreamPlayer
 @export var _minigame_1_sound_files: Array[String] = []
+@export var _minigame_2_sound_files: Array[String] = []
 @export var _minigame_3_sound_files: Array[String] = []
 
 var _index_of_last_burp_sound = 0
@@ -14,25 +17,36 @@ func _ready() -> void:
 		child.stream = load(file)
 		get_node("MiniGame1/Burping/").add_child(child)
 		_minigame_1_sounds.append(child)
+		
+	for file:String in _minigame_2_sound_files:
+		var child = AudioStreamPlayer.new()
+		child.stream = load(file)
+		get_node("MiniGame2").add_child(child)
+		_minigame_2_sounds.append(child)
 	
 	for file:String in _minigame_3_sound_files:
 		var child = AudioStreamPlayer.new()
 		child.stream = load(file)
 		get_node("MiniGame3").add_child(child)
 		_minigame_3_sounds.append(child)
-
+	
+	_whisper_sound = get_node("WhisperSound")
+	
 	Game_Manager.register_sounds(self)
 	randomize()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func play_whisper_sound():
+	_whisper_sound.play()
 	
 func play_sound(minigame, index):
 	if minigame is MiniGame1:
 		_minigame_1_sounds[index].stream.loop = false
 		_minigame_1_sounds[index].play()
 	
+	elif minigame is MiniGame2:
+		_minigame_2_sounds[index].stream.loop = false
+		_minigame_2_sounds[index].play()
+		
 	elif minigame is MiniGame3:
 		_minigame_3_sounds[index].stream.loop = false
 		_minigame_3_sounds[index].play()

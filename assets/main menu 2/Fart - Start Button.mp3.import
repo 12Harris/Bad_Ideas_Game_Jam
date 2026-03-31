@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bncmf450vji6h"
+path="res://.godot/imported/Fart - Start Button.mp3-3eff842c0bc61935e8e479e1fc99ae23.mp3str"
+
+[deps]
+
+source_file="res://assets/main menu 2/Fart - Start Button.mp3"
+dest_files=["res://.godot/imported/Fart - Start Button.mp3-3eff842c0bc61935e8e479e1fc99ae23.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -16,9 +16,10 @@ func _ready():
 	# Connect to the inventory's signal.
 	# Now, whenever an item is added or removed, update_ui() is called.
 	G_Inventory.inventory_changed.connect(update_ui)
-	
+	G_Inventory.inventory_removed.connect(update_ui_2)
 	await get_tree().process_frame
 	slots = grid_container.get_children()
+	
 	inventory_items = G_Inventory._items
 	
 	inventory_item_detection_area.append(get_node("GridContainer/InventorySlot/Area2D"))
@@ -49,6 +50,11 @@ func update_ui():
 			# Otherwise, clear the slot.
 			slot.get_node("TextureRect").texture = null
 
+func update_ui_2(index):
+ 	
+	var slot = slots[index]
+	slot.get_node("TextureRect").texture = null
+			
 func inventory_item1_selected():
 	selectedSlot = slots[0]
 	
@@ -66,7 +72,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		#if event.pressed:
 		var btn = event.as_text()
 		if btn == "Left Mouse Button":
-			if selectedSlot != null:
+			if selectedSlot != null and selectedSlot.get_node("TextureRect").texture != null:
 				print("sel slot is valid")
 				var index = slots.find(selectedSlot)
 				if index < inventory_items.size():

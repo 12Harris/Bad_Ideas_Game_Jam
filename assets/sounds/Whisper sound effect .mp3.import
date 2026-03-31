@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://mjer7834jocw"
+path="res://.godot/imported/Whisper sound effect .mp3-d2d9bca2d7cd17eddd8f14145985d440.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Whisper sound effect .mp3"
+dest_files=["res://.godot/imported/Whisper sound effect .mp3-d2d9bca2d7cd17eddd8f14145985d440.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

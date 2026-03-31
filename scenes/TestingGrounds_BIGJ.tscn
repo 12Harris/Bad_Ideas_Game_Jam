@@ -51,19 +51,20 @@ script = ExtResource("4_oa3b6")
 [node name="UI_Root" type="CanvasLayer" parent="." unique_id=1046426192]
 process_mode = 3
 
+[node name="Background" type="TextureRect" parent="UI_Root" unique_id=771576177]
+process_mode = 1
+modulate = Color(1, 1, 1, 0.32941177)
+z_as_relative = false
+offset_left = 3.0
+offset_right = 1923.0
+offset_bottom = 1080.0
+texture = ExtResource("6_df0dt")
+
 [node name="BusKids" type="TextureRect" parent="UI_Root" unique_id=1796011567]
 z_index = 1
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("6_36a8y")
-
-[node name="Background" type="TextureRect" parent="UI_Root" unique_id=771576177]
-process_mode = 1
-modulate = Color(1, 1, 1, 0.32941177)
-offset_left = 3.0
-offset_right = 1923.0
-offset_bottom = 1080.0
-texture = ExtResource("6_df0dt")
 
 [node name="CloutProgress" type="TextureProgressBar" parent="UI_Root" unique_id=236410749]
 offset_top = 16.0
@@ -75,6 +76,7 @@ texture_progress = ExtResource("9_dp0r7")
 script = ExtResource("2_sporm")
 
 [node name="ThrowForceMeter" type="TextureProgressBar" parent="UI_Root" unique_id=553623052]
+visible = false
 offset_left = 1729.0
 offset_top = 688.0
 offset_right = 1754.0
@@ -179,6 +181,15 @@ offset_right = 1480.0
 offset_bottom = 632.0
 texture = ExtResource("10_df0dt")
 expand_mode = 1
+
+[node name="PoseCounter" type="Label" parent="UI_Root" unique_id=944346483]
+offset_left = 1296.0
+offset_top = 672.0
+offset_right = 1624.0
+offset_bottom = 714.0
+theme_override_colors/font_color = Color(0, 0, 18.892157, 1)
+theme_override_font_sizes/font_size = 30
+text = "Completed Poses: 0/15"
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=927583162]
 process_mode = 3

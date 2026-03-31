@@ -39,6 +39,7 @@ func _input(event):
 		return
 
 	if event is InputEventKey:
+		print("current letter: ", _current_letter_index)
 		var keycode = event.as_text_physical_keycode()
 		if event.pressed and _pressed == false:
 			_pressed = true
@@ -96,6 +97,7 @@ func start(show_info=true):
 	num_burps = 0
 	_current_letter_index = 0
 	suspicion_gain = 0
+	UI_Manager.show_throw_force_meter(false)
 	super.start()
 	set_process_input(true)
 	if show_info:
@@ -131,6 +133,8 @@ func calculate_suspicion():
 #only called if minigame succeded	
 func calculate_clout():
 	Game_Manager._player.increase_clout(1.5+ (chain_length-1))
+	if Game_Manager._sixty_seven_enabled:
+		chain_length = 0
 
 func is_noisy()->bool:
 	return true
@@ -143,6 +147,8 @@ func burp():
 	player.set_pose(2,0.7)
 
 func on_item_selected(index):
+	
+	super.on_item_selected(index)
 	if running and index == 0 and item_required:
 		#drink the soda
 		var player = Game_Manager._player

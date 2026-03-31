@@ -18,6 +18,7 @@ var _item_indicator : Sprite2D
 var	_typed_letter_label:Label
 var _sixty_seven_mode:Sprite2D
 var minigame_4_hints:Node2D
+var pose_counter: Label
 
 func initialize_game() -> void:
 	_ai_state = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/AI State")
@@ -36,10 +37,12 @@ func initialize_game() -> void:
 	_typed_letter_label = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/LetterLabel")
 	_sixty_seven_mode = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/67Mode")
 	minigame_4_hints = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame4Hints")
+	pose_counter =  get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/PoseCounter")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Game_Manager.register_ui(self)
-
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func updateMiniGame(minigame:MiniGame):
 	pass
@@ -107,8 +110,25 @@ func update_ai_state(state:String,look_at_mirror:bool):
 		_look_at_mirror.text = ""
 		
 func showInfo(text:String):
-	_information.get_node("InfoText").text = "Try to complete as many minigames before the time runs out.\n" \
-		+ "Avoid getting caught by the driver!\n\n" + text + "\n\nPress Tab to pause the game."
+	
+	if Game_Manager.current_mini_game != 3:
+		_information.get_node("InfoText").text \
+		= "CONTROLS: \n\nLeft and Right Arrow Keys --- Left To Center(Left is Safe, Center to start and complete minigames).\n"
+	else:
+		_information.get_node("InfoText").text \
+		= "CONTROLS: \n\nUp,Right,Down.Left Arrow Keys --- Perform poses.\n"
+		
+		_information.get_node("InfoText").text \
+		+= "Space --- Move to safe zone\n"
+
+	_information.get_node("InfoText").text += "Tab --- Pause Game\n\n"
+	
+	
+	_information.get_node("InfoText").text += "INSTRUCTIONS: \n\n"
+	
+	_information.get_node("InfoText").text \
+	+= "Try to complete as many minigames before the time runs out.\n" \
+		+ "Avoid getting caught by the driver!\n\n" + text + "\n"
 	
 func continue_game():
 	
@@ -121,6 +141,7 @@ func continue_game():
 	
 func pause_game():
 	get_tree().paused = true
+	print("game paused!")
 	_information.visible = true
 
 func quit_game():
@@ -149,10 +170,31 @@ func display_warning():
 func update_minigame_1(letter):
 	_typed_letter_label.text = "Current Letter: " + letter
 
+func disable_letter_hint():
+	_typed_letter_label.visible = false
+	
 func unhint_pose(index):
 	minigame_4_hints.get_child(index).visible = false
+
+func enable_pose_counter():
+	pose_counter.visible = true
+	
+func set_pose_counter(value):
+	pose_counter.text = "Completed Poses: " + str(value) + "/" + str(15)
+
+func display_lost_game_label():
+	await G_Utils.wait(0.5)
+	get_tree().current_scene.get_node("LostGameLabel").visible = true
+
+func show_credits():
+	get_tree().current_scene.get_node("LooseScreen").visible = false
+	get_tree().current_scene.get_node("LostGameLabel").visible = false
+	get_tree().current_scene.get_node("CreditsScreen").visible = true
 	
 func hint_pose(index,duration):
+	
+	if(Game_Manager.game_lost()):
+		return
 	minigame_4_hints.get_child(index).visible = true
 	await G_Utils.wait(duration)
 	minigame_4_hints.get_child(index).visible = false

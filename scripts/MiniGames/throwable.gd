@@ -144,11 +144,15 @@ func lerp_to_point(end):
 	var start_pos = _mesh.global_position
 	#var duration = (1/_speed*10) * (destination_pos-initial_pos).length()*0.1
 	var duration = (1/_speed*10) * (end-start_pos).length()*0.2
-	while(elapsed < duration and !_grounded and !_collided):
+	while(elapsed < duration and !_grounded and !_collided and !Game_Manager.game_lost()):
 		elapsed += get_process_delta_time()
 		_mesh.global_position = start_pos.lerp(end,elapsed/duration)
-		_mesh.look_at(straight)
-		await get_tree().process_frame
+		
+		if calculate_lookat:
+			_mesh.look_at(straight)
+		
+		if !Game_Manager.game_lost():
+			await get_tree().process_frame
 		#await G_Utils.wait(0.1)
 
 func calculate_trajectory(use_mouse:bool = false):
@@ -188,16 +192,18 @@ func calculate_trajectory(use_mouse:bool = false):
 	
 	var dir3d = destination_pos - from
 	max_flight_distance = dir3d.length()
+	
 	flight_distance = min_flight_distance + (max_flight_distance-min_flight_distance)*(charge_force/100)
 	print("min flight distance: ", flight_distance, " max: ", max_flight_distance )
-
-	#_trajectory.p1 = _trajectory.p0 + Vector2.RIGHT * flight_distance*0.33-Vector2.UP*flight_distance*t1
-	#_trajectory.p2 = _trajectory.p0 + Vector2.RIGHT * flight_distance *0.66-Vector2.UP*flight_distance*t1
-	#_trajectory.p3 = _trajectory.p0 + Vector2.RIGHT * flight_distance -Vector2.UP*flight_distance *t3
-
-	_trajectory.p1 = _trajectory.p0 + Vector2.RIGHT * max_flight_distance*0.33-Vector2.UP*max_flight_distance*t1
-	_trajectory.p2 = _trajectory.p0 + Vector2.RIGHT * max_flight_distance *0.66-Vector2.UP*max_flight_distance*t1
-	_trajectory.p3 = _trajectory.p0 + Vector2.RIGHT * max_flight_distance + 5*Vector2.RIGHT+Vector2.UP*max_flight_distance * (max_flight_distance/flight_distance)
+	
+	if use_mouse:
+		_trajectory.p1 = _trajectory.p0 + Vector2.RIGHT * flight_distance*0.33-Vector2.UP*flight_distance*t1
+		_trajectory.p2 = _trajectory.p0 + Vector2.RIGHT * flight_distance *0.66-Vector2.UP*flight_distance*t1
+		_trajectory.p3 = _trajectory.p0 + Vector2.RIGHT * flight_distance -Vector2.UP*flight_distance *t3
+	else:
+		_trajectory.p1 = _trajectory.p0 + Vector2.RIGHT * max_flight_distance*0.33-Vector2.UP*max_flight_distance*t1
+		_trajectory.p2 = _trajectory.p0 + Vector2.RIGHT * max_flight_distance *0.66-Vector2.UP*max_flight_distance*t1
+		_trajectory.p3 = _trajectory.p0 + Vector2.RIGHT * max_flight_distance + 5*Vector2.RIGHT+Vector2.UP*max_flight_distance * (max_flight_distance/flight_distance)
 	
 	_trajectory.calculate()
 	

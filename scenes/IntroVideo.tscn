@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://qgkfc0fawevx"]
+
+[ext_resource type="VideoStream" uid="uid://beqmnmpmdympw" path="res://assets/Intro Video/Game_Intro_Video.ogv" id="1_yro6x"]
+
+[node name="IntroVideo" type="Node2D" unique_id=1525615011]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1924090934]
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("1_yro6x")
+
+[node name="SkipBtn" type="Button" parent="." unique_id=22052931]
+offset_left = 1816.0
+offset_top = 1048.0
+offset_right = 1916.0
+offset_bottom = 1079.0
+text = "Skip Video
+"

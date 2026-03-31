@@ -4,10 +4,19 @@
 [ext_resource type="Script" uid="uid://criq6hl3uw4v4" path="res://global_sounds.gd" id="2_iyci0"]
 [ext_resource type="AudioStream" uid="uid://ccvd3csysx20t" path="res://assets/Loose_Win_Screen/Win Screen/Win Sound & quote.mp3" id="3_fj3gx"]
 [ext_resource type="AudioStream" uid="uid://m1t7rrq0mm30" path="res://assets/Loose_Win_Screen/Fail phrase & sound.mp3" id="4_msnca"]
+[ext_resource type="Texture2D" uid="uid://ddpx5slynggpx" path="res://assets/credits/credits.png" id="5_fj3gx"]
+
+[sub_resource type="Gradient" id="Gradient_88ekj"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_msnca"]
+gradient = SubResource("Gradient_88ekj")
+width = 1920
+height = 1080
+fill_from = Vector2(0, 0.03846154)
 
 [node name="GameWon" type="Node2D" unique_id=214636168]
 process_mode = 3
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2052829711]
 offset_right = 40.0
@@ -23,3 +32,14 @@ stream = ExtResource("3_fj3gx")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GlobalSounds" unique_id=1712781710]
 stream = ExtResource("4_msnca")
+
+[node name="CreditsScreen" type="Sprite2D" parent="." unique_id=1735334408]
+position = Vector2(960, 540)
+texture = SubResource("GradientTexture2D_msnca")
+
+[node name="Image2" type="TextureRect" parent="CreditsScreen" unique_id=814404784]
+offset_left = -488.0
+offset_top = -436.0
+offset_right = 466.0
+offset_bottom = 372.0
+texture = ExtResource("5_fj3gx")
