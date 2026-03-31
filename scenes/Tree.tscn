@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://djmyvvh7kdl41"]
 
-[ext_resource type="Texture2D" uid="uid://5482xr08dxdq" path="res://assets/Character/Bimmy-holding-fart-bomb_2.png" id="1_2cic4"]
+[ext_resource type="Texture2D" uid="uid://d2vw0bf3sn2sk" path="res://assets/bus/tree.png" id="1_omb14"]
 [ext_resource type="Script" uid="uid://cwvdyhsj2yah4" path="res://scenes/tree.gd" id="2_omb14"]
 
 [node name="Tree" type="Sprite3D" unique_id=404432051]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -30.482988, 3.7253666, 14.333857)
 layers = 4
-texture = ExtResource("1_2cic4")
+texture = ExtResource("1_omb14")
 script = ExtResource("2_omb14")

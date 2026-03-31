@@ -13,7 +13,7 @@ void fragment() {
   	vec4 ui = texture(tex_b, UV);
     vec4 scene = texture(tex_a, UV);
 
-    COLOR.rgb = mix(scene.rgb, ui.rgb,scene.a);
+    COLOR.rgb = mix(scene.rgb, ui.rgb,ui.a);
 	
    	COLOR.a = 1.0;
 }
