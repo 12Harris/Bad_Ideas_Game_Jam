@@ -176,6 +176,13 @@ func on_fartbomb_thrown():
 	_player.set_pose(4,1)
 	_look_at_diff = _start_looking - (300-Game_Manager.game_timer.get_time_left())
 	
+	var timer = 0
+	while timer < 1 and _busdriver.get_total_suspicion() < 100:
+		timer += get_process_delta_time()
+		await get_tree().process_frame
+		if _busdriver.player_spotted:
+			_busdriver.make_suspicious(100)
+	
 func on_player_entered_action_zone():
 	if !running:
 		return

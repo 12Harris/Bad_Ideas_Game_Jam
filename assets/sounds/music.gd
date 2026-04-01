@@ -13,6 +13,7 @@ func initialize():
 	pass
 
 func play_background_music():
+	(get_child(0) as AudioStreamPlayer).stream.loop = true
 	get_child(0).play()
 
 func stop_music(index):

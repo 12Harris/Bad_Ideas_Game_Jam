@@ -105,7 +105,7 @@ func _process(delta: float) -> void:
 
 func display_info(game_over = false):
 
-	_information += "MINIGAME 4 - Strike the correct poses using the arrow keys.Hold the key for the length of the pose
+	_information = "MINIGAME 4 - Strike the correct poses using the arrow keys.Hold the key for the length of the pose
 	and release for the next pose. Press space key to hide.
 	\nDon't get caught!\n"
 	

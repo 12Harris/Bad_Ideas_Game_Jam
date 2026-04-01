@@ -80,7 +80,7 @@ var _current_pose: TextureRect
 var _ignore_suspicion:bool = false
 var _base_update_interval:float = 4
 var distracted:bool = false
-var player_spotted = false
+var player_spotted :bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

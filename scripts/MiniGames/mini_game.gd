@@ -146,9 +146,10 @@ func on_item_selected(index):
 	
 	if !_completed and (Game_Manager.current_mini_game == -1 or !Game_Manager.get_current_minigame().running):
 		
-		if _num_tries == 0 or UI_Manager._item_indicator.visible == true:
+		if _player.in_action_zone() and  (_num_tries == 0 or Game_Manager._inventory_ui._item_indicator.visible == true):
 			Game_Manager.current_mini_game = index
 			Game_Manager.get_current_minigame().running = true
+			Game_Manager.show_item_indicator(index)
 			UI_Manager.pause_game()
 			Game_Manager.get_current_minigame().display_info()
 		

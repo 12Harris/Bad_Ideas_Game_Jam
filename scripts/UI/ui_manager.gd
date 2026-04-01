@@ -19,6 +19,7 @@ var	_typed_letter_label:Label
 var _sixty_seven_mode:Sprite2D
 var minigame_4_hints:Node2D
 var pose_counter: Label
+var _sixty_seven_clickable = false
 
 func initialize_game() -> void:
 	_ai_state = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/AI State")
@@ -38,6 +39,9 @@ func initialize_game() -> void:
 	_sixty_seven_mode = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/67Mode")
 	minigame_4_hints = get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/MiniGame4Hints")
 	pose_counter =  get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/PoseCounter")
+	_sixty_seven_mode.get_node("TriggerArea").mouse_entered.connect(sixty_seven_clickable)
+	_sixty_seven_mode.get_node("TriggerArea").mouse_exited.connect(sixty_seven_not_clickable)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Game_Manager.register_ui(self)
@@ -92,13 +96,31 @@ func inc_susp_meter(amount):
 
 func show_throw_force_meter(hide:bool):
 	_throw_force_meter.visible = hide
-	
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		var btn = event.as_text()
+		if btn == "Left Mouse Button" and _sixty_seven_clickable:
+			Game_Manager.enable_67_mode(13)
+			_sixty_seven_clickable = false
+			show_sixty_seven_mode(false)
+			Game_Manager.sounds.play_67()
+			Game_Manager._player.pose_67_mode()
+
+
+func enable_67_mode_label(show):
+	get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/67 Mode Label").visible = show	
+
+func show_sixty_seven_mode(show):
+	_sixty_seven_mode.visible = show
+	print("67 mode enabled")
+		
 func update():
 	
 	if game_timer == null:
 		return
 		
-	game_timer.set_text(str(int(Game_Manager.game_timer.get_time_left())))
+	game_timer.set_text("Time left: " + str(int(Game_Manager.game_timer.get_time_left())))
 		
 func update_ai_state(state:String,look_at_mirror:bool):
 	_ai_state.text = "AI State: " + state
@@ -111,15 +133,17 @@ func update_ai_state(state:String,look_at_mirror:bool):
 		
 func showInfo(text:String):
 	
-	if Game_Manager.current_mini_game != 3:
-		_information.get_node("InfoText").text \
-		= "CONTROLS: \n\nLeft and Right Arrow Keys --- Left To Center(Left is Safe, Center to start and complete minigames).\n"
-	else:
-		_information.get_node("InfoText").text \
-		= "CONTROLS: \n\nUp,Right,Down.Left Arrow Keys --- Perform poses.\n"
+	
+	_information.get_node("InfoText").text \
+	= "CONTROLS: \n\nLeft and Right Arrow Keys --- Left To Center(Left is Safe, Center to start and complete minigames).\n"
+	
+	if Game_Manager.current_mini_game == 3:
 		
 		_information.get_node("InfoText").text \
-		+= "Space --- Move to safe zone\n"
+		+= "Up,Right,Down.Left Arrow Keys(Action zone) --- Perform poses while in action zone.\n"
+		
+		_information.get_node("InfoText").text \
+		+= "Space(Action Zone)--- Move to safe zone while in action zone\n"
 
 	_information.get_node("InfoText").text += "Tab --- Pause Game\n\n"
 	
@@ -180,7 +204,7 @@ func enable_pose_counter():
 	pose_counter.visible = true
 	
 func set_pose_counter(value):
-	pose_counter.text = "Completed Poses: " + str(value) + "/" + str(15)
+	pose_counter.text = "Completed Poses: " + str(value) + "/" + str(16)
 
 func display_lost_game_label():
 	await G_Utils.wait(0.5)
@@ -198,3 +222,13 @@ func hint_pose(index,duration):
 	minigame_4_hints.get_child(index).visible = true
 	await G_Utils.wait(duration)
 	minigame_4_hints.get_child(index).visible = false
+	
+func sixty_seven_clickable():
+	if !_sixty_seven_mode.visible:
+		return
+	_sixty_seven_clickable = true
+
+func sixty_seven_not_clickable():
+	if !_sixty_seven_mode.visible:
+		return
+	_sixty_seven_clickable = false

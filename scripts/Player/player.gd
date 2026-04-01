@@ -28,16 +28,25 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func pose_67_mode():
+	set_pose(13,1)
+	await G_Utils.wait(1)
+	set_pose(14,1)
+	await G_Utils.wait(1)
+	set_pose(15,1)
+	
+	
 func increase_clout(clout_gain) -> void:
+	
 	#clout_levels[CloutLevel.currentLevel].increase_clout(clout_gain)
 	_total_clout += clout_gain
 	UI_Manager.increase_clout_meter(clout_gain)
 	G_Inventory.update()
 	if _total_clout >= 100:
-		_total_clout = 100
-		Game_Manager.enable_67_mode(13)
-		await G_Utils.wait(1)
+		print("clout >= 100")
 		_total_clout = 0
+		UI_Manager.show_sixty_seven_mode(true)
+		await G_Utils.wait(1)
 		UI_Manager.reset_clout_meter(100)
 		
 		
@@ -51,7 +60,7 @@ func _physics_process(delta):
 		
 		print("moiving")
 		_move_speed = 440 #470 original
-		if Input.is_action_pressed("Left"):
+		if Input.is_action_pressed("Left") :
 			try_move(-Vector2.RIGHT)
 		elif Input.is_action_pressed("Right") :
 			try_move(Vector2.RIGHT)
@@ -128,7 +137,8 @@ func try_move(direction:Vector2):
 		child.global_position = first_pose.global_position
 
 func in_safety_zone() ->bool:
-	return (Game_Manager._sub_viewport_2.get_canvas_transform() * _current_pose.global_position).x <= 20
+	#return (Game_Manager._sub_viewport_2.get_canvas_transform() * _current_pose.global_position).x <= 20
+	return (Game_Manager._sub_viewport_2.get_canvas_transform() * _current_pose.global_position).x <= 40
 
 func in_action_zone() ->bool:
 	

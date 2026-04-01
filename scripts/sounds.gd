@@ -5,6 +5,8 @@ var _minigame_1_sounds: Array[AudioStreamPlayer] = []
 var _minigame_2_sounds: Array[AudioStreamPlayer] = []
 var _minigame_3_sounds: Array[AudioStreamPlayer] = []
 var _whisper_sound:AudioStreamPlayer
+var _67_sound:AudioStreamPlayer
+
 @export var _minigame_1_sound_files: Array[String] = []
 @export var _minigame_2_sound_files: Array[String] = []
 @export var _minigame_3_sound_files: Array[String] = []
@@ -31,12 +33,16 @@ func _ready() -> void:
 		_minigame_3_sounds.append(child)
 	
 	_whisper_sound = get_node("WhisperSound")
+	_67_sound = get_node("SixtySevenActivated")
 	
 	Game_Manager.register_sounds(self)
 	randomize()
 
 func play_whisper_sound():
 	_whisper_sound.play()
+
+func play_67():
+	_67_sound.play()
 	
 func play_sound(minigame, index):
 	if minigame is MiniGame1:

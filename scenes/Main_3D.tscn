@@ -30,12 +30,15 @@
 [ext_resource type="Texture2D" uid="uid://dow82jekpojts" path="res://assets/Character/Bimmy-burping.png" id="13_v148l"]
 [ext_resource type="PackedScene" uid="uid://celorvo0awlfy" path="res://scenes/sounds.tscn" id="13_wkics"]
 [ext_resource type="Texture2D" uid="uid://dxg5w6baibigp" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/pose-1.png" id="14_3qvwq"]
+[ext_resource type="Texture2D" uid="uid://borpyte6na4kr" path="res://assets/67 mode/6-7-Position-1.png" id="15_5bew6"]
 [ext_resource type="Texture2D" uid="uid://dwf3m0mqtjryw" path="res://assets/Character/Bimmy-throwing.png" id="15_6wwyq"]
 [ext_resource type="Texture2D" uid="uid://bor8h8w8q3k2c" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/pose-2.png" id="15_ign4p"]
 [ext_resource type="Texture2D" uid="uid://bguntewmui6sq" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/pose-3.png" id="16_lvi67"]
+[ext_resource type="Texture2D" uid="uid://ddmagxjdq4qis" path="res://assets/67 mode/6-7-Position-2.png" id="16_rg1fq"]
 [ext_resource type="Script" uid="uid://fp01jqg12mia" path="res://scripts/MiniGames/mini_game_4..gd" id="17_5kjyj"]
 [ext_resource type="Texture2D" uid="uid://bd2m1yeni72pc" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/pose-4.png" id="17_abdvq"]
 [ext_resource type="Texture2D" uid="uid://cf7vu1jktt18s" path="res://assets/Inventory/arrow.png" id="17_s87hc"]
+[ext_resource type="Texture2D" uid="uid://cnlt6r6gp4osr" path="res://assets/67 mode/6-7-Position-Fire.png" id="17_sywfs"]
 [ext_resource type="PackedScene" uid="uid://cswuxj0p1ugy6" path="res://scenes/StreetStrip.tscn" id="18_4uypw"]
 [ext_resource type="Texture2D" uid="uid://dvvput3wuneys" path="res://assets/Character/6-7-Mode-power-up.png" id="19_ueldn"]
 [ext_resource type="Texture2D" uid="uid://fpdkwt0ynpig" path="res://assets/bus/bus-kids.png" id="21_3gr0o"]
@@ -46,6 +49,7 @@
 [ext_resource type="Script" uid="uid://cnhg0s65yy82f" path="res://scripts/UI/clout_progress_bar.gd" id="24_rg1fq"]
 [ext_resource type="Texture2D" uid="uid://dbdtb5t1vbynq" path="res://assets/FartBomb/throw_force_meter_background.png" id="25_sywfs"]
 [ext_resource type="Texture2D" uid="uid://bnxna2arbh1q4" path="res://assets/FartBomb/throw_force_meter.png" id="26_onyep"]
+[ext_resource type="AudioStream" uid="uid://b0brgdrofvkig" path="res://assets/sounds/67mode activated soundeffect.mp3" id="26_wkics"]
 [ext_resource type="Texture2D" uid="uid://dqo8krthnqgee" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/mewing-pose-1.png" id="26_xqbkx"]
 [ext_resource type="Script" uid="uid://dsingcs7fqcq7" path="res://scenes/throw_force_meter.gd" id="27_77yl2"]
 [ext_resource type="Texture2D" uid="uid://bhlk82gjyqk5n" path="res://assets/Boom Box Poses Mini game-20260328T211454Z-1-001/mewing-pose-2.png" id="27_421sk"]
@@ -75,9 +79,7 @@ albedo_color = Color(0.32259828, 0.34262827, 0.33135653, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4uypw"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qof8a"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_mhma7"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4uypw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oa3b6"]
 
@@ -339,6 +341,33 @@ offset_right = 1460.0
 offset_bottom = 1528.0
 texture = ExtResource("17_abdvq")
 
+[node name="sixtyseven1" type="TextureRect" parent="BimmyPoses" unique_id=917544581]
+visible = false
+z_index = 1
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+texture = ExtResource("15_5bew6")
+
+[node name="sixtyseven2" type="TextureRect" parent="BimmyPoses" unique_id=521820026]
+visible = false
+z_index = 1
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+texture = ExtResource("16_rg1fq")
+
+[node name="sixtyseven3" type="TextureRect" parent="BimmyPoses" unique_id=1624521360]
+visible = false
+z_index = 1
+offset_left = 380.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 1528.0
+texture = ExtResource("17_sywfs")
+
 [node name="SubViewportContainerOverlay3D" type="SubViewportContainer" parent="." unique_id=1301833045]
 z_index = 1
 offset_right = 1920.0
@@ -347,12 +376,12 @@ offset_bottom = 1080.0
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainerOverlay3D" unique_id=329965068]
 transparent_bg = true
 handle_input_locally = false
-canvas_cull_mask = 4294967294
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainerOverlay3D/SubViewport" unique_id=1030657183]
 transform = Transform3D(0.99939084, 0.005459484, -0.034469824, 0, 0.98768836, 0.15643448, 0.034899496, -0.15633918, 0.9870867, 0, 5.698, 0)
+visible = false
 cull_mask = 3
 current = true
 fov = 40.0
@@ -452,7 +481,7 @@ _move_speed = 470.0
 metadata/_custom_type_script = "uid://c1tjjll3equ0l"
 
 [node name="GameTimer" type="Timer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=139929345]
-wait_time = 302.0
+wait_time = 300.0
 autostart = true
 
 [node name="MiniGame1" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=321490363 node_paths=PackedStringArray("_inventory_ui")]
@@ -490,6 +519,9 @@ process_mode = 1
 [node name="WhisperSound" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds" unique_id=1388445612]
 stream = ExtResource("24_lvi67")
 
+[node name="SixtySevenActivated" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/Sounds" unique_id=45669206]
+stream = ExtResource("26_wkics")
+
 [node name="UI_Root" type="CanvasLayer" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=1046426192]
 process_mode = 1
 layer = 0
@@ -524,8 +556,7 @@ offset_bottom = 40.0
 texture = ExtResource("21_3gr0o")
 
 [node name="CloutProgress" type="TextureProgressBar" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=236410749]
-z_index = 8
-z_as_relative = false
+z_index = 2
 offset_top = 16.0
 offset_right = 455.7481
 offset_bottom = 43.0
@@ -547,47 +578,8 @@ texture_over = ExtResource("25_sywfs")
 texture_progress = ExtResource("26_onyep")
 script = ExtResource("27_77yl2")
 
-[node name="Information" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter" unique_id=553011022]
-process_mode = 3
-visible = false
-position = Vector2(984, 664)
-
-[node name="Information" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information" unique_id=1925432005]
-process_mode = 3
-position = Vector2(984, 664)
-
-[node name="InfoTextBackground" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information/Information" unique_id=130445378]
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(1, 1, 1, 0.40392157)
-material = SubResource("ShaderMaterial_qof8a")
-offset_left = -327.99994
-offset_top = -232.0
-offset_right = -199.99994
-offset_bottom = -104.0
-scale = Vector2(6.4799953, 2.7999997)
-mouse_filter = 2
-texture = SubResource("CanvasTexture_mhma7")
-expand_mode = 1
-
-[node name="InfoText" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information/Information" unique_id=342420277]
-process_mode = 3
-offset_left = -327.99994
-offset_top = -232.0
-offset_right = -206.99994
-offset_bottom = -209.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "sdfs"
-
-[node name="ContinueBtn" type="Button" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/ThrowForceMeter/Information/Information" unique_id=1625824987]
-process_mode = 3
-offset_left = 416.0
-offset_top = 88.0
-offset_right = 495.0
-offset_bottom = 119.0
-text = "Continue"
-
 [node name="SuspProgressBar" type="TextureProgressBar" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1185315787]
-z_index = 8
+z_index = 2
 offset_top = 64.0
 offset_right = 455.0
 offset_bottom = 91.0
@@ -596,20 +588,18 @@ texture_progress = ExtResource("28_wflly")
 script = ExtResource("29_u57tv")
 
 [node name="SuspicionLabel" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1748116748]
-visible = false
-z_index = 1
-offset_left = 486.0
-offset_top = 69.0
-offset_right = 913.0
-offset_bottom = 92.0
+z_index = 3
+offset_left = 196.0
+offset_top = 65.0
+offset_right = 623.0
+offset_bottom = 88.0
 text = "Suspicion"
 
 [node name="CloutLabel" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=17553903]
-visible = false
-z_index = 1
-offset_left = 484.0
+z_index = 3
+offset_left = 201.0
 offset_top = 17.0
-offset_right = 911.0
+offset_right = 242.0
 offset_bottom = 40.0
 text = "Clout"
 
@@ -735,12 +725,21 @@ theme_override_colors/font_color = Color(0, 0, 1, 1)
 theme_override_font_sizes/font_size = 32
 
 [node name="67Mode" type="Sprite2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=345515651]
-process_mode = 1
+process_mode = 3
 visible = false
 z_index = 1
 position = Vector2(1288, 944)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("19_ueldn")
+
+[node name="TriggerArea" type="Area2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/67Mode" unique_id=273785510]
+process_mode = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root/67Mode/TriggerArea" unique_id=690197648]
+process_mode = 3
+position = Vector2(-8, -8)
+scale = Vector2(35.88, 34.44)
+shape = SubResource("CircleShape2D_4uypw")
 
 [node name="MiniGame4Hints" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=2020110533]
 process_mode = 1
@@ -795,7 +794,7 @@ offset_right = 1592.0
 offset_bottom = 310.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
-text = "Completed Poses: 0/15"
+text = "Completed Poses: 0/16"
 
 [node name="Background" type="TextureRect" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=771576177]
 process_mode = 1
@@ -805,6 +804,16 @@ offset_right = 1924.0
 offset_bottom = 1080.0
 mouse_filter = 2
 texture = ExtResource("31_abdvq")
+
+[node name="67 Mode Label" type="Label" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ/UI_Root" unique_id=1225804896]
+visible = false
+offset_left = 1160.0
+offset_top = 928.0
+offset_right = 1381.0
+offset_bottom = 962.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "67 Mode Activated!"
 
 [node name="BimmyPoses" type="Node2D" parent="SubViewportContainer/SubViewport2D/TestingGroundsBIGJ" unique_id=1623383976]
 self_modulate = Color(1, 1, 1, 0)
@@ -1120,6 +1129,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.84881455, -0.4490851, 0, 0.426630
 [node name="Mesh" type="MeshInstance3D" parent="ViewportContainer/SubViewport3D/Collision/Seats/Left/Seat2" unique_id=1682462059]
 transform = Transform3D(7.5684686, 0.5649438, 0.6836882, -0.23632716, 7.568942, -4.993896, -0.6499477, 3.8264818, 9.777197, -11.331154, -10.445496, -42.7614)
 top_level = true
+visible = false
 material_override = ExtResource("8_hxc5g")
 transparency = 1.0
 mesh = SubResource("ArrayMesh_3m0ak")
@@ -1460,6 +1470,7 @@ debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="Sprite3D" type="Sprite3D" parent="ViewportContainer/SubViewport3D/PlaneBody" unique_id=779425008]
 transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, 0.1, 0, -0.1, -4.371139e-09, 0, 0, 0)
+layers = 2
 material_override = ExtResource("3_f0ufm")
 texture_filter = 0
 render_priority = 2
@@ -1474,6 +1485,7 @@ texture = ExtResource("5_hxc5g")
 
 [node name="Sprite3D3" type="Sprite3D" parent="ViewportContainer/SubViewport3D/PlaneBody" unique_id=2023522257]
 transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, 0.1, 0, -0.1, -4.371139e-09, 0, -0.0016474128, 0)
+visible = false
 material_override = ExtResource("3_f0ufm")
 texture_filter = 0
 texture = ExtResource("5_hxc5g")

@@ -32,7 +32,6 @@ radius = 95.918526
 radius = 95.918526
 
 [node name="MainMenu" type="CanvasLayer" unique_id=1416074231]
-follow_viewport_enabled = true
 
 [node name="Background" type="TextureRect" parent="." unique_id=708723921]
 offset_right = 1920.0

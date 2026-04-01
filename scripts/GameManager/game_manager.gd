@@ -99,8 +99,8 @@ func initialize_game() -> void:
 	UI_Manager.initialize_game()
 	G_Inventory.initialize()
 	#Main_Camera.set_persp()
-	get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
-	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
+	#get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+	#get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
 	await get_tree().process_frame
 	_sub_viewport =  get_tree().current_scene.get_node("SubViewportContainer/SubViewport2D")
 	_sub_viewport.physics_object_picking = true
@@ -212,7 +212,7 @@ func _on_minigame_ended(minigame):
 		num_completed_games += 1
 		#start next minigame
 		#await G_Utils.wait(2)
-		if num_completed_games < 3:
+		if num_completed_games < 4:
 			pass
 			#current_mini_game = current_mini_game+1
 			##print("mini game indexi: ",current_mini_game )
@@ -266,7 +266,9 @@ func hide_item_indicator():
 func enable_67_mode(duration):
 	_sixty_seven_enabled = true
 	_busdriver.ignore_suspicion(true)
-	UI_Manager.display_67_mode(duration)
+	UI_Manager.enable_67_mode_label(true)
+	##UI_Manager.display_67_mode(duration)
 	await G_Utils.wait(duration)
+	UI_Manager.enable_67_mode_label(false)
 	_busdriver.ignore_suspicion(false)
 	_sixty_seven_enabled = false
